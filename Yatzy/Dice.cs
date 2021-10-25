@@ -7,14 +7,13 @@ namespace Yatzy
         public int Face { get; private set; }
         private IRandomNumberGenerator _randomNumberGenerator;
         
-        //create interface for random number generator to create test double
         public Dice(IRandomNumberGenerator randomNumberGenerator)
         {
             _randomNumberGenerator = randomNumberGenerator;
         }
         public int Roll()
         {
-            var rolledNumber = _randomNumberGenerator.RandomNumber(1, 6);
+            var rolledNumber = _randomNumberGenerator.RandomNumber(Constants.MinimumDiceRoll, Constants.MaximumDiceRoll);
             Face = rolledNumber;
             
             return rolledNumber;

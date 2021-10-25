@@ -11,9 +11,10 @@ namespace YatzyTest
         private void Dice_Roll_Should_Provide_Number_Between_One_And_Six()
         {
            //arrange
-           var randomNumberGenerator = new Mock<IRandomNumberGenerator>();
-           randomNumberGenerator.Setup(m => m.RandomNumber(1, 9)).Returns(9);
-           var dice = new Dice(randomNumberGenerator.Object);
+           var randomNumberGenerator = new RandomNumberGenerator();
+           //var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+           //mockRandomNumberGenerator.Setup(m => m.RandomNumber(1, 6));
+           var dice = new Dice(randomNumberGenerator);
            
            //act
            var rolledNumber = dice.Roll();
