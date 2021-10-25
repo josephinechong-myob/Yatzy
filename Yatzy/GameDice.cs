@@ -12,7 +12,10 @@ namespace Yatzy
 
         public void RollDice()
         {
-            
+            for (var i = 0; i < Dice.Count; i++) //rolling all 5 dice 
+            {
+                Dice[i].Roll();
+            }
         }
     }
 }
