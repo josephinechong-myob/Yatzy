@@ -8,20 +8,7 @@ namespace Yatzy
         public GameDice()
         {
             var randomNumberGenerator = new RandomNumberGenerator();
-            Dice = new List<Dice>() {
-                new Dice(randomNumberGenerator), 
-                new Dice(randomNumberGenerator), 
-                new Dice(randomNumberGenerator), 
-                new Dice(randomNumberGenerator), 
-                new Dice(randomNumberGenerator), 
-            }; 
+            Dice = GameDiceGenerator.Generate(randomNumberGenerator); 
         }
-        
-        
-        //Dice 1
-        //Dice 2
-        //Dice 3
-        //Dice 4
-        //Dice 5
     }
 }
