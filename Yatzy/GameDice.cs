@@ -7,10 +7,17 @@ namespace Yatzy
         public List<Dice> Dice; 
         public GameDice()
         {
-            Dice = new List<Dice>(
-                
-                );
+            var randomNumberGenerator = new RandomNumberGenerator();
+            Dice = new List<Dice>() {
+                new Dice(randomNumberGenerator), 
+                new Dice(randomNumberGenerator), 
+                new Dice(randomNumberGenerator), 
+                new Dice(randomNumberGenerator), 
+                new Dice(randomNumberGenerator), 
+            }; 
         }
+        
+        
         //Dice 1
         //Dice 2
         //Dice 3
