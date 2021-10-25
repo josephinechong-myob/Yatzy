@@ -96,3 +96,5 @@
 /Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest/obj/Debug/netcoreapp3.1/YatzyTest.genruntimeconfig.cache
 /Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest/bin/Debug/netcoreapp3.1/Yatzy.dll
 /Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest/bin/Debug/netcoreapp3.1/Yatzy.pdb
+/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest/bin/Debug/netcoreapp3.1/Castle.Core.dll
+/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest/bin/Debug/netcoreapp3.1/Moq.dll

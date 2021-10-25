@@ -1,19 +1,20 @@
 using System;
-using System.Security.Cryptography;
 
 namespace Yatzy
 {
     public class Dice
     {
         public int Face { get; private set; }
-        public Dice()
+        private IRandomNumberGenerator _randomNumberGenerator;
+        
+        //create interface for random number generator to create test double
+        public Dice(IRandomNumberGenerator randomNumberGenerator)
         {
+            _randomNumberGenerator = randomNumberGenerator;
         }
         public int Roll()
         {
-            var random = new Random();
-            var rolledNumber = random.Next(1, 6);
-            
+            var rolledNumber = _randomNumberGenerator.RandomNumber(1, 6);
             Face = rolledNumber;
             
             return rolledNumber;
