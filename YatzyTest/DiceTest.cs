@@ -14,7 +14,7 @@ namespace YatzyTest
            var randomNumberGenerator = new RandomNumberGenerator();
            //var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
            //mockRandomNumberGenerator.Setup(m => m.RandomNumber(1, 6));
-           var dice = new Dice(randomNumberGenerator);
+           var dice = new Die(randomNumberGenerator);
            
            //act
            var rolledNumber = dice.Roll();
@@ -29,7 +29,7 @@ namespace YatzyTest
             //arrange
             var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
             mockRandomNumberGenerator.Setup(m => m.RandomNumber(1, 6)).Returns(1);
-            var dice = new Dice(mockRandomNumberGenerator.Object);
+            var dice = new Die(mockRandomNumberGenerator.Object);
 
             //act
             var rolledNumber = dice.Roll();

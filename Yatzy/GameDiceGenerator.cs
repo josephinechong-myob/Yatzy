@@ -4,14 +4,14 @@ namespace Yatzy
 {
     public static class GameDiceGenerator
     {
-        public static List<Dice> Generate(IRandomNumberGenerator randomNumberGenerator)
+        public static List<Die> Generate(IRandomNumberGenerator randomNumberGenerator)
         {
-            return new List<Dice>() {
-                new Dice(randomNumberGenerator), 
-                new Dice(randomNumberGenerator), 
-                new Dice(randomNumberGenerator), 
-                new Dice(randomNumberGenerator), 
-                new Dice(randomNumberGenerator), 
+            return new List<Die>() {
+                new Die(randomNumberGenerator), 
+                new Die(randomNumberGenerator), 
+                new Die(randomNumberGenerator), 
+                new Die(randomNumberGenerator), 
+                new Die(randomNumberGenerator), 
             }; 
         }
     }
