@@ -7,14 +7,16 @@ namespace YatzyTest
 {
     public class DiceTest
     {
+        private RandomNumberGenerator _randomNumberGenerator;
+        public DiceTest()
+        {
+            _randomNumberGenerator = new RandomNumberGenerator();
+        }
         [Fact]
         private void Dice_Roll_Should_Provide_Number_Between_One_And_Six()
         {
            //arrange
-           var randomNumberGenerator = new RandomNumberGenerator();
-           //var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
-           //mockRandomNumberGenerator.Setup(m => m.RandomNumber(1, 6));
-           var dice = new Die(randomNumberGenerator);
+           var dice = new Die(_randomNumberGenerator);
            
            //act
            var rolledNumber = dice.Roll();
@@ -43,8 +45,7 @@ namespace YatzyTest
         {
             //arrange
             //act
-            var randomNumberGenerator = new RandomNumberGenerator();
-            var die = new Die(randomNumberGenerator);
+            var die = new Die(_randomNumberGenerator);
             
             //assert
             Assert.Equal(0, die.Face);
@@ -54,14 +55,40 @@ namespace YatzyTest
         private void New_Die_Should_Not_Be_Held()
         {
             //arrange
-            var randomNumberGenerator = new RandomNumberGenerator();
-            var die = new Die(randomNumberGenerator);
+            var die = new Die(_randomNumberGenerator);
             
             //act
             var held = die.IsHeld();
             
             //assert
             Assert.False(held);
+        }
+
+        [Fact]
+        private void Die_Should_Be_Able_To_Be_Held()//implementation free name test name not setheld should be blah...
+        {
+            //arrange
+            var die = new Die(_randomNumberGenerator);
+            
+            //act
+            die.SetHeld();
+            
+            //assert
+            Assert.True(die.IsHeld());
+        }
+
+        [Fact]
+        private void Held_Die_Should_Be_Able_To_Be_Released()
+        {
+            //arrange
+            var die = new Die(_randomNumberGenerator);
+            
+            //act
+            die.SetHeld();
+            die.Release();
+            
+            //assert
+            Assert.False(die.IsHeld());
         }
     }
 }

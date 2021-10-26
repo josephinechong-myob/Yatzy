@@ -26,13 +26,14 @@ namespace Yatzy
             return _held;
         }
 
-        public bool SetHeld()
+        public void SetHeld()
         {
-            
+            _held = true;
         }
-        //set held or hold
-        
-        
-        //set released
+
+        public void Release()
+        {
+            _held = false;
+        }
     }
 }
