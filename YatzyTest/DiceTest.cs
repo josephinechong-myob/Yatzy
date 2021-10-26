@@ -49,5 +49,19 @@ namespace YatzyTest
             //assert
             Assert.Equal(0, die.Face);
         }
+
+        [Fact]
+        private void New_Die_Should_Not_Be_Held()
+        {
+            //arrange
+            var randomNumberGenerator = new RandomNumberGenerator();
+            var die = new Die(randomNumberGenerator);
+            
+            //act
+            var held = die.IsHeld();
+            
+            //assert
+            Assert.False(held);
+        }
     }
 }
