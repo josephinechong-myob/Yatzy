@@ -65,32 +65,55 @@ namespace YatzyTest
             Assert.False(firstNonHeldDie);
             Assert.False(secondNonHeldDie);
         }
-
-        //test for player holding numbers 
+        
         [Fact]
         public void HeldDice_Should_Not_Be_Rolled()
         {
             //arrange
-            var mockRandomNumberGenerator = new Mock <IRandomNumberGenerator>();
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
             mockRandomNumberGenerator.SetupSequence(m => m.RandomNumber(1, 6))
                 .Returns(1)
+                .Returns(1)
                 .Returns(3)
-                .Returns(3)
+                .Returns(1)
+                .Returns(5)
                 .Returns(2)
-                .Returns(5);
+                .Returns(4);
+
             var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var mockPlayerHeldList = new List<int>() {1};
             
             //act
             gameDice.RollDice();
-            var allDice = gameDice.Dice; //list of held dice (everything all 5)
-           // var selectedDiceForHolding = gameDice.Held; //create new list for dice to hold
-            var HeldNumbers = new List<Die>() //removing the 3 from all Dice the number in the held number list
-            {
-                //new Die(m)
-            };
+            var firstHeldDieFace = gameDice.Dice[0].Face;
+            var secondHeldDieFace = gameDice.Dice[1].Face;
+            var thirdHeldDieFace = gameDice.Dice[3].Face;
+            var firstNonHeldDieFace = gameDice.Dice[2].Face;
+            var secondNonHeldDieFace = gameDice.Dice[4].Face;
+            gameDice.HoldDice(mockPlayerHeldList);
+            gameDice.RollDice();
+            var firstHeldDieFacePostRoll = gameDice.Dice[0].Face;
+            var secondHeldDieFacePostRoll = gameDice.Dice[1].Face;
+            var thirdHeldDieFacePostRoll = gameDice.Dice[3].Face;
+            var firstNonHeldDieFacePostRoll = gameDice.Dice[2].Face;
+            var secondNonHeldDieFacePostRoll = gameDice.Dice[4].Face;
             
-                //assert
-               
+            //assert
+            var firstHeldDie = gameDice.Dice[0].IsHeld();
+            var secondHeldDie = gameDice.Dice[1].IsHeld();
+            var thirdHeldDie = gameDice.Dice[3].IsHeld();
+            var firstNonHeldDie = gameDice.Dice[2].IsHeld();
+            var secondNonHeldDie = gameDice.Dice[4].IsHeld();
+            Assert.True(firstHeldDie);
+            Assert.Equal(firstHeldDieFace, firstHeldDieFacePostRoll);
+            Assert.True(secondHeldDie);
+            Assert.Equal(secondHeldDieFace, secondHeldDieFacePostRoll);
+            Assert.True(thirdHeldDie);
+            Assert.Equal(thirdHeldDieFace, thirdHeldDieFacePostRoll);
+            Assert.False(firstNonHeldDie);
+            Assert.NotEqual(firstNonHeldDieFace, firstNonHeldDieFacePostRoll);
+            Assert.False(secondNonHeldDie);
+            Assert.NotEqual(secondNonHeldDieFace, secondNonHeldDieFacePostRoll);
         }
     }
 }

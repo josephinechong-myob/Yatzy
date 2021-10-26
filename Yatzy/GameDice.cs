@@ -5,9 +5,7 @@ namespace Yatzy
     public class GameDice //roll or hold
     {
         public List<Die> Dice;
-        //public List<Die> Held;//new list for holding dice OR
-        //hold interger/index of number being held OR
-        //Dice can be locked for holding (attribute)
+  
         public GameDice(IRandomNumberGenerator randomNumberGenerator)
         {
             Dice = GameDiceGenerator.Generate(randomNumberGenerator); 
@@ -15,13 +13,16 @@ namespace Yatzy
 
         public void RollDice()
         {
-            for (var i = 0; i < Dice.Count; i++) //rolling all 5 dice 
+            for (var i = 0; i < Dice.Count; i++)
             {
-                Dice[i].Roll();
+                if (!Dice[i].IsHeld())
+                {
+                    Dice[i].Roll();  
+                }
             }
         }
 
-        public void HoldDice(List<int> playersHeldDice)//list of numbers of dice index they want to hold - dice (index - user they can hold the value of the face)
+        public void HoldDice(List<int> playersHeldDice)
         {
             for (var i = 0; i < Dice.Count; i++)
             {
@@ -33,8 +34,6 @@ namespace Yatzy
                     }
                 }
             }
-            
-            
         }
     }
 }
