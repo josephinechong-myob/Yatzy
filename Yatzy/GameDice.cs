@@ -4,7 +4,10 @@ namespace Yatzy
 {
     public class GameDice //roll or hold
     {
-        public List<Die> Dice; 
+        public List<Die> Dice;
+        //public List<Die> Held;//new list for holding dice OR
+        //hold interger/index of number being held OR
+        //Dice can be locked for holding (attribute)
         public GameDice(IRandomNumberGenerator randomNumberGenerator)
         {
             Dice = GameDiceGenerator.Generate(randomNumberGenerator); 

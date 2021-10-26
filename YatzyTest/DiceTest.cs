@@ -37,5 +37,17 @@ namespace YatzyTest
             //assert
             Assert.Equal(rolledNumber, dice.Face);
         }
+
+        [Fact]
+        private void New_Die_Face_Value_Should_Be_Zero_Before_First_Roll()
+        {
+            //arrange
+            //act
+            var randomNumberGenerator = new RandomNumberGenerator();
+            var die = new Die(randomNumberGenerator);
+            
+            //assert
+            Assert.Equal(0, die.Face);
+        }
     }
 }
