@@ -21,9 +21,20 @@ namespace Yatzy
             }
         }
 
-        public void HoldDice()//list of numbers of dice index they want to hold
+        public void HoldDice(List<int> playersHeldDice)//list of numbers of dice index they want to hold - dice (index - user they can hold the value of the face)
         {
-            //allow the player to hold(bool in die) a particular dice
+            for (var i = 0; i < Dice.Count; i++)
+            {
+                for (var j = 0; j < playersHeldDice.Count; j++)
+                {
+                    if (playersHeldDice[j] == Dice[i].Face)
+                    {
+                        Dice[i].Hold();
+                    }
+                }
+            }
+            
+            
         }
     }
 }

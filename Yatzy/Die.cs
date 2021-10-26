@@ -6,7 +6,7 @@ namespace Yatzy
     {
         public int Face { get; private set; } //This records value of rolled number
         private IRandomNumberGenerator _randomNumberGenerator;
-        private bool _held;
+        private bool _held; //Attribute which determines if die is held or rolled
         
         public Die(IRandomNumberGenerator randomNumberGenerator)
         {
