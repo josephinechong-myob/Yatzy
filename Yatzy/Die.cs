@@ -26,7 +26,7 @@ namespace Yatzy
             return _held;
         }
 
-        public void SetHeld()
+        public void Hold()
         {
             _held = true;
         }

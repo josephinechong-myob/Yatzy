@@ -20,5 +20,10 @@ namespace Yatzy
                 Dice[i].Roll();
             }
         }
+
+        public void HoldDice()//list of numbers of dice index they want to hold
+        {
+            //allow the player to hold(bool in die) a particular dice
+        }
     }
 }

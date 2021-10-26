@@ -71,7 +71,7 @@ namespace YatzyTest
             var die = new Die(_randomNumberGenerator);
             
             //act
-            die.SetHeld();
+            die.Hold();
             
             //assert
             Assert.True(die.IsHeld());
@@ -84,7 +84,7 @@ namespace YatzyTest
             var die = new Die(_randomNumberGenerator);
             
             //act
-            die.SetHeld();
+            die.Hold();
             die.Release();
             
             //assert
