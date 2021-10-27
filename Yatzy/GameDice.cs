@@ -22,7 +22,7 @@ namespace Yatzy
             }
         }
 
-        public void HoldDice(List<int> playersHeldDice)
+        public void HoldDice(List<int> playersHeldDice) //won't work for if they only want to keep just 1x 1's (if they have 3) 
         {
             for (var i = 0; i < Dice.Count; i++)
             {
