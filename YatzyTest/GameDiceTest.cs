@@ -85,13 +85,16 @@ namespace YatzyTest
             
             //act
             gameDice.RollDice();
+            
             var firstHeldDieFace = gameDice.Dice[0].Face;
             var secondHeldDieFace = gameDice.Dice[1].Face;
             var thirdHeldDieFace = gameDice.Dice[3].Face;
             var firstNonHeldDieFace = gameDice.Dice[2].Face;
             var secondNonHeldDieFace = gameDice.Dice[4].Face;
+            
             gameDice.HoldDice(mockPlayerHeldList);
             gameDice.RollDice();
+            
             var firstHeldDieFacePostRoll = gameDice.Dice[0].Face;
             var secondHeldDieFacePostRoll = gameDice.Dice[1].Face;
             var thirdHeldDieFacePostRoll = gameDice.Dice[3].Face;
@@ -99,20 +102,10 @@ namespace YatzyTest
             var secondNonHeldDieFacePostRoll = gameDice.Dice[4].Face;
             
             //assert
-            var firstHeldDie = gameDice.Dice[0].IsHeld();
-            var secondHeldDie = gameDice.Dice[1].IsHeld();
-            var thirdHeldDie = gameDice.Dice[3].IsHeld();
-            var firstNonHeldDie = gameDice.Dice[2].IsHeld();
-            var secondNonHeldDie = gameDice.Dice[4].IsHeld();
-            Assert.True(firstHeldDie);
             Assert.Equal(firstHeldDieFace, firstHeldDieFacePostRoll);
-            Assert.True(secondHeldDie);
             Assert.Equal(secondHeldDieFace, secondHeldDieFacePostRoll);
-            Assert.True(thirdHeldDie);
             Assert.Equal(thirdHeldDieFace, thirdHeldDieFacePostRoll);
-            Assert.False(firstNonHeldDie);
             Assert.NotEqual(firstNonHeldDieFace, firstNonHeldDieFacePostRoll);
-            Assert.False(secondNonHeldDie);
             Assert.NotEqual(secondNonHeldDieFace, secondNonHeldDieFacePostRoll);
         }
     }
