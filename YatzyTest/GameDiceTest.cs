@@ -164,5 +164,31 @@ namespace YatzyTest
                 }
             }  
         }
+
+        [Fact]
+        private void Should_Be_Able_To_Find_Dice_Number_When_Given_Players_Values_To_Hold()
+        {
+            //arrange
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            // Add values to return from random number generator
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var valuesToHold = new List<int> {5}; {}
+            
+            //act
+            gameDice.RollDice();
+            var foundDice = gameDice.FindDice(valuesToHold);
+            
+            //assert
+            Assert.Equal(1, foundDice.Count);
+            Assert.Equal(3, foundDice[0]); //so value of 3rd dice = 5 {1 2 5 2 4}
+            
+
+        }
+        
+        // 5 5 (test 1)
+        // dice { 1 1 1 5 5} making sure that the second 5 is index 4 not 3 again
+            
+        //validation of user input  (test 2)
+        //valudation here if the user passes in values not within dice list
     }
 }
