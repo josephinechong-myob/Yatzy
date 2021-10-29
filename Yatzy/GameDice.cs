@@ -31,35 +31,31 @@ namespace Yatzy
             }
         }
 
-        private List<int> ConvertDieToInt()
+        private List<int> GetDiceFaceValues()
         {
-            List<int> intList = null;
+            List<int> facevalues = null;
             foreach (Die die in Dice)
             {
-                intList.Add(die.Face);
+                facevalues.Add(die.Face);
             }
-            return intList;
+            return facevalues;
         }
         
-        public void FindDice(List<int> valuesToHold)
+        public List<int> FindDice(List<int> valuesToHold)
         {
-            //get values that player want to hold and get index for that
-            // once a dice is chosen we have to remove it from being chosen again - maybe local variable 
-
-            //so value of 3rd dice = 5 {1 2 5 2 4} {5}
-
-            var newList = ConvertDieToInt();
+            List<int> diceToHold = new List<int>();
             
-            for (var i = 0; i < newList.Count; i++)
+            for (var i = 0; i < Dice.Count; i++)
             {
                 foreach (var t in valuesToHold)
                 {
-                    if (newList[i] == t)
+                    if (Dice[i].Face == t)
                     {
-                        var index = newList.IndexOf(t);
+                        diceToHold.Add(i);
                     }
                 }
             }
+            return diceToHold;
         }
     }
 }
