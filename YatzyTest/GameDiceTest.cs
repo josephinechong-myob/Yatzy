@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
@@ -156,7 +157,7 @@ namespace YatzyTest
                 .Returns(1) //dice 1
                 .Returns(2) //dice 2
                 .Returns(5) //dice 3
-                .Returns(2) //dice 4
+                .Returns(5) //dice 4
                 .Returns(4); //dice 5
                 
             var gameDice = new GameDice(mockRandomNumberGenerator.Object);
@@ -168,13 +169,58 @@ namespace YatzyTest
 
             //assert
             Assert.Equal(1, foundDice.Count);
-            //Assert.Equal(3, foundDice[0]); //so value of 3rd dice = 5 {1 2 5 2 4} //jermery double check it was 2 not 3 for dice index
             Assert.Equal(2, foundDice[0]); //Dice position 3 = 5 for 0 index is dice 2 not 3
         }
         
-        // 5 5 (test 1)
-        // dice { 1 1 1 5 5} making sure that the second 5 is index 4 not 3 again
+        [Fact]
+        public void Should_Be_Able_To_Find_Dice_Number_When_Given_Players_Values_Which_Have_Multiple_Of_The_Same_Value_To_Hold()
+        {
+            //arrange
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            mockRandomNumberGenerator.SetupSequence(m => m.RandomNumber(1, 6))
+                .Returns(1) //dice 1 = index 0 <-
+                .Returns(1) //dice 2 = index 1 
+                .Returns(1) //dice 3 = index 2 
+                .Returns(5) //dice 4 = index 3 <-
+                .Returns(5); //dice 5 = index 4 <-
+                
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var valuesToHold = new List<int> {5, 5, 1}; 
             
+            //act
+            gameDice.RollDice();
+            var foundDice = gameDice.FindDice(valuesToHold);
+
+            //assert
+            Assert.Equal(3, foundDice.Count);
+            Assert.Equal(0, foundDice[0]);
+            Assert.Equal(3, foundDice[1]); 
+            Assert.Equal(4, foundDice[2]);// The order of foundDice is based on the order of the faces in dice (even though they have been listed 5,2,2)
+        }
+
+        [Fact]
+
+        private void Player_Should_Not_Be_Able_To_Hold_Dice_That_Are_Not_Contained_In_Their_Dice_Collection()
+        {
+            //assign
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            mockRandomNumberGenerator.SetupSequence(m => m.RandomNumber(1, 6))
+                .Returns(1) //dice 1 = index 0 <-
+                .Returns(1) //dice 2 = index 1 
+                .Returns(1) //dice 3 = index 2 
+                .Returns(5) //dice 4 = index 3 <-
+                .Returns(5); //dice 5 = index 4 <-
+                
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var valuesToHold = new List<int> {2, 3, 4}; 
+            //act
+            gameDice.RollDice();
+            //var foundDice = gameDice.FindDice(valuesToHold);
+            
+            //assert
+            //Assert.Equal(0, foundDice.Count);
+            Assert.Throws <Exception>(() => gameDice.FindDice(valuesToHold));
+        }
         //validation of user input  (test 2)
         //valudation here if the user passes in values not within dice list
     }
