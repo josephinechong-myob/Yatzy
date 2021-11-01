@@ -219,7 +219,7 @@ namespace YatzyTest
             
             //assert
             //Assert.Equal(0, foundDice.Count);
-            Assert.Throws <Exception>(() => gameDice.FindDice(valuesToHold));
+            Assert.Throws <DiceNotFoundException>(() => gameDice.FindDice(valuesToHold));
         }
         //validation of user input  (test 2)
         //valudation here if the user passes in values not within dice list

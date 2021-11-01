@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Yatzy
 {
@@ -61,7 +62,7 @@ namespace Yatzy
 
             if (valuesToHold.Count != 0)
             {
-                throw new Exception();
+                throw new DiceNotFoundException($"The following dice values were not found: {string.Join(", ", valuesToHold)}" );
             }
             return diceToHold;
         }
