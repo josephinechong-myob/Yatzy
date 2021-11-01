@@ -42,29 +42,24 @@ namespace YatzyTest
             //arrange
             var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
             mockRandomNumberGenerator.SetupSequence(m => m.RandomNumber(1, 6))
-                .Returns(1)
-                .Returns(1)
-                .Returns(3)
-                .Returns(1)
-                .Returns(5);
+                .Returns(1) //gameDice.Dice[0]
+                .Returns(1) //gameDice.Dice[1]
+                .Returns(3) //gameDice.Dice[2]
+                .Returns(1) //gameDice.Dice[3]
+                .Returns(5); //gameDice.Dice[4]
             var gameDice = new GameDice(mockRandomNumberGenerator.Object);
-            var mockPlayerHeldList = new List<int>() {1};
+            var mockPlayerHeldList = new List<int>() {0, 1, 3}; //Holding based on dice index
             
             //act
             gameDice.RollDice();
             gameDice.HoldDice(mockPlayerHeldList);
             
             //assert
-            var firstHeldDie = gameDice.Dice[0].IsHeld();
-            var secondHeldDie = gameDice.Dice[1].IsHeld();
-            var thirdHeldDie = gameDice.Dice[3].IsHeld();
-            var firstNonHeldDie = gameDice.Dice[2].IsHeld();
-            var secondNonHeldDie = gameDice.Dice[4].IsHeld();
-            Assert.True(firstHeldDie);
-            Assert.True(secondHeldDie);
-            Assert.True(thirdHeldDie);
-            Assert.False(firstNonHeldDie);
-            Assert.False(secondNonHeldDie);
+            Assert.True(gameDice.Dice[0].IsHeld());
+            Assert.True(gameDice.Dice[1].IsHeld());
+            Assert.True(gameDice.Dice[3].IsHeld());
+            Assert.False(gameDice.Dice[2].IsHeld());
+            Assert.False(gameDice.Dice[4].IsHeld());
         }
         
         [Fact]
@@ -86,28 +81,15 @@ namespace YatzyTest
             
             //act
             gameDice.RollDice();
-            
-            var firstHeldDieFace = gameDice.Dice[0].Face;
-            var secondHeldDieFace = gameDice.Dice[1].Face;
-            var thirdHeldDieFace = gameDice.Dice[3].Face;
-            var firstNonHeldDieFace = gameDice.Dice[2].Face;
-            var secondNonHeldDieFace = gameDice.Dice[4].Face;
+            var diceAfterFirstRoll = gameDice.Dice.Select(d => d.Face).ToList();
             
             gameDice.HoldDice(mockPlayerHeldList);
+            
             gameDice.RollDice();
-            
-            var firstHeldDieFacePostRoll = gameDice.Dice[0].Face;
-            var secondHeldDieFacePostRoll = gameDice.Dice[1].Face;
-            var thirdHeldDieFacePostRoll = gameDice.Dice[3].Face;
-            var firstNonHeldDieFacePostRoll = gameDice.Dice[2].Face;
-            var secondNonHeldDieFacePostRoll = gameDice.Dice[4].Face;
-            
+            var diceAfterSecondRoll = gameDice.Dice;
+
             //assert
-            Assert.Equal(firstHeldDieFace, firstHeldDieFacePostRoll);
-            Assert.Equal(secondHeldDieFace, secondHeldDieFacePostRoll);
-            Assert.Equal(thirdHeldDieFace, thirdHeldDieFacePostRoll);
-            Assert.NotEqual(firstNonHeldDieFace, firstNonHeldDieFacePostRoll);
-            Assert.NotEqual(secondNonHeldDieFace, secondNonHeldDieFacePostRoll);
+            Dice_Should_Reroll_Unless_Held(diceAfterFirstRoll, diceAfterSecondRoll);
         }
         
         [Fact]
@@ -166,23 +148,28 @@ namespace YatzyTest
         }
 
         [Fact]
-        private void Should_Be_Able_To_Find_Dice_Number_When_Given_Players_Values_To_Hold()
+        public void Should_Be_Able_To_Find_Dice_Number_When_Given_Players_Values_To_Hold()
         {
             //arrange
             var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
-            // Add values to return from random number generator
+            mockRandomNumberGenerator.SetupSequence(m => m.RandomNumber(1, 6))
+                .Returns(1) //dice 1
+                .Returns(2) //dice 2
+                .Returns(5) //dice 3
+                .Returns(2) //dice 4
+                .Returns(4); //dice 5
+                
             var gameDice = new GameDice(mockRandomNumberGenerator.Object);
-            var valuesToHold = new List<int> {5}; {}
+            var valuesToHold = new List<int> {5};
             
             //act
             gameDice.RollDice();
             var foundDice = gameDice.FindDice(valuesToHold);
-            
+
             //assert
             Assert.Equal(1, foundDice.Count);
-            Assert.Equal(3, foundDice[0]); //so value of 3rd dice = 5 {1 2 5 2 4}
-            
-
+            //Assert.Equal(3, foundDice[0]); //so value of 3rd dice = 5 {1 2 5 2 4} //jermery double check it was 2 not 3 for dice index
+            Assert.Equal(2, foundDice[0]); //Dice position 3 = 5 for 0 index is dice 2 not 3
         }
         
         // 5 5 (test 1)
