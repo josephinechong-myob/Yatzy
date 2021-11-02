@@ -199,7 +199,6 @@ namespace YatzyTest
         }
 
         [Fact]
-
         private void Player_Should_Not_Be_Able_To_Hold_Dice_That_Are_Not_Contained_In_Their_Dice_Collection()
         {
             //assign
@@ -215,13 +214,9 @@ namespace YatzyTest
             var valuesToHold = new List<int> {2, 3, 4}; 
             //act
             gameDice.RollDice();
-            //var foundDice = gameDice.FindDice(valuesToHold);
-            
+
             //assert
-            //Assert.Equal(0, foundDice.Count);
             Assert.Throws <DiceNotFoundException>(() => gameDice.FindDice(valuesToHold));
         }
-        //validation of user input  (test 2)
-        //valudation here if the user passes in values not within dice list
     }
 }

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Yatzy
 {
@@ -33,30 +31,30 @@ namespace Yatzy
             }
         }
 
-        private List<int> GetDiceFaceValues()
+        private Die? TryMatchDice(Die die, List<int> valuesToHold)
         {
-            List<int> facevalues = null;
-            foreach (Die die in Dice)
+            foreach (var value in valuesToHold)
             {
-                facevalues.Add(die.Face);
+                if (die.Face == value)
+                {
+                    return die;
+                }
             }
-            return facevalues;
+
+            return null;
         }
-        
-        public List<int> FindDice(List<int> valuesToHold)
+
+        public List<int> FindDice(List<int> valuesToHold) //passes in dice face value to find dice index
         {
             List<int> diceToHold = new List<int>();
             
             for (var i = 0; i < Dice.Count; i++)
             {
-                foreach (var value in valuesToHold)
+                var matchedDice = TryMatchDice(Dice[i], valuesToHold);
+                if (matchedDice !=null)
                 {
-                    if (Dice[i].Face == value)
-                    {
-                        diceToHold.Add(i);
-                        valuesToHold.Remove(value);
-                        break;
-                    }
+                    diceToHold.Add(i);
+                    valuesToHold.Remove(matchedDice.Face);
                 }
             }
 
