@@ -20,7 +20,8 @@ namespace YatzyTest.CategoriesTests
             //assert
             Assert.Equal(expectedSumOfDice, finalSumOfDice);
         }
-        
+        //both below could be for validation class
+        //empty list and choose a category?
         //would I need a test to validate input?
     }
 }

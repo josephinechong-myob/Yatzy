@@ -3,6 +3,8 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=558b9b4c_002D4e5e_002D42ea_002D8944_002D5358c69dca5b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="If_Player_Wins_Yatzy_Category_They_Should_Score_Fifty_Points" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.ChanceCatergoryTest.Player_Should_Score_The_Sum_Of_The_Dice_Numbers_They_Roll_If_They_Pick_Chance_Catergory&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.PairCategoryTest.Player_Should_Score_The_Sum_Of_The_Two_Highest_Matching_Dice_Numbers_They_Roll_If_They_Pick_Pair_Category&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.PairCategoryTest.Player_Should_Score_The_Sum_Of_The_Two_Highest_Matching_Dice_Numbers_They_Roll_If_They_Pick_Pair_Category_2&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=97de628d_002Da342_002D4491_002Dac08_002D66b329725106/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Dice_Roll_Should_Provide_Number_Between_One_And_Six" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
