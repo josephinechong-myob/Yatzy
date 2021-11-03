@@ -7,7 +7,8 @@ namespace Yatzy
         static void Main(string[] args)
         {
             var console = new GameConsole();
-            var game = new Game(console);
+            var randomNumberGenerator = new RandomNumberGenerator();
+            var game = new Game(console, randomNumberGenerator);
             game.Run();
         }
     }

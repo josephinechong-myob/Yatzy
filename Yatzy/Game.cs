@@ -4,19 +4,18 @@ namespace Yatzy
     { 
         //players should be in a list or array and loop through 
         private readonly IConsole _console;
-        private GameDice _gamedice;
-        public Game(IConsole console)
+        public GameDice _gamedice;
+        public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
         {
             _console = console;
-            var randomNumberGenerator = new RandomNumberGenerator();
             _gamedice = new GameDice(randomNumberGenerator);
         }
         
         public void Run()
         {
-            _console.WriteLine("Welcome to Yatzy. \nWhat is you name?");
+            _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
             var playerName = _console.ReadLine();
-            _console.WriteLine("Would you like to play a game? Y - yes or N - no");
+            _console.WriteLine($"{playerName} would you like to play a game? Y - yes or N - no");
             var playerChoice = _console.ReadLine();
             if (playerChoice == "Y")
             {
