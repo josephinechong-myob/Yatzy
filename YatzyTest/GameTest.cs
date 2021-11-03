@@ -16,9 +16,7 @@ namespace YatzyTest
             mockConsole.SetupSequence(m => m.ReadLine())
                 .Returns("Dumbledore")
                 .Returns("N");
-            
-            var randomNumberGenerator = new RandomNumberGenerator();
-            var game = new Game(mockConsole.Object, randomNumberGenerator);
+            var game = CreateGame(mockConsole);
 
             //act
             game.Run();
@@ -32,20 +30,29 @@ namespace YatzyTest
         {
             //assign
             var mockConsole = new Mock<IConsole>();
+            var playerName = "Dumbledore";
             mockConsole.SetupSequence(m => m.ReadLine())
-                .Returns("Dumbledore")
+                .Returns(playerName)
                 .Returns("N");
-            var randomNumberGenerator = new RandomNumberGenerator();
-            var game = new Game(mockConsole.Object, randomNumberGenerator);
+            var game = CreateGame(mockConsole);
 
             //act
             game.Run();
             
             //assert
             mockConsole.Verify(m => m.WriteLine("Welcome to Yatzy. \nWhat is your name?"), Times.Once());
-            mockConsole.Verify(m=>m.WriteLine("Dumbledore would you like to play a game? Y - yes or N - no"), Times.Once);
+            mockConsole.Verify(m=>m.WriteLine($"{playerName} would you like to play a game? Y - yes or N - no"), Times.Once);
 
         }
-        
+
+        private Game CreateGame(Mock<IConsole> mockConsole, IRandomNumberGenerator randomNumberGenerator=null)
+        {
+            if (randomNumberGenerator == null)
+            {
+                randomNumberGenerator = new RandomNumberGenerator(); 
+            }
+            var game = new Game(mockConsole.Object, randomNumberGenerator);
+            return game;
+        }
     }
 }
