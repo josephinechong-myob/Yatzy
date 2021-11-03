@@ -15,6 +15,7 @@ namespace Yatzy
         {
             _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
             var playerName = _console.ReadLine();
+            var player = new Player(_console, playerName);
             _console.WriteLine($"{playerName} would you like to play a game? Y - yes or N - no");
             var playerChoice = _console.ReadLine();
             if (playerChoice == "Y")

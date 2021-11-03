@@ -8,7 +8,7 @@ namespace YatzyTest
     public class PlayerTest
     {
         [Fact]
-        private void Player_Should_Be_Able_To_Hold_List_The_Dice_Face_Values_They_Want_To_Hold()
+        private void Player_Should_Be_Able_To_List_The_Dice_Face_Values_They_Want_To_Hold() //can hold dice
         {
             //assign
             var mockConsole = new Mock<IConsole>();
@@ -23,7 +23,7 @@ namespace YatzyTest
                 .Returns(5);
                 
             var gameDice = new GameDice(mockRandomNumberGenerator.Object);
-            var player = new Player(mockConsole.Object);
+            var player = new Player(mockConsole.Object, "player");
             //act
             gameDice.RollDice();
             var valuesToHold = player.ValuesToHold(gameDice.Dice);
@@ -34,7 +34,7 @@ namespace YatzyTest
         }
         
         [Fact]
-        private void Player_Should_Not_Be_Able_To_Hold_Invalid_Values()
+        private void Player_Should_Not_Be_Able_To_Hold_Invalid_Values() //cannot cheat by using values that are not in their hand
         {
             //assign
             var mockConsole = new Mock<IConsole>();
@@ -50,7 +50,7 @@ namespace YatzyTest
                 .Returns(5);
                 
             var gameDice = new GameDice(mockRandomNumberGenerator.Object);
-            var player = new Player(mockConsole.Object);
+            var player = new Player(mockConsole.Object, "player");
            
             //act
             gameDice.RollDice();

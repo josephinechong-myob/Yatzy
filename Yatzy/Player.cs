@@ -6,15 +6,14 @@ namespace Yatzy
 {
     public class Player
     {
-        //record which category the player has already won //list 
         private readonly List<Category> _categoriesWon;
-        //score
-        //name
+        public string Name { get; }
         private readonly IConsole _console;
         public int Score { get; private set; }
 
-        public Player(IConsole console)
+        public Player(IConsole console, string name)
         {
+            Name = name;
             _categoriesWon = new List<Category>();
             Score = 0;
             _console = console;
@@ -61,6 +60,7 @@ namespace Yatzy
         
         
         //choose catageory method
+        
         
         //add to the list
         
