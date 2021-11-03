@@ -6,7 +6,8 @@ namespace Yatzy
     {
         static void Main(string[] args)
         {
-            var game = new Game();
+            var console = new GameConsole();
+            var game = new Game(console);
             game.Run();
         }
     }

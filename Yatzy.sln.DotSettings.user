@@ -1,22 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/josephine.chong/Library/Caches/JetBrains/Rider2020.3/resharper-host/temp/Rider/vAny/CoverageData/_Yatzy.1613344310/Snapshot/snapshot.utdcvr</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=97de628d_002Da342_002D4491_002Dac08_002D66b329725106/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Dice_Roll_Should_Provide_Number_Between_One_And_Six" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.DiceTest.Dice_Roll_Should_Provide_Number_Between_One_And_Six&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.DiceTest.Dice_Should_Record_Its_Value_After_Dice_Roll&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameDiceTest.New_Game_Dice_Should_Have_Five_Dice&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameDiceTest.RollDice_Should_Roll_All_Five_Dice&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.DiceTest.New_Die_Face_Value_Should_Be_Zero_Before_First_Roll&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.DiceTest.New_Die_Should_Not_Be_Held&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.DiceTest.Die_Should_Be_Able_To_Be_Held&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.DiceTest.Held_Die_Should_Be_Able_To_Be_Released&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameDiceTest.Player_Should_Be_Able_To_Hold_Selected_Dice&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameDiceTest.HeldDice_Should_Not_Be_Rolled&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameDiceTest.Player_Should_Be_Able_To_Select_Specific_Amount_Of_The_Same_Face_Number_To_Be_Held&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameDiceTest.Should_Be_Able_To_Find_Dice_Number_When_Given_Players_Values_To_Hold&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameDiceTest.Should_Be_Able_To_Find_Dice_Number_When_Given_Players_Values_Which_Have_Multiple_Of_The_Same_Value_To_Hold&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameDiceTest.Player_Should_Not_Be_Able_To_Hold_Dice_That_Are_Not_Contained_In_Their_Dice_Collection&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.PlayerTest.Player_Should_Be_Able_To_Hold_List_The_Dice_Face_Values_They_Want_To_Hold&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.PlayerTest.Player_Should_Not_Be_Able_To_Hold_Invalid_Values&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
