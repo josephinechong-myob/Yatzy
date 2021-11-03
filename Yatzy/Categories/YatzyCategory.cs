@@ -14,11 +14,8 @@ namespace Yatzy
             {
                 return 50;  
             }
-            else
-            {
-                return 0;
-            }
-            //throw new System.NotImplementedException();
+
+            return 0;
         }
     }
 }

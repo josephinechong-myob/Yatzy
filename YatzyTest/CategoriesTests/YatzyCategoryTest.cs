@@ -7,7 +7,7 @@ namespace YatzyTest.CategoriesTests
     public class YatzyCategoryTest
     {
         [Fact]
-        private void If_Player_Wins_Yatzy_Category_They_Should_Score_Fifty_Points()
+        private void Player_Should_Score_Fifty_Points_If_They_Pick_Yatzy_Catergory_And_Roll_All_The_Same_Dice_Number()
         {
             //assign
             var finalDice = new List<int>{1, 1, 1, 1, 1};
@@ -21,7 +21,7 @@ namespace YatzyTest.CategoriesTests
         }
         
         [Fact]
-        private void If_Player_Does_Not_Win_Yatzy_Category_They_Should_Score_Zero_Points()
+        private void Player_Should_Score_Zero_Points_If_They_Pick_Yatzy_Catergory_And_Does_Not_Roll_All_The_Same_Dice_Number()
         {
             //assign
             var finalDice = new List<int>{2, 1, 1, 3, 1};
