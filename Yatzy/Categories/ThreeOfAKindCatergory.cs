@@ -7,9 +7,9 @@ namespace Yatzy
     {
         public Category Name => Category.ThreeOfAKind;
         
-        public int CalculateScore(List<int> diceNumbers)
+        public int CalculateScore(List<int> diceValues)
         {
-            var findThrees = diceNumbers.GroupBy(three => three)
+            var findThrees = diceValues.GroupBy(three => three)
                 .Where(diceValue => diceValue.Count() > 2)
                 .ToDictionary(three => three.Key, occurence => occurence.Count());
 

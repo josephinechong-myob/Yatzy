@@ -7,9 +7,9 @@ namespace Yatzy
     {
         public Category Name => Category.Pairs;
 
-        public int CalculateScore(List<int> diceNumbers)// write theory test to test everything
+        public int CalculateScore(List<int> diceValues)// write theory test to test everything
         { // 5,5,5,5,5
-            var findPairs = diceNumbers.GroupBy(pair => pair)
+            var findPairs = diceValues.GroupBy(pair => pair)
                 .Where(dicevalue => dicevalue.Count() > 1)
                 .ToDictionary(pair => pair.Key, occurence => occurence.Count());
 

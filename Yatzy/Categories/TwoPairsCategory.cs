@@ -7,13 +7,13 @@ namespace Yatzy
     {
         public Category Name => Category.TwoPairs;
         
-        public int CalculateScore(List<int> diceNumbers)
+        public int CalculateScore(List<int> diceValues)
         {
-            var findPairs = diceNumbers.GroupBy(pair => pair)
+            var findPairs = diceValues.GroupBy(pair => pair)
                 .Where(diceValue => diceValue.Count() > 1)
                 .ToDictionary(pair => pair.Key, occurence => occurence.Count());
 
-            var findFours = diceNumbers.GroupBy(four => four)
+            var findFours = diceValues.GroupBy(four => four)
                 .Where(diceValue => diceValue.Count() > 3)
                 .ToDictionary(four => four.Key, occurence => occurence.Count());
             var sum = 0;

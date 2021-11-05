@@ -7,9 +7,9 @@ namespace Yatzy
     {
         public Category Name => Category.Yatzy;
         
-        public int CalculateScore(List<int> diceNumbers)
+        public int CalculateScore(List<int> diceValues)
         {
-            var distinctDice = diceNumbers.Distinct().Count();
+            var distinctDice = diceValues.Distinct().Count();
             if (distinctDice == 1)
             {
                 return 50;  

@@ -5,6 +5,6 @@ namespace Yatzy
     public interface ICategory
     {
         Category Name { get; }
-        int CalculateScore(List<int> diceNumbers);
+        int CalculateScore(List<int> diceValues);
     }
 }

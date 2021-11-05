@@ -6,9 +6,9 @@ namespace Yatzy
     public class ChanceCategory : ICategory
     {
         public Category Name => Category.Chance;
-        public int CalculateScore(List<int> diceNumbers)
+        public int CalculateScore(List<int> diceValues)
         {
-            return diceNumbers.Sum();
+            return diceValues.Sum();
         }
     }
 }
