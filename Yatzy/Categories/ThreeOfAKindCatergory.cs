@@ -5,7 +5,7 @@ namespace Yatzy
 {
     public class ThreeOfAKindCatergory : ICategory
     {
-        public Category Name => Category.ThreeOfAKind;
+        public CategoryType Name => CategoryType.ThreeOfAKind;
         
         public int CalculateScore(List<int> diceValues)
         {

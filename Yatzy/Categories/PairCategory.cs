@@ -5,7 +5,7 @@ namespace Yatzy
 {
     public class PairCategory : ICategory
     {
-        public Category Name => Category.Pairs;
+        public CategoryType Name => CategoryType.Pairs;
 
         public int CalculateScore(List<int> diceValues)// write theory test to test everything
         { // 5,5,5,5,5

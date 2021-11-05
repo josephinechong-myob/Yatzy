@@ -6,7 +6,7 @@ namespace Yatzy
 {
     public class Player
     {
-        private readonly List<Category> _categoriesWon;
+        private readonly List<CategoryType> _categoriesWon;
         public string Name { get; }
         private readonly IConsole _console;
         public int Score { get; private set; }
@@ -14,7 +14,7 @@ namespace Yatzy
         public Player(IConsole console, string name)
         {
             Name = name;
-            _categoriesWon = new List<Category>();
+            _categoriesWon = new List<CategoryType>();
             Score = 0;
             _console = console;
         }

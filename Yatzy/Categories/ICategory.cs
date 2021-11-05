@@ -4,7 +4,7 @@ namespace Yatzy
 {
     public interface ICategory
     {
-        Category Name { get; }
+        CategoryType Name { get; }
         int CalculateScore(List<int> diceValues);
     }
 }

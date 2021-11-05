@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Yatzy
 {
     public class Game
@@ -21,7 +23,8 @@ namespace Yatzy
             if (playerChoice == "Y")
             {
                 // roll dice
-                _gamedice.RollDice();
+                //We ask the player what category they want to play
+
             }
             else if (playerChoice == "N")
             {

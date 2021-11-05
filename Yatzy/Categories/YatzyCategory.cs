@@ -5,7 +5,7 @@ namespace Yatzy
 {
     public class YatzyCategory : ICategory
     {
-        public Category Name => Category.Yatzy;
+        public CategoryType Name => CategoryType.Yatzy;
         
         public int CalculateScore(List<int> diceValues)
         {
