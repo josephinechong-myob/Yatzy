@@ -36,6 +36,22 @@ namespace YatzyTest.CategoriesTests
             Assert.Equal(expectedScore, finalScore);
         }
         
+        [Fact]
+        private void Player_Should_Score_The_Sum_Of_The_Two_Highest_Matching_Dice_Numbers_They_Roll_If_They_Pick_Pair_Category_3()
+        {
+            //assign
+            var finalDice = new List<int> {1, 1, 1, 1, 1};
+            var pairCatergory = new PairCategory();
+            var expectedScore = 2;
+          
+            //act
+            var finalScore = pairCatergory.CalculateScore(finalDice);
+
+            //assert
+            Assert.Equal(expectedScore, finalScore);
+        }
+        
+        
         //Do another test for zero score if there are no pairs
     }
 }

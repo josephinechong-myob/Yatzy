@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Xunit;
 using Yatzy;
 
-namespace YatzyTest
+namespace YatzyTest.CategoriesTests
 {
     public class TwoPairsCategoryTest
     {
@@ -25,7 +25,7 @@ namespace YatzyTest
         private void Player_Should_Score_The_Sum_Of_The_Two_Pairs_They_Roll_If_They_Pick_Two_Pairs_Category_Fours()
         {
             //assign
-            var finalDice = new List<int> {4, 4, 4, 4, 1};
+            var finalDice = new List<int> {4, 4, 4, 4, 4};
             var twoPairsCatergory = new TwoPairsCategory();
             var expectedScore = 16;
           

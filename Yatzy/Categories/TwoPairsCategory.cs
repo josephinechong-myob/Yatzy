@@ -10,11 +10,11 @@ namespace Yatzy
         public int CalculateScore(List<int> diceNumbers)
         {
             var findPairs = diceNumbers.GroupBy(pair => pair)
-                .Where(diceValue => diceValue.Count() == 2)
+                .Where(diceValue => diceValue.Count() > 1)
                 .ToDictionary(pair => pair.Key, occurence => occurence.Count());
 
             var findFours = diceNumbers.GroupBy(four => four)
-                .Where(diceValue => diceValue.Count() == 4)
+                .Where(diceValue => diceValue.Count() > 3)
                 .ToDictionary(four => four.Key, occurence => occurence.Count());
             var sum = 0;
             

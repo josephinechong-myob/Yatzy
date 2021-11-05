@@ -10,7 +10,7 @@ namespace Yatzy
         public int CalculateScore(List<int> diceNumbers)// write theory test to test everything
         { // 5,5,5,5,5
             var findPairs = diceNumbers.GroupBy(pair => pair)
-                .Where(dicevalue => dicevalue.Count() == 2)
+                .Where(dicevalue => dicevalue.Count() > 1)
                 .ToDictionary(pair => pair.Key, occurence => occurence.Count());
 
             var firstPair = findPairs.Keys.OrderByDescending(m => m).FirstOrDefault();
