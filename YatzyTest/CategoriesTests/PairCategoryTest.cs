@@ -6,7 +6,7 @@ namespace YatzyTest.CategoriesTests
 {
     public class PairCategoryTest
     {
-        [Fact]
+        [Fact] //Inline data theory testing to test a bunch of pairs in this method
         private void Player_Should_Score_The_Sum_Of_The_Two_Highest_Matching_Dice_Numbers_They_Roll_If_They_Pick_Pair_Category()
         {
           //assign
@@ -35,5 +35,7 @@ namespace YatzyTest.CategoriesTests
             //assert
             Assert.Equal(expectedScore, finalScore);
         }
+        
+        //Do another test for zero score if there are no pairs
     }
 }

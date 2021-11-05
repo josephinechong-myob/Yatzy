@@ -5,6 +5,10 @@
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.ChanceCatergoryTest.Player_Should_Score_The_Sum_Of_The_Dice_Numbers_They_Roll_If_They_Pick_Chance_Catergory&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.PairCategoryTest.Player_Should_Score_The_Sum_Of_The_Two_Highest_Matching_Dice_Numbers_They_Roll_If_They_Pick_Pair_Category&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.PairCategoryTest.Player_Should_Score_The_Sum_Of_The_Two_Highest_Matching_Dice_Numbers_They_Roll_If_They_Pick_Pair_Category_2&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.TwoPairsCategoryTest.Player_Should_Score_The_Sum_Of_The_Two_Pairs_They_Roll_If_They_Pick_Two_Pairs_Category&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.TwoPairsCategoryTest.Player_Should_Score_The_Sum_Of_The_Two_Pairs_They_Roll_If_They_Pick_Two_Pairs_Category_Fours&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.TwoPairsCategoryTest.Player_Should_Score_Zero_If_They_Roll_One_Pair_And_Pick_Two_Pairs_Category&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.TwoPairsCategoryTest.Player_Should_Score_Zero_If_They_Roll_And_Have_No_Pairs_While_Selecting_Two_Pairs_Category&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=97de628d_002Da342_002D4491_002Dac08_002D66b329725106/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Dice_Roll_Should_Provide_Number_Between_One_And_Six" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
