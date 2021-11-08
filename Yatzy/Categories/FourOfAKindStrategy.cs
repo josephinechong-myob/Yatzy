@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Yatzy
 {
-    public class FourOfAKindCatergory//: ICategory
+    public class FourOfAKindStrategy//: ICategory
     {
         public CategoryType Name => CategoryType.FourOfAKind;
         

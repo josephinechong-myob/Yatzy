@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Yatzy
 {
-    public class ThreeOfAKindCatergory : ICategory
+    public class ThreeOfAKindStrategy
     {
         public CategoryType Name => CategoryType.ThreeOfAKind;
         
-        public int CalculateScore(List<int> diceValues)
+        public static int CalculateScore(List<int> diceValues)
         {
             var findThrees = diceValues.GroupBy(three => three)
                 .Where(diceValue => diceValue.Count() > 2)

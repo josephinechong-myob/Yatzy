@@ -11,11 +11,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 4, 6, 1};
-            var threeOfAKindCatergory = new ThreeOfAKindCatergory();
             var expectedScore = 12;
           
             //act
-            var finalScore = threeOfAKindCatergory.CalculateScore(finalDice);
+            var finalScore = ThreeOfAKindStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);
@@ -25,11 +24,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 4, 4, 4};
-            var threeOfAKindCatergory = new ThreeOfAKindCatergory();
             var expectedScore = 12;
           
             //act
-            var finalScore = threeOfAKindCatergory.CalculateScore(finalDice);
+            var finalScore = ThreeOfAKindStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);
@@ -40,11 +38,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 2, 6, 1};
-            var threeOfAKindCatergory = new ThreeOfAKindCatergory();
             var expectedScore = 0;
           
             //act
-            var finalScore = threeOfAKindCatergory.CalculateScore(finalDice);
+            var finalScore = ThreeOfAKindStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);

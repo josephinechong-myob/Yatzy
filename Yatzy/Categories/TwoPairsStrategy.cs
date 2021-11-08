@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Yatzy
 {
-    public class TwoPairsCategory : ICategory
+    public class TwoPairsStrategy 
     {
         public CategoryType Name => CategoryType.TwoPairs;
         
-        public int CalculateScore(List<int> diceValues)
+        public static int CalculateScore(List<int> diceValues)
         {
             var findPairs = diceValues.GroupBy(pair => pair)
                 .Where(diceValue => diceValue.Count() > 1)

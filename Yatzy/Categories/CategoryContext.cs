@@ -17,8 +17,31 @@ namespace Yatzy
             {
                 case CategoryType.FourOfAKind:
 //                    var fourOfAKind = new FourOfAKindCatergory();//swap caterory to stratergy 
-                    return FourOfAKindCatergory.CalculateScore(diceValues);
+                    return FourOfAKindStrategy.CalculateScore(diceValues);
                 
+                case CategoryType.Chance:
+                    return ChanceStrategy.CalculateScore(diceValues);
+                
+                case CategoryType.Yatzy:
+                    return YatzyStrategy.CalculateScore(diceValues);
+                
+                case CategoryType.Pairs:
+                    return PairStrategy.CalculateScore(diceValues);
+                
+                case CategoryType.TwoPairs:
+                    return TwoPairsStrategy.CalculateScore(diceValues);
+                
+                case CategoryType.ThreeOfAKind:
+                    return ThreeOfAKindStrategy.CalculateScore(diceValues);
+                
+                case CategoryType.Ones:
+                case CategoryType.Twos: //not nested but doable - shared switch case ** brown bag
+                case CategoryType.Threes:
+                case CategoryType.Fours:
+                case CategoryType.Fives:
+                case CategoryType.Sixes:
+                    return SpecificNumberStrategy.CalculateScore(_categoryType, diceValues);
+
             }
             
             return 0; // throw catergory not chosen 

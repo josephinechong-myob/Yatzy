@@ -11,11 +11,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 2, 2, 1};
-            var twoPairsCatergory = new TwoPairsCategory();
             var expectedScore = 12;
           
             //act
-            var finalScore = twoPairsCatergory.CalculateScore(finalDice);
+            var finalScore = TwoPairsStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);
@@ -26,11 +25,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 4, 4, 4};
-            var twoPairsCatergory = new TwoPairsCategory();
             var expectedScore = 16;
           
             //act
-            var finalScore = twoPairsCatergory.CalculateScore(finalDice);
+            var finalScore = TwoPairsStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);
@@ -41,11 +39,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 3, 6, 1};
-            var twoPairsCatergory = new TwoPairsCategory();
             var expectedScore = 0;
           
             //act
-            var finalScore = twoPairsCatergory.CalculateScore(finalDice);
+            var finalScore = TwoPairsStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);
@@ -56,11 +53,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 5, 3, 6, 1};
-            var twoPairsCatergory = new TwoPairsCategory();
             var expectedScore = 0;
           
             //act
-            var finalScore = twoPairsCatergory.CalculateScore(finalDice);
+            var finalScore = TwoPairsStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);

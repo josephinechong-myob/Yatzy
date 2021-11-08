@@ -29,10 +29,8 @@ namespace YatzyTest.CategoriesTests
         private void Player_Should_Score_Fifty_Points_If_They_Pick_Yatzy_Catergory_And_Roll_All_The_Same_Dice_Number(List<int> finalDice, int expectedScore)
         {
             //assign
-            var yatzyCatergory = new YatzyCategory();
-
             //act
-            var finalScore = yatzyCatergory.CalculateScore(finalDice);
+            var finalScore = YatzyStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);
@@ -43,10 +41,9 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int>{2, 1, 1, 3, 1};
-            var yatzyCatergory = new YatzyCategory();
 
             //act
-            var finalScore = yatzyCatergory.CalculateScore(finalDice);
+            var finalScore = YatzyStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(0, finalScore);
