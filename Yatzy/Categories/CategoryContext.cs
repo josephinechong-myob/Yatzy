@@ -41,6 +41,9 @@ namespace Yatzy
                 case CategoryType.Fives:
                 case CategoryType.Sixes:
                     return SpecificNumberStrategy.CalculateScore(_categoryType, diceValues);
+                
+                case CategoryType.SmallStraight:
+                    return SmallStraightStrategy.CalculateScore(diceValues);
 
             }
             

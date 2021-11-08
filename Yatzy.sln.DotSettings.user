@@ -21,6 +21,9 @@
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.OneOfAKindStrategyTest.Player_Should_Score_Sum_Of_The_Dice_Value_They_Choose_For_One_Of_A_Kind&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.OneOfAKindStrategyTest.Player_Should_Score_Sum_Of_The_Dice_Value_They_Choose_For_One_Of_A_Kind_2&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.OneOfAKindStrategyTest.Player_Should_Score_Sum_Of_The_Dice_Value_They_Choose_For_One_Of_A_Kind_3&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.SmallStraightStrategyTest.Player_Should_Score_fifteen_If_They_Roll_A_Small_Straight&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.SmallStraightStrategyTest.Player2_Should_Score_fifteen_If_They_Roll_A_Small_Straight&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.SmallStraightStrategyTest.Player_Should_Score_Zero_If_They_Do_Not_Roll_A_Small_Straight&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=97de628d_002Da342_002D4491_002Dac08_002D66b329725106/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Dice_Roll_Should_Provide_Number_Between_One_And_Six" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
