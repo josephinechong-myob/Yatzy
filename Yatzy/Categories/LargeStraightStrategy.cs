@@ -2,15 +2,15 @@ using System.Collections.Generic;
 
 namespace Yatzy
 {
-    public class SmallStraightStrategy
+    public class LargeStraightStrategy
     {
-        public CategoryType Name => CategoryType.SmallStraight;
+        public CategoryType Name => CategoryType.LargeStraight;
         
-        private static bool IsSmallStraight(List<int> diceValues)
+        private static bool IsLargeStraight(List<int> diceValues)
         {
-            var SmallStraight = new List<int> {1, 2, 3, 4, 5};
+            var LargeStraight = new List<int> {2, 3, 4, 5, 6};
 
-            foreach (var number in SmallStraight)
+            foreach (var number in LargeStraight)
             {
                 if (!diceValues.Contains(number))
                 {
@@ -21,11 +21,11 @@ namespace Yatzy
         }
         public static int CalculateScore(List<int> diceValue)
         {
-            if (IsSmallStraight(diceValue))
+            if (IsLargeStraight(diceValue))
             {
-                return 15;
+                return 20;
             }
             return 0;
-        }
+        } 
     }
 }
