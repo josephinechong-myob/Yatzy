@@ -16,7 +16,6 @@ namespace Yatzy
             switch(_categoryType)
             {
                 case CategoryType.FourOfAKind:
-//                    var fourOfAKind = new FourOfAKindCatergory();//swap caterory to stratergy 
                     return FourOfAKindStrategy.CalculateScore(diceValues);
                 
                 case CategoryType.Chance:
@@ -44,7 +43,12 @@ namespace Yatzy
                 
                 case CategoryType.SmallStraight:
                     return SmallStraightStrategy.CalculateScore(diceValues);
-
+                
+                case CategoryType.LargeStraight:
+                    return LargeStraightStrategy.CalculateScore(diceValues);
+                
+                case CategoryType.FullHouse:
+                    return FullHouseStrategy.CalculateScore(diceValues);
             }
             
             return 0; // throw catergory not chosen 
