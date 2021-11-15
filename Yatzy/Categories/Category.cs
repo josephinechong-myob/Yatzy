@@ -9,13 +9,13 @@ namespace Yatzy
         public int Score => CalculateScore();
         public List<Die> DiceRolled { get; private set; }
 
-        public Category(CategoryType categoryType)
+        public Category(CategoryType categoryType, List<Die> diceRolled)
         {
             CategoryType = categoryType;
-            DiceRolled = new List<Die>();
+            DiceRolled = diceRolled;
         }
 
-        private int CalculateScore()
+        public int CalculateScore()
         {
             if(DiceRolled.Count == 0) return 0;
             var categoryContext = new CategoryContext(CategoryType);
@@ -23,7 +23,7 @@ namespace Yatzy
             return categoryContext.CalculateScore(diceValues);
         }
 
-        public void EndRound(List<Die> diceRolled)
+        public void EndRound(List<Die> diceRolled) //not needed as play chooses category after all the rolls
         {
             DiceRolled = diceRolled;
             

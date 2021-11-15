@@ -6,7 +6,7 @@
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4db810f2_002Dafc7_002D461d_002D8cc2_002Ded440e2412c5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CategoryTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;ProjectFolder&gt;9CBC1785-73F3-42CA-8B29-786DFC025A9D/d:CategoriesTests&lt;/ProjectFolder&gt;
+  &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=558b9b4c_002D4e5e_002D42ea_002D8944_002D5358c69dca5b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="If_Player_Wins_Yatzy_Category_They_Should_Score_Fifty_Points" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;

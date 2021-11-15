@@ -63,5 +63,32 @@ namespace YatzyTest
                 ), Times.Exactly(2)
             );
         }
+
+        [Fact]
+        private void Player_Should_Be_Able_To_Choose_Category()
+        {
+            //arrange
+            var mockConsole = new Mock<IConsole>();
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            mockRandomNumberGenerator.SetupSequence(m => m.RandomNumber(1, 6))
+                .Returns(1) 
+                .Returns(1) 
+                .Returns(1) 
+                .Returns(1) 
+                .Returns(1);
+            var player = new Player(mockConsole.Object, "player");
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var chosenCategory = new Category(CategoryType.Yatzy, gameDice.Dice);
+            var expectedScore = 50;
+
+            //act
+            player.ChooseCategory(chosenCategory, gameDice);
+
+            //assert
+            Assert.Equal(expectedScore, player.Score);
+
+
+        }
+        
     }
 }

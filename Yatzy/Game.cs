@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace Yatzy
@@ -20,9 +21,29 @@ namespace Yatzy
             var player = new Player(_console, playerName);
             _console.WriteLine($"{playerName} would you like to play a game? Y - yes or N - no");
             var playerChoice = _console.ReadLine();
+            var rollCounter = 0;
+            
             if (playerChoice == "Y")
             {
+                _gamedice.RollDice();
+                rollCounter++;
+                
+                _console.WriteLine($"{playerName} would you like to roll again? Y - yes or N - no");
+                var playerReRollDice = _console.ReadLine();
+                
+                while (playerReRollDice == "Y" && rollCounter <= 3) //while - max 3 rolls/optional
+                {
+                    var valuesToHold = player.ValuesToHold(_gamedice.Dice);
+                    var diceToHold = _gamedice.FindDice(valuesToHold);
+                    _gamedice.HoldDice(diceToHold);
+                    _gamedice.RollDice();
+                    rollCounter++;
+                }
+                //player choosing category 
+                
                 // roll dice
+                //player choice to cont rolling?
+
                 //We ask the player what category they want to play
 
             }

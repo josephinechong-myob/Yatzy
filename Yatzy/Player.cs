@@ -6,19 +6,27 @@ namespace Yatzy
 {
     public class Player
     {
-        private readonly List<CategoryType> _categoriesWon;
+        private readonly List<Category> _categoriesWon;
         public string Name { get; }
         private readonly IConsole _console;
-        public int Score { get; private set; }
+        public int Score => GetScore();
 
         public Player(IConsole console, string name)
         {
             Name = name;
-            _categoriesWon = new List<CategoryType>();
-            Score = 0;
+            _categoriesWon = new List<Category>();
             _console = console;
         }
-        
+
+        private int GetScore()
+        {
+            var sum = 0;
+            foreach (var category in _categoriesWon)
+            {
+                sum += category.CalculateScore();
+            }
+            return sum;
+        }
         //DisplayDice (private method) - potentially could be on Game dice method??
         private void DisplayDice(List<Die> gameDice)
         {
@@ -58,14 +66,25 @@ namespace Yatzy
             return valuesToHold;
         }
         
+        private bool IsCategoryAvailable(CategoryType chosenCategory)
+        {
+            foreach (var category in _categoriesWon)
+            {
+                if (category.CategoryType == chosenCategory)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         
-        //choose catageory method
-        
-        
-        //add to the list
-        
-        //get the list
-        
-        //score
+        public void ChooseCategory(Category chosenCategory, GameDice gameDice)
+        {
+            if (IsCategoryAvailable(chosenCategory.CategoryType))
+            {
+                chosenCategory.CalculateScore();
+                _categoriesWon.Add(chosenCategory);
+            }
+        }
     }
 }
