@@ -1,5 +1,6 @@
-using System.Collections.Generic;
-using System.Reflection;
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Yatzy
 {
@@ -17,10 +18,10 @@ namespace Yatzy
         public void Run()
         {
             _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
-            var playerName = _console.ReadLine();
+            var playerName = _console.ReadLine(); //1
             var player = new Player(_console, playerName);
             _console.WriteLine($"{playerName} would you like to play a game? Y - yes or N - no");
-            var playerChoice = _console.ReadLine();
+            var playerChoice = _console.ReadLine(); //2
             var rollCounter = 0;
             
             if (playerChoice == "Y")
@@ -29,7 +30,7 @@ namespace Yatzy
                 rollCounter++;
                 
                 _console.WriteLine($"{playerName} would you like to roll again? Y - yes or N - no");
-                var playerReRollDice = _console.ReadLine();
+                var playerReRollDice = _console.ReadLine(); //3
                 
                 while (playerReRollDice == "Y" && rollCounter <= 3) //while - max 3 rolls/optional
                 {
@@ -40,6 +41,8 @@ namespace Yatzy
                     rollCounter++;
                 }
                 //player choosing category 
+                var chosenCategory = requestPlayersCategory(player);
+                //player.ChooseCategory(chosenCategory);
                 
                 // roll dice
                 //player choice to cont rolling?
@@ -49,7 +52,9 @@ namespace Yatzy
             }
             else if (playerChoice == "N")
             {
-                return;
+                var chosenCategory = requestPlayersCategory(player);
+                var category = new Category(chosenCategory, _gamedice.Dice);
+                player.ChooseCategory(category);
             }
 
 
@@ -65,7 +70,40 @@ namespace Yatzy
 
             //put into an object and rotate the object, or put players in a list and rotate the list 
         }
+        private bool StringIsOnlyNumbers(string playerInput) //validate category selection
+        {
+            var validPattern = new Regex("^[1-9][1-5]?$");
+            var stringIsEmpty = playerInput != string.Empty;
+            var patternIsMatch = validPattern.IsMatch(playerInput);
+            return stringIsEmpty && patternIsMatch;
+        }
         
+        private CategoryType requestPlayersCategory(Player player) //testing in "synchronisatin'?
+        {
+            _console.WriteLine("Please select a category: ");
+           var types = Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>();
+           for (var i=0; i < types.Count(); i++)
+           {
+               var categoryNumber = i + 1;
+               _console.WriteLine($"[{categoryNumber}] - {types.ElementAt(i).ToString()}");
+           }
+
+           var chosenCategory = _console.ReadLine(); //4
+           
+           while (!StringIsOnlyNumbers(chosenCategory))
+           {
+               _console.WriteLine("Please enter the number of the category you would like to select");
+            
+               chosenCategory = _console.ReadLine();
+           }
+
+           var categoryIndex = int.Parse(chosenCategory);
+           var categoryString = types.ElementAt(categoryIndex-1);
+           _console.WriteLine($"You have chosen {categoryString} category");
+           return categoryString;
+        }
+        
+        //Brown bag notes - new variable for numbering 
         //Rolling dice
         
         //Rolling with held numbers

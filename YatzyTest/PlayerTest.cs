@@ -82,13 +82,36 @@ namespace YatzyTest
             var expectedScore = 50;
 
             //act
-            player.ChooseCategory(chosenCategory, gameDice);
+            player.ChooseCategory(chosenCategory);
+            gameDice.RollDice();
 
             //assert
             Assert.Equal(expectedScore, player.Score);
-
-
         }
         
+        [Fact]
+        private void Player_Should_Be_Able_To_Choose_Category_2()
+        {
+            //arrange
+            var mockConsole = new Mock<IConsole>();
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            mockRandomNumberGenerator.SetupSequence(m => m.RandomNumber(1, 6))
+                .Returns(2) 
+                .Returns(2) 
+                .Returns(1) 
+                .Returns(1) 
+                .Returns(1);
+            var player = new Player(mockConsole.Object, "player");
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var chosenCategory = new Category(CategoryType.FullHouse, gameDice.Dice);
+            var expectedScore = 7;
+
+            //act
+            player.ChooseCategory(chosenCategory);
+            gameDice.RollDice();
+
+            //assert
+            Assert.Equal(expectedScore, player.Score);
+        }
     }
 }

@@ -45,6 +45,35 @@ namespace YatzyTest
 
         }
 
+        [Fact]
+        public void Player_Should_Be_Able_To_Select_Category_In_The_Game()
+        {
+            //Arrange
+            var mockConsole = new Mock<IConsole>();
+            var player = new Player(mockConsole.Object, "Gandalf");
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            mockRandomNumberGenerator.SetupSequence(dice => dice.RandomNumber(1, 6))
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1);
+            mockConsole.SetupSequence(input => input.ReadLine())
+                .Returns("Name")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("15");
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
+
+            //Act
+            game.Run();
+            
+            //Assert
+            mockConsole.Verify(c => c.WriteLine("Please select a category: "), Times.Once);
+            mockConsole.Verify(console=>console.WriteLine("You have chosen FullHouse category"), Times.Once);
+        }
+
         private Game CreateGame(Mock<IConsole> mockConsole, IRandomNumberGenerator randomNumberGenerator=null)
         {
             if (randomNumberGenerator == null)

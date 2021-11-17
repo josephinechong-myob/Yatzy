@@ -66,11 +66,11 @@ namespace Yatzy
             return valuesToHold;
         }
         
-        private bool IsCategoryAvailable(CategoryType chosenCategory)
+        private bool HasChosenCategory(CategoryType chosenCategory)
         {
             foreach (var category in _categoriesWon)
             {
-                if (category.CategoryType == chosenCategory)
+                if (category.CategoryType == chosenCategory) //need to account for only one of the one of a kind ones
                 {
                     return false;
                 }
@@ -78,9 +78,9 @@ namespace Yatzy
             return true;
         }
         
-        public void ChooseCategory(Category chosenCategory, GameDice gameDice)
+        public void ChooseCategory(Category chosenCategory)
         {
-            if (IsCategoryAvailable(chosenCategory.CategoryType))
+            if (HasChosenCategory(chosenCategory.CategoryType))
             {
                 chosenCategory.CalculateScore();
                 _categoriesWon.Add(chosenCategory);
