@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -16,7 +17,7 @@ namespace Yatzy
             _console = console;
             _gamedice = new GameDice(randomNumberGenerator, console);
         }
-
+        
         private bool PlayerWantsToContinueGame()
         {
             _console.WriteLine("Would you like to continue playing? Y - Yes, N - No");
@@ -95,8 +96,9 @@ namespace Yatzy
             while (PlayerWantsToContinueGame()) 
             {
                 PlayerRollsDice(player);
-                PlayerChoosesCategory(player);
+                PlayerChoosesCategory(player); //category is not removed from list after selection
             }
+            
             
             
             

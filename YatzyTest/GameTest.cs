@@ -25,6 +25,7 @@ namespace YatzyTest
             Assert.True(game._gamedice.Dice.All(die => die.Face == 0));
         }
         
+        
         [Fact]
         public void Player_Should_Be_Greeted_By_The_Game()
         {

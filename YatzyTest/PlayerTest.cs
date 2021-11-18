@@ -33,7 +33,21 @@ namespace YatzyTest
             //assert
             Assert.Equal(valuesToHold, expectedValueToHold);
         }
-        
+        [Fact]
+        private void All_the_Categories_Should_Be_Listed_In_All_Categories_List()
+        {
+            //arrange
+            var mockConsole = new Mock<IConsole>();
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            var player = new Player(mockConsole.Object, "name");
+            var expectedListCount = 15;
+            
+            //act
+            var actualList = player.GetAllCategories();
+            
+            //assert
+            Assert.Equal(expectedListCount, actualList.Count);
+        }
         [Fact]
         private void Player_Should_Not_Be_Able_To_Hold_Invalid_Values() //cannot cheat by using values that are not in their hand
         {

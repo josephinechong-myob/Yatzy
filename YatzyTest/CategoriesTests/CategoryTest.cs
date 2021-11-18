@@ -7,6 +7,7 @@ namespace YatzyTest.CategoriesTests
 {
     public class CategoryTest //write test if face is zero it cannot win for specific category - or do you change the dice to return null if 0?
     {
+        
         /*[Fact]
         private void Category_Should_Be_Able_To_Know_Score_Once_Roll_Has_Ended()
         {

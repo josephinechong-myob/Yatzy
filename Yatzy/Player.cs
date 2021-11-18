@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -22,7 +23,18 @@ namespace Yatzy
         {
             return _categoriesWon.Count;
         }
-
+        
+        public List<CategoryType> GetAllCategories() //(***MOVE***)new class of categy provider which gives a list of categories to choose from 
+        {
+            var entireCategoriesList = new List<CategoryType>();
+            var types = Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>(); //category type enum 
+            for (var i=0; i < types.Count(); i++)
+            {
+                entireCategoriesList.Add(types.ElementAt(i));
+            }
+            return entireCategoriesList;
+        }
+        
         private int GetScore()
         {
             var sum = 0;
@@ -62,7 +74,7 @@ namespace Yatzy
             return valuesToHold;
         }
         
-        private bool HasChosenCategory(CategoryType chosenCategory)
+        private bool HasChosenCategory(CategoryType chosenCategory) //validation for cat
         {
             foreach (var category in _categoriesWon)
             {

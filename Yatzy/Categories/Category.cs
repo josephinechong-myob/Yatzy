@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +15,7 @@ namespace Yatzy
             CategoryType = categoryType;
             DiceRolled = diceRolled;
         }
-
+        
         public int CalculateScore()
         {
             if(DiceRolled.Count == 0) return 0;
