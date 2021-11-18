@@ -14,7 +14,7 @@ namespace Yatzy
         public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
         {
             _console = console;
-            _gamedice = new GameDice(randomNumberGenerator);
+            _gamedice = new GameDice(randomNumberGenerator, console);
         }
 
         private bool PlayerWantsToContinueGame()
@@ -23,11 +23,11 @@ namespace Yatzy
             var response = _console.ReadLine();
             return (response == "Y");
         }
-        private string ResponseIsYOrN(string playerInput) 
+        private string ResponseIsYOrN(string playerInput) //Y
         {
             var validPattern = new Regex("^[YN]$");
-            var stringIsEmpty = playerInput != string.Empty;
-            var patternIsMatch = validPattern.IsMatch(playerInput);
+            var stringIsEmpty = playerInput == string.Empty; //true
+            var patternIsMatch = validPattern.IsMatch(playerInput); //true
             
             while (stringIsEmpty || !patternIsMatch)
             {
@@ -56,13 +56,14 @@ namespace Yatzy
                         PlayerSelectsDiceToHold(player);
                     }
                 }
+                
                 _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
-                //response = ResponseIsYOrN(_console.ReadLine());
-                response = _console.ReadLine();
+                response = ResponseIsYOrN(_console.ReadLine());
+                //response = _console.ReadLine();
                 if (response == "Y")
                 {
                     _gamedice.RollDice();
-                    player.DisplayDice(_gamedice.Dice);
+                    _gamedice.DisplayDice();
                     rollCounter = rollCounter + 1;
                 }
                 // return (response == "Y");
@@ -90,16 +91,12 @@ namespace Yatzy
             var player = new Player(_console, playerName);
             
             var gamesPlayed = player.GetNumberOfCategoriesPlayed();
-            //_gamedice.RollDice();
-            //player.DisplayDice(_gamedice.Dice);
-            PlayerRollsDice(player);
-            PlayerChoosesCategory(player);
-
-            // while ((gamesPlayed < MaxCategories) && PlayerWantsToContinueGame()) 
-            // {
-            //     PlayerRollsDice(player);
-            //     PlayerChoosesCategory(player);
-            // }
+            
+            while (PlayerWantsToContinueGame()) 
+            {
+                PlayerRollsDice(player);
+                PlayerChoosesCategory(player);
+            }
             
             
             

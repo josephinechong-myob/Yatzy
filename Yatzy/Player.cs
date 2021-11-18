@@ -32,15 +32,7 @@ namespace Yatzy
             }
             return sum;
         }
-        //DisplayDice (private method) - potentially could be on Game dice method??
-        public void DisplayDice(List<Die> gameDice) //game dice
-        {
-            _console.WriteLine("Rolled dice are: ");
-            foreach (Die die in gameDice)
-            {
-                _console.WriteLine($"{die.Face} ");
-            }
-        }
+        
 
         private bool StringIsOnlyNumbersAndCommas(string playerInput) //player validator class or game validator class
         {
@@ -53,7 +45,6 @@ namespace Yatzy
         {
             var valuesToHold = new List<int>();
             var answer = string.Empty;
-            DisplayDice(gameDice); //need to ask player if they even want to hold anything (that can be in the Game before this function is used)
             while (!StringIsOnlyNumbersAndCommas(answer) || answer != "N") //pass through the answer of a function 
             {
                 _console.WriteLine("Please list all the numbers you would like to hold separated by comma ',' or print 'N' for none. For example if you would to hold the same number twice please write it twice when listing. ");

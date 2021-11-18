@@ -9,13 +9,22 @@ namespace YatzyTest
 {
     public class GameDiceTest
     {
+        private IConsole _console;
+
+        public GameDiceTest()
+        {
+            var mockConsole = new Mock<IConsole>();
+            _console = mockConsole.Object;
+
+        }
+        
         [Fact]
         public void New_Game_Dice_Should_Have_Five_Dice()
         {
             //arrange
             //act
             var randomNumberGenerator = new RandomNumberGenerator();
-            var gameDice = new GameDice(randomNumberGenerator);
+            var gameDice = new GameDice(randomNumberGenerator, _console);
             
             //assert
             Assert.Equal(5, gameDice.Dice.Count);
@@ -26,7 +35,7 @@ namespace YatzyTest
         {
             //arrange
             var randomNumberGenerator = new RandomNumberGenerator();
-            var gameDice = new GameDice(randomNumberGenerator);
+            var gameDice = new GameDice(randomNumberGenerator, _console);
             
             //act
             gameDice.RollDice();
@@ -48,7 +57,7 @@ namespace YatzyTest
                 .Returns(3) //gameDice.Dice[2]
                 .Returns(1) //gameDice.Dice[3]
                 .Returns(5); //gameDice.Dice[4]
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, _console);
             var mockPlayerHeldList = new List<int>() {0, 1, 3}; //Holding based on dice index
             
             //act
@@ -77,7 +86,7 @@ namespace YatzyTest
                 .Returns(2)
                 .Returns(4);
 
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, _console);
             var mockPlayerHeldList = new List<int>() {1};
             
             //act
@@ -107,7 +116,7 @@ namespace YatzyTest
                 .Returns(2) //re roll for dice 4
                 .Returns(4); //re roll for dice 5
 
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, _console);
             var mockPlayerHeldList = new List<int>() {0, 1, 2}; //Dice index
             
             //act
@@ -160,7 +169,7 @@ namespace YatzyTest
                 .Returns(5) //dice 4
                 .Returns(4); //dice 5
                 
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, _console);
             var valuesToHold = new List<int> {5};
             
             //act
@@ -184,7 +193,7 @@ namespace YatzyTest
                 .Returns(5) //dice 4 = index 3 <-
                 .Returns(5); //dice 5 = index 4 <-
                 
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, _console);
             var valuesToHold = new List<int> {5, 5, 1}; 
             
             //act
@@ -210,7 +219,7 @@ namespace YatzyTest
                 .Returns(5) //dice 4 = index 3 <-
                 .Returns(5); //dice 5 = index 4 <-
                 
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, _console);
             var valuesToHold = new List<int> {2, 3, 4}; 
             //act
             gameDice.RollDice();

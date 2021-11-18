@@ -22,7 +22,7 @@ namespace YatzyTest
                 .Returns(5)
                 .Returns(5);
                 
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var player = new Player(mockConsole.Object, "player");
             //act
             gameDice.RollDice();
@@ -49,7 +49,7 @@ namespace YatzyTest
                 .Returns(5) 
                 .Returns(5);
                 
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var player = new Player(mockConsole.Object, "player");
            
             //act
@@ -77,7 +77,7 @@ namespace YatzyTest
                 .Returns(1) 
                 .Returns(1);
             var player = new Player(mockConsole.Object, "player");
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var chosenCategory = new Category(CategoryType.Yatzy, gameDice.Dice);
             var expectedScore = 50;
 
@@ -102,7 +102,7 @@ namespace YatzyTest
                 .Returns(1) 
                 .Returns(1);
             var player = new Player(mockConsole.Object, "player");
-            var gameDice = new GameDice(mockRandomNumberGenerator.Object);
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var chosenCategory = new Category(CategoryType.FullHouse, gameDice.Dice);
             var expectedScore = 7;
 
