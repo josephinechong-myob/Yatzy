@@ -7,6 +7,7 @@ namespace YatzyTest
 {
     public class PlayerTest
     {
+        //test for None - for values to hold
         [Fact]
         private void Player_Should_Be_Able_To_List_The_Dice_Face_Values_They_Want_To_Hold() //can hold dice
         {

@@ -45,9 +45,9 @@ namespace Yatzy
         {
             var valuesToHold = new List<int>();
             var answer = string.Empty;
-            while (!StringIsOnlyNumbersAndCommas(answer) || answer != "N") //pass through the answer of a function 
+            while (!StringIsOnlyNumbersAndCommas(answer)) //pass through the answer of a function 
             {
-                _console.WriteLine("Please list all the numbers you would like to hold separated by comma ',' or print 'N' for none. For example if you would to hold the same number twice please write it twice when listing. ");
+                _console.WriteLine("Please list all the numbers you would like to hold separated by comma ','. For example if you would to hold the same number twice please write it twice when listing. ");
             
                 answer = _console.ReadLine(); //5,5 validate input with regex
             }
