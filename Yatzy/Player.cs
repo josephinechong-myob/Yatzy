@@ -6,7 +6,7 @@ namespace Yatzy
 {
     public class Player
     {
-        private readonly List<Category> _categoriesWon;
+        private readonly List<Category> _categoriesWon; //15 categories max .count 
         public string Name { get; }
         private readonly IConsole _console;
         public int Score => GetScore();
@@ -16,6 +16,11 @@ namespace Yatzy
             Name = name;
             _categoriesWon = new List<Category>();
             _console = console;
+        }
+
+        public int GetNumberOfCategoriesPlayed()
+        {
+            return _categoriesWon.Count;
         }
 
         private int GetScore()
@@ -28,7 +33,7 @@ namespace Yatzy
             return sum;
         }
         //DisplayDice (private method) - potentially could be on Game dice method??
-        private void DisplayDice(List<Die> gameDice)
+        public void DisplayDice(List<Die> gameDice) //game dice
         {
             _console.WriteLine("Rolled dice are: ");
             foreach (Die die in gameDice)
@@ -49,9 +54,9 @@ namespace Yatzy
             var valuesToHold = new List<int>();
             var answer = string.Empty;
             DisplayDice(gameDice); //need to ask player if they even want to hold anything (that can be in the Game before this function is used)
-            while (!StringIsOnlyNumbersAndCommas(answer)) //pass through the answer of a function 
+            while (!StringIsOnlyNumbersAndCommas(answer) || answer != "N") //pass through the answer of a function 
             {
-                _console.WriteLine("Please list all the numbers you would like to hold separated by comma ','. For example if you would to hold the same number twice please write it twice when listing. ");
+                _console.WriteLine("Please list all the numbers you would like to hold separated by comma ',' or print 'N' for none. For example if you would to hold the same number twice please write it twice when listing. ");
             
                 answer = _console.ReadLine(); //5,5 validate input with regex
             }
@@ -82,7 +87,8 @@ namespace Yatzy
         {
             if (HasChosenCategory(chosenCategory.CategoryType))
             {
-                chosenCategory.CalculateScore();
+                var categoryScore = chosenCategory.CalculateScore();
+                _console.WriteLine($"You have scored {categoryScore} for {chosenCategory.CategoryType}");
                 _categoriesWon.Add(chosenCategory);
             }
         }

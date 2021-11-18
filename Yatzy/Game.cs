@@ -4,8 +4,10 @@ using System.Text.RegularExpressions;
 
 namespace Yatzy
 {
+    
     public class Game
     { 
+        const int MaxCategories = 15;
         //players should be in a list or array and loop through 
         private readonly IConsole _console;
         public GameDice _gamedice;
@@ -14,63 +16,117 @@ namespace Yatzy
             _console = console;
             _gamedice = new GameDice(randomNumberGenerator);
         }
+
+        private bool PlayerWantsToContinueGame()
+        {
+            _console.WriteLine("Would you like to continue playing? Y - Yes, N - No");
+            var response = _console.ReadLine();
+            return (response == "Y");
+        }
+        private string ResponseIsYOrN(string playerInput) 
+        {
+            var validPattern = new Regex("^[YN]$");
+            var stringIsEmpty = playerInput != string.Empty;
+            var patternIsMatch = validPattern.IsMatch(playerInput);
+            
+            while (stringIsEmpty || !patternIsMatch)
+            {
+                _console.WriteLine("Please enter Y - Yes, N - No");
+            
+                playerInput = _console.ReadLine();
+            }
+           
+            return playerInput ;
+        }
+
+       // private bool PlayerWantsToRollDice(int rollcounter) //wants and can roll dice if rollcounter is less than 3
+        private void PlayerRollsDice(Player player) 
+        {
+            var response = "Y";
+            var rollCounter = 0;
+            
+            while (rollCounter < 3 && response == "Y")
+            {
+                if (rollCounter >= 1)
+                {
+                    _console.WriteLine("Would you like to hold dice? Y - Yes, N - No");
+                    var holdResponse = _console.ReadLine();
+                    if (holdResponse == "Y")
+                    { 
+                        PlayerSelectsDiceToHold(player);
+                    }
+                }
+                _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
+                //response = ResponseIsYOrN(_console.ReadLine());
+                response = _console.ReadLine();
+                if (response == "Y")
+                {
+                    _gamedice.RollDice();
+                    player.DisplayDice(_gamedice.Dice);
+                    rollCounter = rollCounter + 1;
+                }
+                // return (response == "Y");
+            }
+        }
+
+        private void PlayerChoosesCategory(Player player)
+        {
+            var chosenCategory = requestPlayersCategory(player);
+            var category = new Category(chosenCategory, _gamedice.Dice);
+            player.ChooseCategory(category);
+        }
+
+        private void PlayerSelectsDiceToHold(Player player) //player should be able to not hold any dice and reroll all dice
+        {
+            var valuesToHold = player.ValuesToHold(_gamedice.Dice); 
+            var diceToHold = _gamedice.FindDice(valuesToHold); 
+            _gamedice.HoldDice(diceToHold); 
+        }
         
         public void Run()
         {
             _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
-            var playerName = _console.ReadLine(); //1
+            var playerName = _console.ReadLine(); 
             var player = new Player(_console, playerName);
-            _console.WriteLine($"{playerName} would you like to play a game? Y - yes or N - no");
-            var playerChoice = _console.ReadLine(); //2
-            var rollCounter = 0;
             
-            if (playerChoice == "Y")
-            {
-                _gamedice.RollDice();
-                rollCounter++;
-                
-                _console.WriteLine($"{playerName} would you like to roll again? Y - yes or N - no");
-                var playerReRollDice = _console.ReadLine(); //3
-                
-                while (playerReRollDice == "Y" && rollCounter <= 3) //while - max 3 rolls/optional
-                {
-                    var valuesToHold = player.ValuesToHold(_gamedice.Dice);
-                    var diceToHold = _gamedice.FindDice(valuesToHold);
-                    _gamedice.HoldDice(diceToHold);
-                    _gamedice.RollDice();
-                    rollCounter++;
-                }
-                //player choosing category 
-                var chosenCategory = requestPlayersCategory(player);
-                //player.ChooseCategory(chosenCategory);
-                
-                // roll dice
-                //player choice to cont rolling?
+            var gamesPlayed = player.GetNumberOfCategoriesPlayed();
+            //_gamedice.RollDice();
+            //player.DisplayDice(_gamedice.Dice);
+            PlayerRollsDice(player);
+            PlayerChoosesCategory(player);
 
-                //We ask the player what category they want to play
+            // while ((gamesPlayed < MaxCategories) && PlayerWantsToContinueGame()) 
+            // {
+            //     PlayerRollsDice(player);
+            //     PlayerChoosesCategory(player);
+            // }
+            
+            
+            
 
-            }
-            else if (playerChoice == "N")
-            {
-                var chosenCategory = requestPlayersCategory(player);
-                var category = new Category(chosenCategory, _gamedice.Dice);
-                player.ChooseCategory(category);
-            }
-
-
-            //player rolls dice (new instance of gamedice)
-            //optional to hold and re-roll (3 times total)
-            //player chooses a category (per player record)
-            //player obtains a score & adds to total score (per player record)
-            //category is removed from options to choose in next roll
-
-            //changes player (alternate rolls) or player 1 plays and finishes game before player 2?
-
-            //repeat until all categories are used to complete the game
-
-            //put into an object and rotate the object, or put players in a list and rotate the list 
+            //while((rollCounter > 0 ? PlayerWantsToContinueGame() : true) && player.GetNumberOfCategoriesPlayed() < MaxCategories && rollCounter == 0)
+            // {
+            //     var playerWantsToRollDice = true;
+            //     rollCounter = 0;
+            //     
+            //     while(playerWantsToRollDice && rollCounter < 3)
+            //     {
+            //         _gamedice.RollDice();
+            //         PlayerSelectsDiceToHold(player); // isn't allowed to enter nothing or null
+            //         rollCounter++;
+            //         playerWantsToRollDice = PlayerWantsToRollDice(); //if player chooses to hold all the dice we can't ask them to roll any dice
+            //     }
+            //
+            //     if (playerWantsToRollDice)
+            //     {
+            //         var chosenCategory = requestPlayersCategory(player);
+            //         var category = new Category(chosenCategory, _gamedice.Dice);
+            //         player.ChooseCategory(category);
+            //     }
+            // }
         }
-        private bool StringIsOnlyNumbers(string playerInput) //validate category selection
+        
+        private bool StringIsOnlyNumbers(string playerInput) 
         {
             var validPattern = new Regex("^[1-9][1-5]?$");
             var stringIsEmpty = playerInput != string.Empty;
@@ -88,7 +144,7 @@ namespace Yatzy
                _console.WriteLine($"[{categoryNumber}] - {types.ElementAt(i).ToString()}");
            }
 
-           var chosenCategory = _console.ReadLine(); //4
+           var chosenCategory = _console.ReadLine(); 
            
            while (!StringIsOnlyNumbers(chosenCategory))
            {
@@ -104,10 +160,5 @@ namespace Yatzy
         }
         
         //Brown bag notes - new variable for numbering 
-        //Rolling dice
-        
-        //Rolling with held numbers
-        
-        //Reset game
     }
 }
