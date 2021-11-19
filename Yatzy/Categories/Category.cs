@@ -6,7 +6,7 @@ namespace Yatzy
 {
     public class Category
     {
-        public readonly CategoryType CategoryType;
+        public CategoryType CategoryType;
         public int Score => CalculateScore();
         public List<Die> DiceRolled { get; private set; }
 
