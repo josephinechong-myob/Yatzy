@@ -8,9 +8,10 @@ namespace Yatzy
     public class Player
     {
         private readonly List<Category> _categoriesWon; //15 categories max .count CONVERT to category type
-        private readonly List<CategoryType> _categoryTypesWon;
+       // private readonly List<CategoryType> _categoryTypesWon;
         private readonly List<CategoryType> _categoriesAll; //all categories
-        public List<CategoryType> CategoryTypeRemaining;
+        public List<CategoryType> CategoryTypeRemaining => 
+            _categoriesAll.Where(c=>!_categoriesWon.Exists(won=>won.CategoryType==c)).ToList();
         public string Name { get; }
         private readonly IConsole _console;
         public int Score => GetScore();
@@ -20,9 +21,7 @@ namespace Yatzy
             Name = name;
             _categoriesWon = new List<Category>();
             _console = console;
-            _categoriesAll = new List<CategoryType>();
-            _categoryTypesWon = new List<CategoryType>();
-            CategoryTypeRemaining = new List<CategoryType>();
+            _categoriesAll = GetAllCategories();
         }
 
         public int GetNumberOfCategoriesPlayed()
@@ -30,28 +29,12 @@ namespace Yatzy
             return _categoriesWon.Count;
         }
         
-        public void  GetAllCategories() //(***MOVE***)new class of categy provider which gives a list of categories to choose from 
+        public List<CategoryType>  GetAllCategories() //(***MOVE***)new class of categy provider which gives a list of categories to choose from 
         {
-            var types = Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>(); //category type enum 
-            for (var i=0; i < types.Count(); i++)
-            {
-                _categoriesAll.Add(types.ElementAt(i));
-            }
+            return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
+         
         }
-
-        public void GetCategoryTypesWon()
-        {
-            foreach (var category in _categoriesWon)
-            {
-                _categoryTypesWon.Add(category.CategoryType);
-            }
-        }
-
-        public void GetRemainingCategories() //not a list + do a test (maybe put in a loop)
-        {
-            CategoryTypeRemaining = _categoriesAll.Where(m => !_categoryTypesWon.Any(y => y == m)).ToList();
-        }
-
+        
         private int GetScore()
         {
             var sum = 0;
@@ -62,7 +45,6 @@ namespace Yatzy
             return sum;
         }
         
-
         private bool StringIsOnlyNumbersAndCommas(string playerInput) //player validator class or game validator class
         {
             var validPattern = new Regex("^[1-6],?[1-6]?,?[1-6]?,?[1-6]?,?[1-6]?$");
@@ -110,9 +92,6 @@ namespace Yatzy
                 var categoryScore = chosenCategory.CalculateScore();
                 _console.WriteLine($"You have scored {categoryScore} for {chosenCategory.CategoryType}");
                 _categoriesWon.Add(chosenCategory);
-                GetCategoryTypesWon();
-                GetAllCategories();
-                GetRemainingCategories();
             }
         }
     }

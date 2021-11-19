@@ -129,12 +129,13 @@ namespace YatzyTest
                 .Returns(1);
             var player = new Player(mockConsole.Object, "player");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
-            var chosenCategory = new Category(CategoryType.FullHouse, gameDice.Dice);
             var expectedCategoryTypesRemaining = 14;
 
             //act
-            player.ChooseCategory(chosenCategory);
             gameDice.RollDice();
+            var chosenCategory = new Category(CategoryType.FullHouse, gameDice.Dice);
+            player.ChooseCategory(chosenCategory);
+
             var actualCategoryTypesRemaining = player.CategoryTypeRemaining.Count;
 
             //assert
