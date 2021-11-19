@@ -136,7 +136,8 @@ namespace Yatzy
         private CategoryType requestPlayersCategory(Player player) //testing in "synchronisatin'?
         {
             _console.WriteLine("Please select a category: ");
-           var types = Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>();
+            
+           var types = player.CategoryTypeRemaining;
            for (var i=0; i < types.Count(); i++)
            {
                var categoryNumber = i + 1;

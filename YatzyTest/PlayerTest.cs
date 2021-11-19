@@ -139,7 +139,7 @@ namespace YatzyTest
             var actualCategoryTypesRemaining = player.CategoryTypeRemaining.Count;
 
             //assert
-            Assert.Equal(expectedCategoryTypesRemaining, actualCategoryTypesRemaining);
+            Assert.Equal(expectedCategoryTypesRemaining, actualCategoryTypesRemaining); //verify if the content is the same - verify the console writeline - or compare the lists
         }
     }
 }

@@ -46,6 +46,40 @@ namespace YatzyTest
 
         }
         
+        [Fact]
+        public void Player_Should_Not_Be_Able_To_Select_Category_Already_Played_In_The_Game()
+        {
+            //Arrange
+            var mockConsole = new Mock<IConsole>();
+            var player = new Player(mockConsole.Object, "Gandalf");
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            mockRandomNumberGenerator.SetupSequence(dice => dice.RandomNumber(1, 6))
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1);
+            mockConsole.SetupSequence(input => input.ReadLine())
+                .Returns("Name")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("2");
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
+            var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
+
+            //Act
+            game.Run();
+            
+            //Assert
+            mockConsole.Verify(c => c.WriteLine("Please select a category: "), Times.Exactly(2));
+            mockConsole.Verify(console=>console.WriteLine("You have chosen Ones category"), Times.Once);
+            mockConsole.Verify(console=>console.WriteLine("[1] - Ones"), Times.Once);
+            mockConsole.Verify(console=>console.WriteLine("[2] - Threes"), Times.Once);
+        }
+        
         
 
         [Fact]

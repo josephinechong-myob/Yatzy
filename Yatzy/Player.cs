@@ -7,9 +7,8 @@ namespace Yatzy
 {
     public class Player
     {
-        private readonly List<Category> _categoriesWon; //15 categories max .count CONVERT to category type
-       // private readonly List<CategoryType> _categoryTypesWon;
-        private readonly List<CategoryType> _categoriesAll; //all categories
+        private readonly List<Category> _categoriesWon;
+        private readonly List<CategoryType> _categoriesAll;
         public List<CategoryType> CategoryTypeRemaining => 
             _categoriesAll.Where(c=>!_categoriesWon.Exists(won=>won.CategoryType==c)).ToList();
         public string Name { get; }
