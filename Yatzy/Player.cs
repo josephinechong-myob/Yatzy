@@ -90,7 +90,8 @@ namespace Yatzy
             {
                 var categoryScore = chosenCategory.CalculateScore();
                 _console.WriteLine($"You have scored {categoryScore} for {chosenCategory.CategoryType}");
-                _categoriesWon.Add(chosenCategory);
+                
+                _categoriesWon.Add(chosenCategory); //if any of 1-6 is chosen all get added to this list here
             }
         }
     }

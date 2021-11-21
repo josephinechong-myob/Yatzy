@@ -93,7 +93,7 @@ namespace Yatzy
             
             var gamesPlayed = player.GetNumberOfCategoriesPlayed();
             
-            while (PlayerWantsToContinueGame()) 
+            while (PlayerWantsToContinueGame() && (player.GetNumberOfCategoriesPlayed() < MaxCategories)) //if player has finished the whole game max = max categories
             {
                 PlayerRollsDice(player);
                 PlayerChoosesCategory(player); //category is not removed from list after selection
@@ -135,7 +135,9 @@ namespace Yatzy
         
         private CategoryType requestPlayersCategory(Player player) //testing in "synchronisatin'?
         {
-            _console.WriteLine("Please select a category: ");
+            var noteForPlayerOnOneOfAKind =
+                "Please note that Ones, Twos, Threes, Fours, Fives and Sixes are considered to be in one classification of category, so if you select any of these, all of these will no longer be able the next round.";
+            _console.WriteLine($"Please select a category below. {noteForPlayerOnOneOfAKind}");//the note should only be available if 1-6 category is still remaining
             
            var types = player.CategoryTypeRemaining;
            for (var i=0; i < types.Count(); i++)
