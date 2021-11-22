@@ -11,7 +11,7 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 4, 2, 1};
-            var numberCatergory = CategoryType.Fours;
+            var numberCatergory = SpecificNumberType.Fours;
             var expectedScore = 12;
           
             //act
@@ -26,7 +26,7 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 4, 2, 1};
-            var numberCatergory = CategoryType.Threes;
+            var numberCatergory = SpecificNumberType.Threes;
             var expectedScore = 0;
           
             //act
@@ -41,7 +41,7 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {4, 4, 4, 2, 1};
-            var numberCatergory = CategoryType.Twos;
+            var numberCatergory = SpecificNumberType.Twos;
             var expectedScore = 2;
           
             //act

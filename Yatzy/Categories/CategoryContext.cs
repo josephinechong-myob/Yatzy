@@ -5,10 +5,17 @@ namespace Yatzy
     public class CategoryContext
     {
         private CategoryType _categoryType;
-        
+        private SpecificNumberType _specificNumberType;
+
         public CategoryContext(CategoryType categoryType)
         {
             _categoryType = categoryType;
+        }
+
+        public CategoryContext(SpecificNumberType specificNumberType)
+        {
+            _specificNumberType = specificNumberType;
+            _categoryType = CategoryType.SpecificNumber;
         }
 
         public int CalculateScore(List<int> diceValues)
@@ -33,13 +40,8 @@ namespace Yatzy
                 case CategoryType.ThreeOfAKind:
                     return ThreeOfAKindStrategy.CalculateScore(diceValues);
                 
-                case CategoryType.Ones:
-                case CategoryType.Twos: //not nested but doable - shared switch case ** brown bag
-                case CategoryType.Threes:
-                case CategoryType.Fours:
-                case CategoryType.Fives:
-                case CategoryType.Sixes:
-                    return SpecificNumberStrategy.CalculateScore(_categoryType, diceValues);
+                case CategoryType.SpecificNumber:
+                    return SpecificNumberStrategy.CalculateScore(_specificNumberType, diceValues);
                 
                 case CategoryType.SmallStraight:
                     return SmallStraightStrategy.CalculateScore(diceValues);

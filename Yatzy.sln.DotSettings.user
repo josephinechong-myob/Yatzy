@@ -6,10 +6,7 @@
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=35470304_002D3bb9_002D412b_002D9325_002D65db0192443e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Count_Of_Category_Types_Remaining_Should_Reduce_By_One_When_One_Category_Is_Played" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.PlayerTest.Count_Of_Category_Types_Remaining_Should_Reduce_By_One_When_One_Category_Is_Played&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameTest&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4d73ea54_002De54a_002D4bda_002D9c34_002D25ed57e58cac/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Player_Should_Be_Able_To_Select_Category_In_The_Game" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;

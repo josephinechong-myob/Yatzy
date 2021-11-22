@@ -7,12 +7,20 @@ namespace Yatzy
     public class Category
     {
         public CategoryType CategoryType;
+        private SpecificNumberType _specificNumberType;
         public int Score => CalculateScore();
         public List<Die> DiceRolled { get; private set; }
 
         public Category(CategoryType categoryType, List<Die> diceRolled)
         {
             CategoryType = categoryType;
+            DiceRolled = diceRolled;
+        }
+
+        public Category(SpecificNumberType specificNumberType, List<Die> diceRolled)
+        {
+            CategoryType = CategoryType.SpecificNumber;
+            _specificNumberType = specificNumberType;
             DiceRolled = diceRolled;
         }
         
