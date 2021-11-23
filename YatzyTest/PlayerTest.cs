@@ -154,7 +154,7 @@ namespace YatzyTest
                 .Returns(1);
             var player = new Player(mockConsole.Object, "player");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
-            var expectedCategoryTypesRemaining = 14;
+            var expectedCategoryTypesRemaining = 9;
 
             //act
             gameDice.RollDice();

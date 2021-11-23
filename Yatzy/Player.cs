@@ -13,7 +13,8 @@ namespace Yatzy
             _categoriesAll.Where(c=>!_categoriesWon.Exists(won=>won.CategoryType==c)).ToList();
         public string Name { get; }
         private readonly IConsole _console;
-        public int Score => GetScore();
+        //public int Score => GetScore(); //Ask Jeremy cause there is an issue
+        public int Score;
 
         public Player(IConsole console, string name)
         {
@@ -33,16 +34,19 @@ namespace Yatzy
             return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
          
         }
+
         
-        private int GetScore()
-        {
-            var sum = 0;
-            foreach (var category in _categoriesWon)
-            {
-                sum += category.CalculateScore();
-            }
-            return sum;
-        }
+        
+        // private int GetScore() //not giving correct score
+        // {
+        //     var sum = 0;
+        //     foreach (var category in _categoriesWon)
+        //     {
+        //         sum += category.CalculateScore(); //issue is it is not recording the original dice roll to calculate the score and just using the current dice roll to do it
+        //         
+        //     }
+        //     return sum;
+        // }
         
         private bool StringIsOnlyNumbersAndCommas(string playerInput) //player validator class or game validator class
         {
@@ -83,15 +87,18 @@ namespace Yatzy
             }
             return true;
         }
-        
+        private void GetTotalScore(int categoryScore)
+        {
+            Score += categoryScore;
+        }
         public void ChooseCategory(Category chosenCategory)
         {
             if (HasChosenCategory(chosenCategory.CategoryType))
             {
                 var categoryScore = chosenCategory.CalculateScore();
                 _console.WriteLine($"You have scored {categoryScore} for {chosenCategory.CategoryType}");
-                
                 _categoriesWon.Add(chosenCategory); //if any of 1-6 is chosen all get added to this list here
+                GetTotalScore(categoryScore);
             }
         }
     }

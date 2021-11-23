@@ -8,6 +8,43 @@ namespace YatzyTest
 {
     public class GameTest
     {
+        //
+        [Fact]
+        public void Player_Should_Be_Able_To_Select_Number_For_Specific_Number_Type_Category()
+        {
+            //Arrange
+            var mockConsole = new Mock<IConsole>();
+            var player = new Player(mockConsole.Object, "Gandalf");
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            mockRandomNumberGenerator.SetupSequence(dice => dice.RandomNumber(1, 6))
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1);
+            mockConsole.SetupSequence(input => input.ReadLine())
+                .Returns("Name")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("2");
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
+            var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
+
+            //Act
+            game.Run();
+            
+            //Assert
+            mockConsole.Verify(c => c.WriteLine("Please select a category below:"), Times.Exactly(2));
+            mockConsole.Verify(c=>c.WriteLine("You have chosen SpecificNumber category"), Times.Once);
+            mockConsole.Verify(c=>c.WriteLine("[1] - SpecificNumber"), Times.Once);
+            mockConsole.Verify(c=>c.WriteLine("[2] - Pairs"), Times.Once);
+            mockConsole.Verify(c=>c.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number"), Times.Once);
+        }
+        
         [Fact]
         public void Player_Should_Be_Able_To_Answer_No_For_Playing_Option()
         {
@@ -64,6 +101,7 @@ namespace YatzyTest
                 .Returns("Y")
                 .Returns("N")
                 .Returns("1")
+                .Returns("1")
                 .Returns("Y")
                 .Returns("N")
                 .Returns("2");
@@ -74,10 +112,10 @@ namespace YatzyTest
             game.Run();
             
             //Assert
-            mockConsole.Verify(c => c.WriteLine("Please select a category: "), Times.Exactly(2));
-            mockConsole.Verify(console=>console.WriteLine("You have chosen Ones category"), Times.Once);
-            mockConsole.Verify(console=>console.WriteLine("[1] - Ones"), Times.Once);
-            mockConsole.Verify(console=>console.WriteLine("[2] - Threes"), Times.Once);
+            mockConsole.Verify(c => c.WriteLine("Please select a category below:"), Times.Exactly(2));
+            mockConsole.Verify(console=>console.WriteLine("You have chosen SpecificNumber category"), Times.Once);
+            mockConsole.Verify(console=>console.WriteLine("[1] - SpecificNumber"), Times.Once);
+            mockConsole.Verify(console=>console.WriteLine("[2] - Pairs"), Times.Once);
         }
         
         
@@ -99,7 +137,7 @@ namespace YatzyTest
                 .Returns("Name")
                 .Returns("Y")
                 .Returns("N")
-                .Returns("15");
+                .Returns("10");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
 
@@ -107,7 +145,7 @@ namespace YatzyTest
             game.Run();
             
             //Assert
-            mockConsole.Verify(c => c.WriteLine("Please select a category: "), Times.Once);
+            mockConsole.Verify(c => c.WriteLine("Please select a category below:"), Times.Once);
             mockConsole.Verify(console=>console.WriteLine("You have chosen FullHouse category"), Times.Once);
         }
 

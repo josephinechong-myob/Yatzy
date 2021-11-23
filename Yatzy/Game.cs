@@ -18,9 +18,30 @@ namespace Yatzy
             _gamedice = new GameDice(randomNumberGenerator, console);
         }
         
-        private bool PlayerWantsToContinueGame()
+        public void Run()
         {
-            _console.WriteLine("Would you like to continue playing? Y - Yes, N - No");
+            _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
+            var playerName = _console.ReadLine(); 
+            var player = new Player(_console, playerName);
+            
+            var gamesPlayed = player.GetNumberOfCategoriesPlayed();
+            
+            //first game
+            PlayerRollsDice(player);
+            PlayerChoosesCategory(player);
+            
+            //second game onwards
+            while (PlayerWantsToContinueGame(player) && (player.GetNumberOfCategoriesPlayed() < MaxCategories)) //if player has finished the whole game max = max categories
+            {
+                PlayerRollsDice(player);
+                PlayerChoosesCategory(player); //category is not removed from list after selection
+            }
+            
+        }
+        
+        private bool PlayerWantsToContinueGame(Player player)
+        {
+            _console.WriteLine($"Your total score is {player.Score}. Would you like to continue playing? Y - Yes, N - No");
             var response = _console.ReadLine();
             return (response == "Y");
         }
@@ -41,10 +62,13 @@ namespace Yatzy
         }
 
        // private bool PlayerWantsToRollDice(int rollcounter) //wants and can roll dice if rollcounter is less than 3
-        private void PlayerRollsDice(Player player) 
+        private void PlayerRollsDice(Player player) //input validation for readline
         {
             var response = "Y";
-            var rollCounter = 0;
+            
+            _gamedice.RollDice();
+            _gamedice.DisplayDice();
+            var rollCounter = 1;
             
             while (rollCounter < 3 && response == "Y")
             {
@@ -59,6 +83,7 @@ namespace Yatzy
                 }
                 
                 _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
+               
                 response = ResponseIsYOrN(_console.ReadLine());
                 //response = _console.ReadLine();
                 if (response == "Y")
@@ -95,45 +120,7 @@ namespace Yatzy
             _gamedice.HoldDice(diceToHold); 
         }
         
-        public void Run()
-        {
-            _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
-            var playerName = _console.ReadLine(); 
-            var player = new Player(_console, playerName);
-            
-            var gamesPlayed = player.GetNumberOfCategoriesPlayed();
-            
-            while (PlayerWantsToContinueGame() && (player.GetNumberOfCategoriesPlayed() < MaxCategories)) //if player has finished the whole game max = max categories
-            {
-                PlayerRollsDice(player);
-                PlayerChoosesCategory(player); //category is not removed from list after selection
-            }
-            
-            
-            
-            
-
-            //while((rollCounter > 0 ? PlayerWantsToContinueGame() : true) && player.GetNumberOfCategoriesPlayed() < MaxCategories && rollCounter == 0)
-            // {
-            //     var playerWantsToRollDice = true;
-            //     rollCounter = 0;
-            //     
-            //     while(playerWantsToRollDice && rollCounter < 3)
-            //     {
-            //         _gamedice.RollDice();
-            //         PlayerSelectsDiceToHold(player); // isn't allowed to enter nothing or null
-            //         rollCounter++;
-            //         playerWantsToRollDice = PlayerWantsToRollDice(); //if player chooses to hold all the dice we can't ask them to roll any dice
-            //     }
-            //
-            //     if (playerWantsToRollDice)
-            //     {
-            //         var chosenCategory = requestPlayersCategory(player);
-            //         var category = new Category(chosenCategory, _gamedice.Dice);
-            //         player.ChooseCategory(category);
-            //     }
-            // }
-        }
+        
         
         private bool StringIsOnlyNumbers(string playerInput) 
         {
