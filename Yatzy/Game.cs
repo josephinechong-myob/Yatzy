@@ -74,8 +74,18 @@ namespace Yatzy
         private void PlayerChoosesCategory(Player player)
         {
             var chosenCategory = requestPlayersCategory(player);
-            var category = new Category(chosenCategory, _gamedice.Dice);
-            player.ChooseCategory(category);
+            
+            if (chosenCategory == CategoryType.SpecificNumber)
+            { 
+                var specificNumber = requestSpecificNumberType();
+                var specificNumberCategory = new Category(specificNumber, _gamedice.Dice);
+                player.ChooseCategory(specificNumberCategory);
+            }
+            else
+            {
+                var category = new Category(chosenCategory, _gamedice.Dice);
+                player.ChooseCategory(category);  
+            }
         }
 
         private void PlayerSelectsDiceToHold(Player player) //player should be able to not hold any dice and reroll all dice
@@ -132,14 +142,26 @@ namespace Yatzy
             var patternIsMatch = validPattern.IsMatch(playerInput);
             return stringIsEmpty && patternIsMatch;
         }
-        
-        private CategoryType requestPlayersCategory(Player player) //testing in "synchronisatin'?
+
+        private SpecificNumberType requestSpecificNumberType()
         {
             var noteForPlayerOnOneOfAKind =
                 "Please note that Ones, Twos, Threes, Fours, Fives and Sixes are considered to be in one classification of category, so if you select any of these, all of these will no longer be able the next round.";
-            _console.WriteLine($"Please select a category below. {noteForPlayerOnOneOfAKind}");//the note should only be available if 1-6 category is still remaining
+               
+            _console.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number");
+
+            var specificNumberType = _console.ReadLine(); //validation for user input
+               
+            var specificNumber = int.Parse(specificNumberType);
+            var number = (SpecificNumberType) specificNumber;
+            return number;
+        }
+        
+        private CategoryType requestPlayersCategory(Player player) //testing in "synchronisatin'? // may need to 
+        {
+            _console.WriteLine($"Please select a category below:");
             
-           var types = player.CategoryTypeRemaining;
+           var types = player.CategoryTypeRemaining; 
            for (var i=0; i < types.Count(); i++)
            {
                var categoryNumber = i + 1;
@@ -154,7 +176,7 @@ namespace Yatzy
             
                chosenCategory = _console.ReadLine();
            }
-
+           
            var categoryIndex = int.Parse(chosenCategory);
            var categoryString = types.ElementAt(categoryIndex-1);
            _console.WriteLine($"You have chosen {categoryString} category");

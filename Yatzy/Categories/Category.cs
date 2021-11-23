@@ -27,7 +27,7 @@ namespace Yatzy
         public int CalculateScore()
         {
             if(DiceRolled.Count == 0) return 0;
-            var categoryContext = new CategoryContext(CategoryType);
+            var categoryContext = CategoryType == CategoryType.SpecificNumber ? new CategoryContext(_specificNumberType) : new CategoryContext(CategoryType);
             var diceValues = DiceRolled.Select(die => die.Face).ToList();
             return categoryContext.CalculateScore(diceValues);
         }
