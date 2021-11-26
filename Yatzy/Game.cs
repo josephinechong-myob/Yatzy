@@ -22,33 +22,34 @@ namespace Yatzy
             var playerName = _console.ReadLine(); 
             var player = new Player(_console, playerName);
             
-            var gamesPlayed = player.GetNumberOfCategoriesPlayed();
-            
-            //second game onwards
-            while (PlayerWantsToContinueGame(player) && (gamesPlayed < MaxCategories)) //if player has finished the whole game max = max categories
+            while (GameShouldContinue(player)) 
             {
                 PlayerRollsDice(player);
-                PlayerChoosesCategory(player); //category is not removed from list after selection
+                PlayerChoosesCategory(player); 
             }
             
             //it's exit the game after a full game - but still asks the players if they want to play again (it should display final score)
             //or have functionality for if they want to reset game and if they want to exit - display exit greeting and final score won
             
-            
+        }
+
+        private bool GameShouldContinue(Player player)
+        {
+            var gamesPlayed = player.GetNumberOfCategoriesPlayed();
+            return PlayerHasNotPlayedBefore(player) || ((!PlayerHasNotPlayedBefore(player) && PlayerWantsToContinueGame(player))
+                   && (gamesPlayed < MaxCategories));
+        }
+
+        private bool PlayerHasNotPlayedBefore(Player player)
+        {
+            return player.GetNumberOfCategoriesPlayed() == 0;
         }
         
         private bool PlayerWantsToContinueGame(Player player)
         {
-            if (player.GetNumberOfCategoriesPlayed() == 0)
-            {
-                return true;
-            }
-            else
-            {
-                _console.WriteLine($"Your total score is {player.Score}. Would you like to continue playing? Y - Yes, N - No");
-                var response = _console.ReadLine();
-                return (response == "Y");
-            }
+            _console.WriteLine($"Your total score is {player.Score}. Would you like to continue playing? Y - Yes, N - No");
+            var response = _console.ReadLine();
+            return (response == "Y");
         }
         private string ResponseIsYOrN(string playerInput) //Y
         {
