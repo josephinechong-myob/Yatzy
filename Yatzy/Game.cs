@@ -22,14 +22,14 @@ namespace Yatzy
             var playerName = _console.ReadLine(); 
             var player = new Player(_console, playerName);
             
-            while (GameShouldContinue(player)) 
+            while (GameShouldContinue(player))  //player 1
             {
                 PlayerRollsDice(player);
                 PlayerChoosesCategory(player); 
             }
             
-            //it's exit the game after a full game - but still asks the players if they want to play again (it should display final score)
-            //or have functionality for if they want to reset game and if they want to exit - display exit greeting and final score won
+           //ask for reset?
+            //N - final greeting final score here
             
         }
 
