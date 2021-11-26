@@ -5,7 +5,7 @@ namespace Yatzy
     public class Die
     {
         public int Face { get; private set; } //This records value of rolled number, ? after a type means it might be that type or null
-        private IRandomNumberGenerator _randomNumberGenerator;
+        private readonly IRandomNumberGenerator _randomNumberGenerator;
         private bool _held; //Attribute which determines if die is held or rolled
         
         public Die(IRandomNumberGenerator randomNumberGenerator)

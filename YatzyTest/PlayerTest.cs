@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Moq;
 using Xunit;
 using Yatzy;
+using Yatzy.Categories;
 
 namespace YatzyTest
 {

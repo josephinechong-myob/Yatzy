@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
     public class CategoryContext
     {
-        private CategoryType _categoryType;
-        private SpecificNumberType _specificNumberType;
+        private readonly CategoryType _categoryType;
+        private readonly SpecificNumberType _specificNumberType;
 
         public CategoryContext(CategoryType categoryType)
         {

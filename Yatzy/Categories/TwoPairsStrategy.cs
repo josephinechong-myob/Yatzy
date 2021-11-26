@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
     public class TwoPairsStrategy 
     {
@@ -20,7 +20,6 @@ namespace Yatzy
             
             if (findPairs.Keys.Count() == 2)
             {
-                //var firstPair = findPairs.ElementAt(0).Key; //1 2
                 foreach (var pair in findPairs)
                 {
                     sum += pair.Key * 2;

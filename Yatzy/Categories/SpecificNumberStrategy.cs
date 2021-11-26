@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
-    //public CategoryType Name => CategoryType.FullHouse; <- do I need this for the 6 category types here?
     public class SpecificNumberStrategy // 1s, 2s, 3s, 4s, 5s, 6s
     {
-        public static int CalculateScore(SpecificNumberType chosenNumber, List<int> diceValues) //need to have follow up question of what number to choose
+        public static int CalculateScore(SpecificNumberType chosenNumber, List<int> diceValues)
         {
             var pickedNumber = (int)chosenNumber;
 

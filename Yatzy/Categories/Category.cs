@@ -1,13 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
     public class Category
     {
-        public CategoryType CategoryType;
-        private SpecificNumberType _specificNumberType;
+        public readonly CategoryType CategoryType;
+        private readonly SpecificNumberType _specificNumberType;
         public int Score => CalculateScore();
         public List<Die> DiceRolled { get; private set; }
 
@@ -31,12 +30,5 @@ namespace Yatzy
             var diceValues = DiceRolled.Select(die => die.Face).ToList();
             return categoryContext.CalculateScore(diceValues);
         }
-
-        public void EndRound(List<Die> diceRolled) //not needed as play chooses category after all the rolls
-        {
-            DiceRolled = diceRolled;
-            
-        }
-        
     }
 }

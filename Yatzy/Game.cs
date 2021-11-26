@@ -1,21 +1,19 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Yatzy.Categories;
 
 namespace Yatzy
 {
-    
     public class Game
     { 
-        const int MaxCategories = 15;
+        const int MaxCategories = 10;
         //players should be in a list or array and loop through 
         private readonly IConsole _console;
-        public GameDice _gamedice;
+        public GameDice GameDice;
         public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
         {
             _console = console;
-            _gamedice = new GameDice(randomNumberGenerator, console);
+            GameDice = new GameDice(randomNumberGenerator, console);
         }
         
         public void Run()
@@ -26,24 +24,31 @@ namespace Yatzy
             
             var gamesPlayed = player.GetNumberOfCategoriesPlayed();
             
-            //first game
-            PlayerRollsDice(player);
-            PlayerChoosesCategory(player);
-            
             //second game onwards
-            while (PlayerWantsToContinueGame(player) && (player.GetNumberOfCategoriesPlayed() < MaxCategories)) //if player has finished the whole game max = max categories
+            while (PlayerWantsToContinueGame(player) && (gamesPlayed < MaxCategories)) //if player has finished the whole game max = max categories
             {
                 PlayerRollsDice(player);
                 PlayerChoosesCategory(player); //category is not removed from list after selection
             }
             
+            //it's exit the game after a full game - but still asks the players if they want to play again (it should display final score)
+            //or have functionality for if they want to reset game and if they want to exit - display exit greeting and final score won
+            
+            
         }
         
         private bool PlayerWantsToContinueGame(Player player)
         {
-            _console.WriteLine($"Your total score is {player.Score}. Would you like to continue playing? Y - Yes, N - No");
-            var response = _console.ReadLine();
-            return (response == "Y");
+            if (player.GetNumberOfCategoriesPlayed() == 0)
+            {
+                return true;
+            }
+            else
+            {
+                _console.WriteLine($"Your total score is {player.Score}. Would you like to continue playing? Y - Yes, N - No");
+                var response = _console.ReadLine();
+                return (response == "Y");
+            }
         }
         private string ResponseIsYOrN(string playerInput) //Y
         {
@@ -66,8 +71,8 @@ namespace Yatzy
         {
             var response = "Y";
             
-            _gamedice.RollDice();
-            _gamedice.DisplayDice();
+            GameDice.RollDice();
+            GameDice.DisplayDice();
             var rollCounter = 1;
             
             while (rollCounter < 3 && response == "Y")
@@ -88,8 +93,8 @@ namespace Yatzy
                 //response = _console.ReadLine();
                 if (response == "Y")
                 {
-                    _gamedice.RollDice();
-                    _gamedice.DisplayDice();
+                    GameDice.RollDice();
+                    GameDice.DisplayDice();
                     rollCounter = rollCounter + 1;
                 }
                 // return (response == "Y");
@@ -98,29 +103,27 @@ namespace Yatzy
 
         private void PlayerChoosesCategory(Player player)
         {
-            var chosenCategory = requestPlayersCategory(player);
+            var chosenCategory = RequestPlayersCategory(player);
             
             if (chosenCategory == CategoryType.SpecificNumber)
             { 
-                var specificNumber = requestSpecificNumberType();
-                var specificNumberCategory = new Category(specificNumber, _gamedice.Dice);
+                var specificNumber = RequestSpecificNumberType();
+                var specificNumberCategory = new Category(specificNumber, GameDice.Dice);
                 player.ChooseCategory(specificNumberCategory);
             }
             else
             {
-                var category = new Category(chosenCategory, _gamedice.Dice);
+                var category = new Category(chosenCategory, GameDice.Dice);
                 player.ChooseCategory(category);  
             }
         }
 
         private void PlayerSelectsDiceToHold(Player player) //player should be able to not hold any dice and reroll all dice
         {
-            var valuesToHold = player.ValuesToHold(_gamedice.Dice); 
-            var diceToHold = _gamedice.FindDice(valuesToHold); 
-            _gamedice.HoldDice(diceToHold); 
+            var valuesToHold = player.ValuesToHold(GameDice.Dice); 
+            var diceToHold = GameDice.FindDice(valuesToHold); 
+            GameDice.HoldDice(diceToHold); 
         }
-        
-        
         
         private bool StringIsOnlyNumbers(string playerInput) 
         {
@@ -130,7 +133,7 @@ namespace Yatzy
             return stringIsEmpty && patternIsMatch;
         }
 
-        private SpecificNumberType requestSpecificNumberType()
+        private SpecificNumberType RequestSpecificNumberType()
         {
             var noteForPlayerOnOneOfAKind =
                 "Please note that Ones, Twos, Threes, Fours, Fives and Sixes are considered to be in one classification of category, so if you select any of these, all of these will no longer be able the next round.";
@@ -144,7 +147,7 @@ namespace Yatzy
             return number;
         }
         
-        private CategoryType requestPlayersCategory(Player player) //testing in "synchronisatin'? // may need to 
+        private CategoryType RequestPlayersCategory(Player player) //testing in "synchronisatin'? // may need to 
         {
             _console.WriteLine($"Please select a category below:");
             
@@ -169,7 +172,5 @@ namespace Yatzy
            _console.WriteLine($"You have chosen {categoryString} category");
            return categoryString;
         }
-        
-        //Brown bag notes - new variable for numbering 
     }
 }

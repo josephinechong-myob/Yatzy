@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
     public class LargeStraightStrategy
     {
@@ -8,9 +8,9 @@ namespace Yatzy
         
         private static bool IsLargeStraight(List<int> diceValues)
         {
-            var LargeStraight = new List<int> {2, 3, 4, 5, 6};
+            var largeStraight = new List<int> {2, 3, 4, 5, 6};
 
-            foreach (var number in LargeStraight)
+            foreach (var number in largeStraight)
             {
                 if (!diceValues.Contains(number))
                 {

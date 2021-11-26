@@ -8,6 +8,65 @@ namespace YatzyTest
 {
     public class GameTest
     {
+        [Fact]
+        public void Player_Should_See_Their_Final_Score_And_Congratulations_Greeting_After_They_Have_Fished_All_Categories()
+        {
+            //Arrange
+            var mockConsole = new Mock<IConsole>();
+            var player = new Player(mockConsole.Object, "Gandalf");
+            var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            mockRandomNumberGenerator.SetupSequence(dice => dice.RandomNumber(1, 6))
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1);
+            mockConsole.SetupSequence(input => input.ReadLine())
+                .Returns("Name")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1")
+                .Returns("Y")
+                .Returns("N")
+                .Returns("1");
+            var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
+            var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
+
+            //Act
+            game.Run();
+            
+            //Assert
+            mockConsole.Verify(c => c.WriteLine("Congratulations on finishing the Yatzy game, your final score is 30"), Times.Exactly(1));
+        }
+        
         //
         [Fact]
         public void Player_Should_Be_Able_To_Select_Number_For_Specific_Number_Type_Category()
@@ -59,7 +118,7 @@ namespace YatzyTest
             game.Run();
             
             //assert
-            Assert.True(game._gamedice.Dice.All(die => die.Face == 0));
+            Assert.True(game.GameDice.Dice.All(die => die.Face == 0));
         }
         
         

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
     public class SmallStraightStrategy
     {
@@ -8,9 +8,9 @@ namespace Yatzy
         
         private static bool IsSmallStraight(List<int> diceValues)
         {
-            var SmallStraight = new List<int> {1, 2, 3, 4, 5};
+            var smallStraight = new List<int> {1, 2, 3, 4, 5};
 
-            foreach (var number in SmallStraight)
+            foreach (var number in smallStraight)
             {
                 if (!diceValues.Contains(number))
                 {

@@ -1,4 +1,4 @@
-namespace Yatzy
+namespace Yatzy.Categories
 {
     public enum CategoryType
     {

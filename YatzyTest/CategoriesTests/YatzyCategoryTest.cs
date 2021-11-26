@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 using Yatzy;
+using Yatzy.Categories;
 
 namespace YatzyTest.CategoriesTests
 {
