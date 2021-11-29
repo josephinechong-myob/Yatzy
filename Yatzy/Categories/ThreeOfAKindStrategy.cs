@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
-    public class ThreeOfAKindCatergory : ICategory
+    public class ThreeOfAKindStrategy
     {
-        public Category Name => Category.ThreeOfAKind;
+        public CategoryType Name => CategoryType.ThreeOfAKind;
         
-        public int CalculateScore(List<int> diceValues)
+        public static int CalculateScore(List<int> diceValues)
         {
             var findThrees = diceValues.GroupBy(three => three)
                 .Where(diceValue => diceValue.Count() > 2)

@@ -6,10 +6,22 @@ namespace Yatzy
     {
         public List<Die> Dice;
         //private List<Die> _finalSelection;
+        private readonly IConsole _console;
   
-        public GameDice(IRandomNumberGenerator randomNumberGenerator)
+        public GameDice(IRandomNumberGenerator randomNumberGenerator, IConsole console)
         {
-            Dice = GameDiceGenerator.Generate(randomNumberGenerator); 
+            Dice = GameDiceGenerator.Generate(randomNumberGenerator);
+            _console = console;
+
+        }
+        
+        public void DisplayDice()
+        {
+            _console.WriteLine("Rolled dice are: ");
+            foreach (Die die in Dice)
+            {
+                _console.WriteLine($"{die.Face} ");
+            }
         }
 
         public void RollDice()

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
 using Yatzy;
+using Yatzy.Categories;
 
 namespace YatzyTest.CategoriesTests
 {
@@ -11,11 +12,11 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {1, 2, 2, 5, 4}; //plugin for auto formatting when you save
-            var chanceCategory = new ChanceCategory();
             var expectedSumOfDice = 14;
 
             //act
-            var finalSumOfDice = chanceCategory.CalculateScore(finalDice);
+            //var finalSumOfDice = chanceCategory.CalculateScore(finalDice);
+            var finalSumOfDice = ChanceStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedSumOfDice, finalSumOfDice);

@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Yatzy
+﻿namespace Yatzy
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {

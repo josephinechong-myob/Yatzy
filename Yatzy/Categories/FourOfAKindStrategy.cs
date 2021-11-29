@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
-    public class FourOfAKindCatergory: ICategory
+    public class FourOfAKindStrategy
     {
-        public Category Name => Category.FourOfAKind;
+        public CategoryType Name => CategoryType.FourOfAKind;
         
-        public int CalculateScore(List<int> diceValues)
+        public static int CalculateScore(List<int> diceValues)
         {
             var findFours = diceValues.GroupBy(four => four)
                 .Where(diceValue => diceValue.Count() > 3)
-                .ToDictionary(four => four.Key, occerence => occerence.Count());
+                .ToDictionary(four => four.Key, occurrence => occurrence.Count());
 
             if (findFours.Keys.Count() == 1)
             {

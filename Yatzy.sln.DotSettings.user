@@ -1,6 +1,28 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/josephine.chong/Library/Caches/JetBrains/Rider2020.3/resharper-host/temp/Rider/vAny/CoverageData/_Yatzy.1613344310/Snapshot/snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=558b9b4c_002D4e5e_002D42ea_002D8944_002D5358c69dca5b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="If_Player_Wins_Yatzy_Category_They_Should_Score_Fifty_Points" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=01a0db1d_002D24c7_002D4694_002Da3e0_002D0f25f7cbbb21/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Player_Should_See_Their_Final_Score_And_Congratulations_Greeting_After_They_Have_Fished_All_Categories #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2948d415_002Db86f_002D40ff_002D8ee5_002Dcf676604747a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Category_Should_Be_Able_To_Know_Score_Once_Roll_Has_Ended" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.CategoryTest.Category_Should_Be_Able_To_Know_Score_Once_Roll_Has_Ended&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=35470304_002D3bb9_002D412b_002D9325_002D65db0192443e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Count_Of_Category_Types_Remaining_Should_Reduce_By_One_When_One_Category_Is_Played" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4ab09b49_002D16f1_002D42a3_002Da39d_002D36602c9c961c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Player_Should_Be_Able_To_Select_Number_For_Specific_Number_Type_Category" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.GameTest.Player_Should_Be_Able_To_Select_Number_For_Specific_Number_Type_Category&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4d73ea54_002De54a_002D4bda_002D9c34_002D25ed57e58cac/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Player_Should_Be_Able_To_Select_Category_In_The_Game" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4db810f2_002Dafc7_002D461d_002D8cc2_002Ded440e2412c5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CategoryTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=558b9b4c_002D4e5e_002D42ea_002D8944_002D5358c69dca5b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="If_Player_Wins_Yatzy_Category_They_Should_Score_Fifty_Points" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.ChanceCatergoryTest.Player_Should_Score_The_Sum_Of_The_Dice_Numbers_They_Roll_If_They_Pick_Chance_Catergory&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.PairCategoryTest.Player_Should_Score_The_Sum_Of_The_Two_Highest_Matching_Dice_Numbers_They_Roll_If_They_Pick_Pair_Category&lt;/TestId&gt;
@@ -18,6 +40,14 @@
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.YatzyCategoryTest.Player_Should_Score_Fifty_Points_If_They_Pick_Yatzy_Catergory_And_Roll_All_The_Same_Dice_Number&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.FourOfAKindCatergoryTest.Player_Should_Score_Sum_Of_The_Four_Of_A_Kind_Dice_If_They_Roll_Four_Of_A_Kind_And_Select_Four_Of_A_Kind_Category_1&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.FourOfAKindCatergoryTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.OneOfAKindStrategyTest.Player_Should_Score_Sum_Of_The_Dice_Value_They_Choose_For_One_Of_A_Kind&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.OneOfAKindStrategyTest.Player_Should_Score_Sum_Of_The_Dice_Value_They_Choose_For_One_Of_A_Kind_2&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.OneOfAKindStrategyTest.Player_Should_Score_Sum_Of_The_Dice_Value_They_Choose_For_One_Of_A_Kind_3&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.SmallStraightStrategyTest.Player_Should_Score_fifteen_If_They_Roll_A_Small_Straight&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.SmallStraightStrategyTest.Player2_Should_Score_fifteen_If_They_Roll_A_Small_Straight&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.SmallStraightStrategyTest.Player_Should_Score_Zero_If_They_Do_Not_Roll_A_Small_Straight&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.CategoryTest.Category_Should_Be_Able_To_Know_Score_Once_Roll_Has_Ended&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.CategoryTest.Category_Should_Be_Able_To_Know_Score_Once_Roll_Has_Ended_2&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=97de628d_002Da342_002D4491_002Dac08_002D66b329725106/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Dice_Roll_Should_Provide_Number_Between_One_And_Six" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

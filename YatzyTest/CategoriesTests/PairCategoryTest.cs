@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
 using Yatzy;
+using Yatzy.Categories;
 
 namespace YatzyTest.CategoriesTests
 {
@@ -11,11 +12,10 @@ namespace YatzyTest.CategoriesTests
         {
           //assign
           var finalDice = new List<int> {4, 4, 2, 2, 1};
-          var pairCatergory = new PairCategory();
           var expectedScore = 8;
           
           //act
-          var finalScore = pairCatergory.CalculateScore(finalDice);
+          var finalScore = PairStrategy.CalculateScore(finalDice);
 
           //assert
           Assert.Equal(expectedScore, finalScore);
@@ -26,11 +26,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {1, 1, 2, 2, 5};
-            var pairCatergory = new PairCategory();
             var expectedScore = 4;
           
             //act
-            var finalScore = pairCatergory.CalculateScore(finalDice);
+            var finalScore = PairStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);
@@ -41,11 +40,10 @@ namespace YatzyTest.CategoriesTests
         {
             //assign
             var finalDice = new List<int> {1, 1, 1, 1, 1};
-            var pairCatergory = new PairCategory();
             var expectedScore = 2;
           
             //act
-            var finalScore = pairCatergory.CalculateScore(finalDice);
+            var finalScore = PairStrategy.CalculateScore(finalDice);
 
             //assert
             Assert.Equal(expectedScore, finalScore);

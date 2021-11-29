@@ -1,34 +1,54 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Yatzy.Categories;
 
 namespace Yatzy
 {
     public class Player
     {
         private readonly List<Category> _categoriesWon;
+        private readonly List<CategoryType> _categoriesAll;
+        public List<CategoryType> CategoryTypeRemaining => 
+            _categoriesAll.Where(c=>!_categoriesWon.Exists(won=>won.CategoryType==c)).ToList();
         public string Name { get; }
         private readonly IConsole _console;
-        public int Score { get; private set; }
+        //public int Score => GetScore(); //Ask Jeremy cause there is an issue
+        public int Score;
 
         public Player(IConsole console, string name)
         {
             Name = name;
             _categoriesWon = new List<Category>();
-            Score = 0;
             _console = console;
-        }
-        
-        //DisplayDice (private method) - potentially could be on Game dice method??
-        private void DisplayDice(List<Die> gameDice)
-        {
-            _console.WriteLine("Rolled dice are: ");
-            foreach (Die die in gameDice)
-            {
-                _console.WriteLine($"{die.Face} ");
-            }
+            _categoriesAll = GetAllCategories();
         }
 
+        public int GetNumberOfCategoriesPlayed()
+        {
+            return _categoriesWon.Count;
+        }
+        
+        public List<CategoryType>  GetAllCategories() //(***MOVE***)new class of categy provider which gives a list of categories to choose from 
+        {
+            return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
+         
+        }
+
+        
+        
+        // private int GetScore() //not giving correct score
+        // {
+        //     var sum = 0;
+        //     foreach (var category in _categoriesWon)
+        //     {
+        //         sum += category.CalculateScore(); //issue is it is not recording the original dice roll to calculate the score and just using the current dice roll to do it
+        //         
+        //     }
+        //     return sum;
+        // }
+        
         private bool StringIsOnlyNumbersAndCommas(string playerInput) //player validator class or game validator class
         {
             var validPattern = new Regex("^[1-6],?[1-6]?,?[1-6]?,?[1-6]?,?[1-6]?$");
@@ -40,7 +60,6 @@ namespace Yatzy
         {
             var valuesToHold = new List<int>();
             var answer = string.Empty;
-            DisplayDice(gameDice); //need to ask player if they even want to hold anything (that can be in the Game before this function is used)
             while (!StringIsOnlyNumbersAndCommas(answer)) //pass through the answer of a function 
             {
                 _console.WriteLine("Please list all the numbers you would like to hold separated by comma ','. For example if you would to hold the same number twice please write it twice when listing. ");
@@ -58,14 +77,30 @@ namespace Yatzy
             return valuesToHold;
         }
         
-        
-        //choose catageory method
-        
-        
-        //add to the list
-        
-        //get the list
-        
-        //score
+        private bool HasChosenCategory(CategoryType chosenCategory) //validation for cat
+        {
+            foreach (var category in _categoriesWon)
+            {
+                if (category.CategoryType == chosenCategory) //need to account for only one of the one of a kind ones
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private void GetTotalScore(int categoryScore)
+        {
+            Score += categoryScore;
+        }
+        public void ChooseCategory(Category chosenCategory)
+        {
+            if (HasChosenCategory(chosenCategory.CategoryType))
+            {
+                var categoryScore = chosenCategory.CalculateScore();
+                _console.WriteLine($"You have scored {categoryScore} for {chosenCategory.CategoryType}");
+                _categoriesWon.Add(chosenCategory); //if any of 1-6 is chosen all get added to this list here
+                GetTotalScore(categoryScore);
+            }
+        }
     }
 }

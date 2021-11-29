@@ -1,51 +1,179 @@
+using System.Linq;
+using System.Text.RegularExpressions;
+using Yatzy.Categories;
+
 namespace Yatzy
 {
     public class Game
     { 
+        const int MaxCategories = 10;
         //players should be in a list or array and loop through 
         private readonly IConsole _console;
-        public GameDice _gamedice;
+        public GameDice GameDice;
         public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
         {
             _console = console;
-            _gamedice = new GameDice(randomNumberGenerator);
+            GameDice = new GameDice(randomNumberGenerator, console);
         }
         
         public void Run()
         {
             _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
-            var playerName = _console.ReadLine();
+            var playerName = _console.ReadLine(); 
             var player = new Player(_console, playerName);
-            _console.WriteLine($"{playerName} would you like to play a game? Y - yes or N - no");
-            var playerChoice = _console.ReadLine();
-            if (playerChoice == "Y")
+            
+            while (GameShouldContinue(player))  //player 1
             {
-                // roll dice
-                _gamedice.RollDice();
+                PlayerRollsDice(player);
+                PlayerChoosesCategory(player); 
             }
-            else if (playerChoice == "N")
-            {
-                return;
-            }
+            
+           //ask for reset?
+            //N - final greeting final score here
+            
+        }
 
+        private bool GameShouldContinue(Player player)
+        {
+            var gamesPlayed = player.GetNumberOfCategoriesPlayed();
+            return PlayerHasNotPlayedBefore(player) || ((!PlayerHasNotPlayedBefore(player) && PlayerWantsToContinueGame(player))
+                   && (gamesPlayed < MaxCategories));
+        }
 
-            //player rolls dice (new instance of gamedice)
-            //optional to hold and re-roll (3 times total)
-            //player chooses a category (per player record)
-            //player obtains a score & adds to total score (per player record)
-            //category is removed from options to choose in next roll
-
-            //changes player (alternate rolls) or player 1 plays and finishes game before player 2?
-
-            //repeat until all categories are used to complete the game
-
-            //put into an object and rotate the object, or put players in a list and rotate the list 
+        private bool PlayerHasNotPlayedBefore(Player player)
+        {
+            return player.GetNumberOfCategoriesPlayed() == 0;
         }
         
-        //Rolling dice
+        private bool PlayerWantsToContinueGame(Player player)
+        {
+            _console.WriteLine($"Your total score is {player.Score}. Would you like to continue playing? Y - Yes, N - No");
+            var response = _console.ReadLine();
+            return (response == "Y");
+        }
+        private string ResponseIsYOrN(string playerInput) //Y
+        {
+            var validPattern = new Regex("^[YN]$");
+            var stringIsEmpty = playerInput == string.Empty; //true
+            var patternIsMatch = validPattern.IsMatch(playerInput); //true
+            
+            while (stringIsEmpty || !patternIsMatch)
+            {
+                _console.WriteLine("Please enter Y - Yes, N - No");
+            
+                playerInput = _console.ReadLine();
+                patternIsMatch = validPattern.IsMatch(playerInput);
+                stringIsEmpty = playerInput == string.Empty;
+            }
+           
+            return playerInput ;
+        }
+
+       // private bool PlayerWantsToRollDice(int rollcounter) //wants and can roll dice if rollcounter is less than 3
+        private void PlayerRollsDice(Player player) //input validation for readline
+        {
+            var response = "Y";
+            
+            GameDice.RollDice();
+            GameDice.DisplayDice();
+            var rollCounter = 1;
+            
+            while (rollCounter < 3 && response == "Y")
+            {
+                if (rollCounter >= 1)
+                {
+                    _console.WriteLine("Would you like to hold dice? Y - Yes, N - No");
+                    var holdResponse = _console.ReadLine();
+                    if (holdResponse == "Y")
+                    { 
+                        PlayerSelectsDiceToHold(player);
+                    }
+                }
+                
+                _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
+               
+                response = ResponseIsYOrN(_console.ReadLine());
+                //response = _console.ReadLine();
+                if (response == "Y")
+                {
+                    GameDice.RollDice();
+                    GameDice.DisplayDice();
+                    rollCounter = rollCounter + 1;
+                }
+                // return (response == "Y");
+            }
+        }
+
+        private void PlayerChoosesCategory(Player player)
+        {
+            var chosenCategory = RequestPlayersCategory(player);
+            
+            if (chosenCategory == CategoryType.SpecificNumber)
+            { 
+                var specificNumber = RequestSpecificNumberType();
+                var specificNumberCategory = new Category(specificNumber, GameDice.Dice);
+                player.ChooseCategory(specificNumberCategory);
+            }
+            else
+            {
+                var category = new Category(chosenCategory, GameDice.Dice);
+                player.ChooseCategory(category);  
+            }
+        }
+
+        private void PlayerSelectsDiceToHold(Player player) //player should be able to not hold any dice and reroll all dice
+        {
+            var valuesToHold = player.ValuesToHold(GameDice.Dice); 
+            var diceToHold = GameDice.FindDice(valuesToHold); 
+            GameDice.HoldDice(diceToHold); 
+        }
         
-        //Rolling with held numbers
+        private bool StringIsOnlyNumbers(string playerInput) 
+        {
+            var validPattern = new Regex("^[1-9][1-5]?$");
+            var stringIsEmpty = playerInput != string.Empty;
+            var patternIsMatch = validPattern.IsMatch(playerInput);
+            return stringIsEmpty && patternIsMatch;
+        }
+
+        private SpecificNumberType RequestSpecificNumberType()
+        {
+            var noteForPlayerOnOneOfAKind =
+                "Please note that Ones, Twos, Threes, Fours, Fives and Sixes are considered to be in one classification of category, so if you select any of these, all of these will no longer be able the next round.";
+               
+            _console.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number");
+
+            var specificNumberType = _console.ReadLine(); //validation for user input
+               
+            var specificNumber = int.Parse(specificNumberType);
+            var number = (SpecificNumberType) specificNumber;
+            return number;
+        }
         
-        //Reset game
+        private CategoryType RequestPlayersCategory(Player player) //testing in "synchronisatin'? // may need to 
+        {
+            _console.WriteLine($"Please select a category below:");
+            
+           var types = player.CategoryTypeRemaining; 
+           for (var i=0; i < types.Count(); i++)
+           {
+               var categoryNumber = i + 1;
+               _console.WriteLine($"[{categoryNumber}] - {types.ElementAt(i).ToString()}");
+           }
+
+           var chosenCategory = _console.ReadLine(); 
+           
+           while (!StringIsOnlyNumbers(chosenCategory))
+           {
+               _console.WriteLine("Please enter the number of the category you would like to select");
+            
+               chosenCategory = _console.ReadLine();
+           }
+           
+           var categoryIndex = int.Parse(chosenCategory);
+           var categoryString = types.ElementAt(categoryIndex-1);
+           _console.WriteLine($"You have chosen {categoryString} category");
+           return categoryString;
+        }
     }
 }

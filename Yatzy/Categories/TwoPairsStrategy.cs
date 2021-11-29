@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
-    public class TwoPairsCategory : ICategory
+    public class TwoPairsStrategy 
     {
-        public Category Name => Category.TwoPairs;
+        public CategoryType Name => CategoryType.TwoPairs;
         
-        public int CalculateScore(List<int> diceValues)
+        public static int CalculateScore(List<int> diceValues)
         {
             var findPairs = diceValues.GroupBy(pair => pair)
                 .Where(diceValue => diceValue.Count() > 1)
@@ -20,7 +20,6 @@ namespace Yatzy
             
             if (findPairs.Keys.Count() == 2)
             {
-                //var firstPair = findPairs.ElementAt(0).Key; //1 2
                 foreach (var pair in findPairs)
                 {
                     sum += pair.Key * 2;

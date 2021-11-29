@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
-    public class PairCategory : ICategory
+    public class PairStrategy
     {
-        public Category Name => Category.Pairs;
+        public CategoryType Name => CategoryType.Pairs;
 
-        public int CalculateScore(List<int> diceValues)// write theory test to test everything
-        { // 5,5,5,5,5
+        public static int CalculateScore(List<int> diceValues)// write theory test to test everything
+        {
             var findPairs = diceValues.GroupBy(pair => pair)
                 .Where(dicevalue => dicevalue.Count() > 1)
                 .ToDictionary(pair => pair.Key, occurence => occurence.Count());

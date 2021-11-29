@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yatzy
+namespace Yatzy.Categories
 {
-    public class YatzyCategory : ICategory
+    public class YatzyStrategy
     {
-        public Category Name => Category.Yatzy;
+        public CategoryType Name => CategoryType.Yatzy;
         
-        public int CalculateScore(List<int> diceValues)
+        public static int CalculateScore(List<int> diceValues)
         {
             var distinctDice = diceValues.Distinct().Count();
             if (distinctDice == 1)
