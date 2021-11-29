@@ -62,6 +62,8 @@ namespace Yatzy
                 _console.WriteLine("Please enter Y - Yes, N - No");
             
                 playerInput = _console.ReadLine();
+                patternIsMatch = validPattern.IsMatch(playerInput);
+                stringIsEmpty = playerInput == string.Empty;
             }
            
             return playerInput ;

@@ -1,5 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/josephine.chong/Library/Caches/JetBrains/Rider2020.3/resharper-host/temp/Rider/vAny/CoverageData/_Yatzy.1613344310/Snapshot/snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=01a0db1d_002D24c7_002D4694_002Da3e0_002D0f25f7cbbb21/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Player_Should_See_Their_Final_Score_And_Congratulations_Greeting_After_They_Have_Fished_All_Categories #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/josephine.chong/Documents/FMA/Yatzy/YatzyTest" Presentation="&amp;lt;YatzyTest&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2948d415_002Db86f_002D40ff_002D8ee5_002Dcf676604747a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Category_Should_Be_Able_To_Know_Score_Once_Roll_Has_Ended" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::9CBC1785-73F3-42CA-8B29-786DFC025A9D::.NETCoreApp,Version=v3.1::YatzyTest.CategoriesTests.CategoryTest.Category_Should_Be_Able_To_Know_Score_Once_Roll_Has_Ended&lt;/TestId&gt;

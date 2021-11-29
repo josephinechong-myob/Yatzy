@@ -157,13 +157,17 @@ namespace YatzyTest
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns("Name")
-                .Returns("Y")
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
                 .Returns("1")
                 .Returns("Y")
                 .Returns("N")
-                .Returns("2");
+                .Returns("N")
+                .Returns("2")
+                .Returns("N")
+                .Returns("N")
+                .Returns("N");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
 
