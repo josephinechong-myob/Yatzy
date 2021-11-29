@@ -142,7 +142,7 @@ namespace YatzyTest
 
         }
         
-        [Fact]
+        [Fact] //bug fixed here
         public void Player_Should_Not_Be_Able_To_Select_Category_Already_Played_In_The_Game()
         {
             //Arrange
@@ -157,16 +157,14 @@ namespace YatzyTest
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns("Name")
-                .Returns("N")
-                .Returns("N")
-                .Returns("1")
-                .Returns("1")
-                .Returns("Y")
-                .Returns("N")
-                .Returns("N")
+                .Returns("N") //hold
+                .Returns("N") //roll
+                .Returns("1") //cat
+                .Returns("1") // specifc number 1
+                .Returns("Y") //cont play
+                .Returns("N") //hold
+                .Returns("N") //roll
                 .Returns("2")
-                .Returns("N")
-                .Returns("N")
                 .Returns("N");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
