@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Yatzy.Categories;
@@ -10,10 +11,12 @@ namespace Yatzy
         //players should be in a list or array and loop through 
         private readonly IConsole _console;
         public GameDice GameDice;
+        public Dictionary<string, int> ScoreRecords;
         public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
         {
             _console = console;
             GameDice = new GameDice(randomNumberGenerator, console);
+            ScoreRecords = new Dictionary<string, int>();
         }
         
         public void Run()
@@ -22,16 +25,29 @@ namespace Yatzy
             var playerName = _console.ReadLine(); 
             var player = new Player(_console, playerName);
             
-            while (GameShouldContinue(player))  //player 1
+            while (GameShouldContinue(player)) 
             {
                 PlayerRollsDice(player);
                 PlayerChoosesCategory(player); 
             }
             
-           //ask for reset?
-            //N - final greeting final score here
+            ScoreRecords.Add(playerName, player.Score); //completed game or player has quit the game and that's their final score
+            PrintPlayersScores();
             
+            
+            //reset game
+            //recording score for all compeled games (history for multiple players) - new class score keeper that does get reset or deleted
         }
+
+        private void PrintPlayersScores()
+        {
+            _console.WriteLine("Congratulations on finishing your Yatzy game. Here are the results: ");
+            foreach (var record in ScoreRecords)
+            {
+                _console.WriteLine($"{record.Key}'s final score is {record.Value}. ");
+            }
+        }
+       
 
         private bool GameShouldContinue(Player player)
         {

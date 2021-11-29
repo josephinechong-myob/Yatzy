@@ -56,7 +56,8 @@ namespace YatzyTest
                 .Returns("1")
                 .Returns("Y")
                 .Returns("N")
-                .Returns("1");
+                .Returns("1")
+                .Returns("N");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
         
@@ -64,7 +65,7 @@ namespace YatzyTest
             game.Run();
             
             //Assert
-            mockConsole.Verify(c => c.WriteLine("Congratulations on finishing the Yatzy game, your final score is 30"), Times.Exactly(1));
+            mockConsole.Verify(c => c.WriteLine("Congratulations on finishing your Yatzy game. Here are the results: Gandalf's final score is 30. "), Times.Exactly(1));
         }
         
         

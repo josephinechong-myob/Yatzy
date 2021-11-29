@@ -8,14 +8,15 @@ namespace Yatzy
 {
     public class Player
     {
-        private readonly List<Category> _categoriesWon;
-        private readonly List<CategoryType> _categoriesAll;
-        public List<CategoryType> CategoryTypeRemaining => 
+        private readonly List<Category> _categoriesWon; //reset
+        private readonly List<CategoryType> _categoriesAll; //reset
+        public List<CategoryType> CategoryTypeRemaining => //reset
             _categoriesAll.Where(c=>!_categoriesWon.Exists(won=>won.CategoryType==c)).ToList();
-        public string Name { get; }
+        public string Name { get; } //reset
         private readonly IConsole _console;
         //public int Score => GetScore(); //Ask Jeremy cause there is an issue
-        public int Score;
+        //recent dice 
+        public int Score; //reset
 
         public Player(IConsole console, string name)
         {
@@ -35,8 +36,6 @@ namespace Yatzy
             return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
          
         }
-
-        
         
         // private int GetScore() //not giving correct score
         // {
