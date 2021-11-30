@@ -78,6 +78,8 @@ namespace Yatzy
                 _console.WriteLine("Please enter Y - Yes, N - No");
             
                 playerInput = _console.ReadLine();
+                patternIsMatch = validPattern.IsMatch(playerInput);
+                stringIsEmpty = playerInput == string.Empty;
             }
            
             return playerInput ;
@@ -144,7 +146,7 @@ namespace Yatzy
         
         private bool StringIsOnlyNumbers(string playerInput) 
         {
-            var validPattern = new Regex("^[1-9][1-5]?$");
+            var validPattern = new Regex("^[1-9][0]?$");
             var stringIsEmpty = playerInput != string.Empty;
             var patternIsMatch = validPattern.IsMatch(playerInput);
             return stringIsEmpty && patternIsMatch;

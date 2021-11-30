@@ -20,41 +20,92 @@ namespace YatzyTest
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns("Name")
-                .Returns("Y")
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game 2
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game 3
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game 4
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game 5
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game 6
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game 7
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game 8
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y")//cont game 9
                 .Returns("N")
-                .Returns("1")
-                .Returns("Y")
                 .Returns("N")
                 .Returns("1")
                 .Returns("N");
@@ -65,7 +116,8 @@ namespace YatzyTest
             game.Run();
             
             //Assert
-            mockConsole.Verify(c => c.WriteLine("Congratulations on finishing your Yatzy game. Here are the results: Gandalf's final score is 30. "), Times.Exactly(1));
+            mockConsole.Verify(c => c.WriteLine("Congratulations on finishing your Yatzy game. Here are the results: "), Times.Exactly(1));
+            mockConsole.Verify(c => c.WriteLine("Name's final score is 30. "), Times.Exactly(1));
         }
         
         
@@ -84,13 +136,15 @@ namespace YatzyTest
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns("Name")
-                .Returns("Y")
+                .Returns("N")
                 .Returns("N")
                 .Returns("1")
                 .Returns("1")
                 .Returns("Y")
                 .Returns("N")
-                .Returns("2");
+                .Returns("N")
+                .Returns("2")
+                .Returns("N");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
 
@@ -105,22 +159,26 @@ namespace YatzyTest
             mockConsole.Verify(c=>c.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number"), Times.Once);
         }
         
-        [Fact]
-        public void Player_Should_Be_Able_To_Answer_No_For_Playing_Option()
-        {
-            //assign
-            var mockConsole = new Mock<IConsole>();
-            mockConsole.SetupSequence(m => m.ReadLine())
-                .Returns("Dumbledore")
-                .Returns("N");
-            var game = CreateGame(mockConsole);
-
-            //act
-            game.Run();
-            
-            //assert
-            Assert.True(game.GameDice.Dice.All(die => die.Face == 0));
-        }
+        // [Fact] //Might not need this test as the game play has changed
+        // public void Player_Should_Be_Able_To_Answer_No_For_Playing_Option()
+        // {
+        //     //assign
+        //     var mockConsole = new Mock<IConsole>();
+        //     var playerName = "Dumbledore";
+        //     mockConsole.SetupSequence(m => m.ReadLine())
+        //         .Returns(playerName)
+        //         .Returns("N")
+        //         .Returns("N")
+        //         .Returns("10")
+        //         .Returns("N");
+        //     var game = CreateGame(mockConsole);
+        //
+        //     //act
+        //     game.Run();
+        //     
+        //     //assert
+        //     Assert.True(game.GameDice.Dice.All(die => die.Face == 0));
+        // }
         
         
         [Fact]
@@ -131,6 +189,9 @@ namespace YatzyTest
             var playerName = "Dumbledore";
             mockConsole.SetupSequence(m => m.ReadLine())
                 .Returns(playerName)
+                .Returns("N")
+                .Returns("N")
+                .Returns("10")
                 .Returns("N");
             var game = CreateGame(mockConsole);
 
@@ -143,7 +204,7 @@ namespace YatzyTest
 
         }
         
-        [Fact]
+        [Fact] //bug fixed here
         public void Player_Should_Not_Be_Able_To_Select_Category_Already_Played_In_The_Game()
         {
             //Arrange
@@ -158,13 +219,15 @@ namespace YatzyTest
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns("Name")
-                .Returns("Y")
-                .Returns("N")
-                .Returns("1")
-                .Returns("1")
-                .Returns("Y")
-                .Returns("N")
-                .Returns("2");
+                .Returns("N") //hold
+                .Returns("N") //roll
+                .Returns("1") //cat
+                .Returns("1") // specifc number 1
+                .Returns("Y") //cont play
+                .Returns("N") //hold
+                .Returns("N") //roll
+                .Returns("2")
+                .Returns("N");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
 
@@ -195,9 +258,10 @@ namespace YatzyTest
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns("Name")
-                .Returns("Y")
                 .Returns("N")
-                .Returns("10");
+                .Returns("N")
+                .Returns("10")
+                .Returns("N");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
 
