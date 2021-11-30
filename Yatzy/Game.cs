@@ -34,9 +34,7 @@ namespace Yatzy
             ScoreRecords.Add(playerName, player.Score); //completed game or player has quit the game and that's their final score
             PrintPlayersScores();
             
-            
             //reset game
-            //recording score for all compeled games (history for multiple players) - new class score keeper that does get reset or deleted
         }
 
         private void PrintPlayersScores()
@@ -52,8 +50,16 @@ namespace Yatzy
         private bool GameShouldContinue(Player player)
         {
             var gamesPlayed = player.GetNumberOfCategoriesPlayed();
-            return PlayerHasNotPlayedBefore(player) || ((!PlayerHasNotPlayedBefore(player) && PlayerWantsToContinueGame(player))
-                   && (gamesPlayed < MaxCategories));
+            return PlayerHasNotPlayedBefore(player) ||
+                   ((!PlayerHasNotPlayedBefore(player) && (gamesPlayed < MaxCategories) && PlayerWantsToContinueGame(player))
+                   
+                   ); 
+            //Game Should continue when player wants to continue playing the game
+            //and 
+            //max # categories has not been reached
+            //new logic
+            //Or 
+            //Player has reached max # of categories, and wants to reset
         }
 
         private bool PlayerHasNotPlayedBefore(Player player)

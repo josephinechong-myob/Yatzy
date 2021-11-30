@@ -8,6 +8,7 @@
             var randomNumberGenerator = new RandomNumberGenerator();
             var game = new Game(console, randomNumberGenerator);
             game.Run();
+            
         }
     }
 }
