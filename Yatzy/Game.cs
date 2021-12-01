@@ -25,29 +25,23 @@ namespace Yatzy
             var playerName = _console.ReadLine(); 
             var player = new Player(_console, playerName);
             
-            
-            while (GameShouldContinue(player)) //
+            while (GameShouldContinue(player)) 
             {
-                //if cat game won == 10 Print dinal score
-                
-                if (AllCategoriesHaveBeenPlayed(player)) //if we get here and all categories have been played, player wants to reset
+                if (AllCategoriesHaveBeenPlayed(player)) 
                 {
-                    if (ScoreRecords.ContainsKey(playerName))
-                    {
-                        ScoreRecords[playerName].Add(player.Score);
-                    }
-                    else
-                    {
-                        ScoreRecords.Add(playerName, new List<int>{player.Score});
-                    }
-                    
+                    UpdateScoreRecords(player);
                     player = player.Reset();
                 }
-                
                 PlayerRollsDice(player);
-                PlayerChoosesCategory(player); 
-                
+                PlayerChoosesCategory(player);
             }
+            UpdateScoreRecords(player);
+            PrintPlayersScores();
+        }
+
+        private void UpdateScoreRecords(Player player)
+        {
+            var playerName = player.Name;
             if (ScoreRecords.ContainsKey(playerName))
             {
                 ScoreRecords[playerName].Add(player.Score);
@@ -55,12 +49,7 @@ namespace Yatzy
             else
             {
                 ScoreRecords.Add(playerName, new List<int>{player.Score});
-            }
-           
-            //completed game or player has quit the game and that's their final score
-            PrintPlayersScores();
-            
-            //reset game
+            }  
         }
 
       
