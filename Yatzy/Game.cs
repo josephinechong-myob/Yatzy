@@ -24,9 +24,19 @@ namespace Yatzy
             _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
             var playerName = _console.ReadLine(); 
             var player = new Player(_console, playerName);
+            var loop = true;
             
-            while (GameShouldContinue(player)) 
+            while (GameShouldContinue(player)) //
             {
+                if (AllCategoriesHaveBeenPlayed(player) && PLayerWantsToResetGame()) //if we get here and all categories have been played, player wants to reset
+                {
+                    player = player.Reset();
+                }
+                // else
+                // {
+                //     loop = false;
+                // }
+                
                 PlayerRollsDice(player);
                 PlayerChoosesCategory(player); 
             }
@@ -37,6 +47,8 @@ namespace Yatzy
             //reset game
         }
 
+      
+
         private void PrintPlayersScores()
         {
             _console.WriteLine("Congratulations on finishing your Yatzy game. Here are the results: ");
@@ -45,15 +57,52 @@ namespace Yatzy
                 _console.WriteLine($"{record.Key}'s final score is {record.Value}. ");
             }
         }
-       
 
+        private bool AllCategoriesHaveBeenPlayed(Player player)
+        {
+            return player.GetNumberOfCategoriesPlayed() == MaxCategories;
+        }
+
+        private bool PLayerWantsToResetGame() //don't use recussion here although it does work
+        {
+            _console.WriteLine("Would you like to play again? Y - Yes, N - No");
+            var reply = _console.ReadLine();
+            while (reply != "Y" && reply != "N")
+            {
+                _console.WriteLine("Please enter Y - Yes to play again or N - No to stop the game");
+                reply = _console.ReadLine();
+            }
+            if (reply == "Y")
+            {
+                return true;
+            }
+            return false;
+        }
+        
         private bool GameShouldContinue(Player player)
         {
-            var gamesPlayed = player.GetNumberOfCategoriesPlayed();
-            return PlayerHasNotPlayedBefore(player) ||
-                   ((!PlayerHasNotPlayedBefore(player) && (gamesPlayed < MaxCategories) && PlayerWantsToContinueGame(player))
-                   
-                   ); 
+            if (PlayerHasNotPlayedBefore(player))
+            {
+                return true;
+            }
+            
+            if (!PlayerHasNotPlayedBefore(player) && !AllCategoriesHaveBeenPlayed(player) && PlayerWantsToContinueGame(player))
+            {
+                return true;
+            }
+            
+            if (AllCategoriesHaveBeenPlayed(player) && PLayerWantsToResetGame())
+            {
+                return true;
+            }
+            
+            return false;
+            //var gamesPlayed = player.GetNumberOfCategoriesPlayed();
+            // return PlayerHasNotPlayedBefore(player) ||
+            //        ((!PlayerHasNotPlayedBefore(player) && !AllCategoriesHaveBeenPlayed(player) && PlayerWantsToContinueGame(player)) ||
+            //        (AllCategoriesHaveBeenPlayed(player) && PLayerWantsToResetGame())
+            //        );
+            //ask player if they want to reset where 1==2
             //Game Should continue when player wants to continue playing the game
             //and 
             //max # categories has not been reached

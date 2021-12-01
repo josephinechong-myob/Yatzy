@@ -36,7 +36,12 @@ namespace Yatzy
             return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
          
         }
-        
+
+
+        public Player Reset()
+        {
+            return new Player(_console, Name);
+        }
         // private int GetScore() //not giving correct score
         // {
         //     var sum = 0;

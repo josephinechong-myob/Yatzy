@@ -108,7 +108,7 @@ namespace YatzyTest
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")
+                .Returns("Y") //edit
                 .Returns("N")
                 .Returns("N")
                 .Returns("2")
