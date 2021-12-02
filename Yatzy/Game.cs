@@ -121,7 +121,6 @@ namespace Yatzy
             return (response == "Y");
         }
         
-        
         private void PlayerRollsDice(Player player)
         {
             var response = "Y";
@@ -182,8 +181,14 @@ namespace Yatzy
         {
             _console.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number");
 
-            var specificNumberType = UserInputValidator.StringIsOnlyNumbersOneToSix(_console.ReadLine());
-            var specificNumber = int.Parse(specificNumberType);
+            var playerInput = _console.ReadLine();
+            while (!UserInputValidator.StringIsOnlyNumbersOneToSix(playerInput))
+            {
+                _console.WriteLine("Please enter a number 1 to 6.");
+                playerInput = _console.ReadLine();
+            }
+            
+            var specificNumber = int.Parse(playerInput);
             var number = (SpecificNumberType) specificNumber;
             return number;
         }

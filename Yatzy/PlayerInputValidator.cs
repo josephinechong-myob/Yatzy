@@ -19,17 +19,12 @@ namespace Yatzy
             return stringIsEmpty && patternIsMatch;
         }
         
-        public string StringIsOnlyNumbersOneToSix(string playerInput) //spec no select
+        public bool StringIsOnlyNumbersOneToSix(string playerInput) //spec no select
         {
             var validPattern = new Regex("^[1-6]$");
             var stringIsNotEmpty = playerInput != string.Empty;
             var patternIsMatch = validPattern.IsMatch(playerInput);
-            while (!stringIsNotEmpty && !patternIsMatch)
-            {
-                _console.WriteLine("Please enter a number 1 to 6.");
-                playerInput = _console.ReadLine();
-            }
-            return playerInput;
+            return stringIsNotEmpty && patternIsMatch;
         }
         public string ResponseIsYOrN(string playerInput) 
         {
