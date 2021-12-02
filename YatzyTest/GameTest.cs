@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Moq;
 using Xunit;
 using Yatzy;
@@ -16,52 +14,52 @@ namespace YatzyTest
             var player = new Player(mockConsole.Object, "Gandalf");
             var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
             mockRandomNumberGenerator.SetupSequence(dice => dice.RandomNumber(1, 6))
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
@@ -72,43 +70,43 @@ namespace YatzyTest
                 .Returns("N")
                 .Returns("1")
                 .Returns("1")
-                .Returns("Y")//cont game
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 2
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 3
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 4
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 5
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 6
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 7
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 8
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 9
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y") //edit
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("2")
@@ -133,52 +131,52 @@ namespace YatzyTest
             var player = new Player(mockConsole.Object, "Gandalf");
             var mockRandomNumberGenerator = new Mock<IRandomNumberGenerator>();
             mockRandomNumberGenerator.SetupSequence(dice => dice.RandomNumber(1, 6))
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
-                .Returns(2)
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
-                .Returns(1) //3 + 4 + 6 +3+ 0+ 0+7+0+0+7
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(1)
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
@@ -189,39 +187,39 @@ namespace YatzyTest
                 .Returns("N")
                 .Returns("1")
                 .Returns("1")
-                .Returns("Y")//cont game
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 2
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 3
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 4
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 5
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 6
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 7
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 8
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
-                .Returns("Y")//cont game 9
+                .Returns("Y")
                 .Returns("N")
                 .Returns("N")
                 .Returns("1")
@@ -298,7 +296,6 @@ namespace YatzyTest
         //     Assert.True(game.GameDice.Dice.All(die => die.Face == 0));
         // }
         
-        
         [Fact]
         public void Player_Should_Be_Greeted_By_The_Game()
         {
@@ -318,11 +315,9 @@ namespace YatzyTest
             
             //assert
             mockConsole.Verify(m => m.WriteLine("Welcome to Yatzy. \nWhat is your name?"), Times.Once());
-            //mockConsole.Verify(m=>m.WriteLine($"{playerName} would you like to play a game? Y - yes or N - no"), Times.Once);
-
         }
         
-        [Fact] //bug fixed here
+        [Fact]
         public void Player_Should_Not_Be_Able_To_Select_Category_Already_Played_In_The_Game()
         {
             //Arrange
@@ -337,13 +332,13 @@ namespace YatzyTest
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns("Name")
-                .Returns("N") //hold
-                .Returns("N") //roll
-                .Returns("1") //cat
-                .Returns("1") // specifc number 1
-                .Returns("Y") //cont play
-                .Returns("N") //hold
-                .Returns("N") //roll
+                .Returns("N") 
+                .Returns("N") 
+                .Returns("1") 
+                .Returns("1") 
+                .Returns("Y") 
+                .Returns("N") 
+                .Returns("N") 
                 .Returns("2")
                 .Returns("N");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
@@ -359,8 +354,6 @@ namespace YatzyTest
             mockConsole.Verify(console=>console.WriteLine("[2] - Pairs"), Times.Once);
         }
         
-        
-
         [Fact]
         public void Player_Should_Be_Able_To_Select_Category_In_The_Game()
         {

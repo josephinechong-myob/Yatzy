@@ -11,7 +11,7 @@ namespace Yatzy
         //players should be in a list or array and loop through 
         private readonly IConsole _console;
         public GameDice GameDice;
-        public Dictionary<string, List<int>> ScoreRecords; // 
+        public Dictionary<string, List<int>> ScoreRecords;
         public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
         {
             _console = console;
@@ -19,7 +19,7 @@ namespace Yatzy
             ScoreRecords = new Dictionary<string, List<int>>();
         }
         
-        public void Run()
+        public void Run() 
         {
             _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
             var playerName = _console.ReadLine(); 
@@ -51,9 +51,7 @@ namespace Yatzy
                 ScoreRecords.Add(playerName, new List<int>{player.Score});
             }  
         }
-
-      
-
+        
         private void PrintPlayersScores()
         {
             _console.WriteLine("Congratulations on finishing your Yatzy game. Here are the results: ");
@@ -83,6 +81,12 @@ namespace Yatzy
             }
             return false;
         }
+
+        private bool GameIsInProgress(Player player)
+        {
+            return (!PlayerHasNotPlayedBefore(player) && !AllCategoriesHaveBeenPlayed(player) &&
+                    PlayerWantsToContinueGame(player));
+        }
         
         private bool GameShouldContinue(Player player)
         {
@@ -91,7 +95,7 @@ namespace Yatzy
                 return true;
             }
             
-            if (!PlayerHasNotPlayedBefore(player) && !AllCategoriesHaveBeenPlayed(player) && PlayerWantsToContinueGame(player))
+            if (GameIsInProgress(player))
             {
                 return true;
             }
@@ -107,13 +111,6 @@ namespace Yatzy
             //        ((!PlayerHasNotPlayedBefore(player) && !AllCategoriesHaveBeenPlayed(player) && PlayerWantsToContinueGame(player)) ||
             //        (AllCategoriesHaveBeenPlayed(player) && PLayerWantsToResetGame())
             //        );
-            //ask player if they want to reset where 1==2
-            //Game Should continue when player wants to continue playing the game
-            //and 
-            //max # categories has not been reached
-            //new logic
-            //Or 
-            //Player has reached max # of categories, and wants to reset
         }
 
         private bool PlayerHasNotPlayedBefore(Player player)
@@ -127,11 +124,11 @@ namespace Yatzy
             var response = _console.ReadLine();
             return (response == "Y");
         }
-        private string ResponseIsYOrN(string playerInput) //Y
+        private string ResponseIsYOrN(string playerInput) 
         {
             var validPattern = new Regex("^[YN]$");
-            var stringIsEmpty = playerInput == string.Empty; //true
-            var patternIsMatch = validPattern.IsMatch(playerInput); //true
+            var stringIsEmpty = playerInput == string.Empty;
+            var patternIsMatch = validPattern.IsMatch(playerInput);
             
             while (stringIsEmpty || !patternIsMatch)
             {
@@ -144,9 +141,8 @@ namespace Yatzy
            
             return playerInput ;
         }
-
-       // private bool PlayerWantsToRollDice(int rollcounter) //wants and can roll dice if rollcounter is less than 3
-        private void PlayerRollsDice(Player player) //input validation for readline
+        
+        private void PlayerRollsDice(Player player)
         {
             var response = "Y";
             
@@ -169,14 +165,12 @@ namespace Yatzy
                 _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
                
                 response = ResponseIsYOrN(_console.ReadLine());
-                //response = _console.ReadLine();
                 if (response == "Y")
                 {
                     GameDice.RollDice();
                     GameDice.DisplayDice();
                     rollCounter = rollCounter + 1;
                 }
-                // return (response == "Y");
             }
         }
 
@@ -197,7 +191,7 @@ namespace Yatzy
             }
         }
 
-        private void PlayerSelectsDiceToHold(Player player) //player should be able to not hold any dice and reroll all dice
+        private void PlayerSelectsDiceToHold(Player player)
         {
             var valuesToHold = player.ValuesToHold(GameDice.Dice); 
             var diceToHold = GameDice.FindDice(valuesToHold); 
@@ -211,16 +205,25 @@ namespace Yatzy
             var patternIsMatch = validPattern.IsMatch(playerInput);
             return stringIsEmpty && patternIsMatch;
         }
+        
+        private string StringIsOnlyNumbersOneToSix(string playerInput) 
+        {
+            var validPattern = new Regex("^[1-6]$");
+            var stringIsNotEmpty = playerInput != string.Empty;
+            var patternIsMatch = validPattern.IsMatch(playerInput);
+            while (!stringIsNotEmpty && !patternIsMatch)
+            {
+                _console.WriteLine("Please enter a number 1 to 6.");
+                playerInput = _console.ReadLine();
+            }
+            return playerInput;
+        }
 
         private SpecificNumberType RequestSpecificNumberType()
         {
-            var noteForPlayerOnOneOfAKind =
-                "Please note that Ones, Twos, Threes, Fours, Fives and Sixes are considered to be in one classification of category, so if you select any of these, all of these will no longer be able the next round.";
-               
             _console.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number");
 
-            var specificNumberType = _console.ReadLine(); //validation for user input
-               
+            var specificNumberType = StringIsOnlyNumbersOneToSix(_console.ReadLine());
             var specificNumber = int.Parse(specificNumberType);
             var number = (SpecificNumberType) specificNumber;
             return number;
