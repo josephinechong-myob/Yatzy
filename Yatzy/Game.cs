@@ -123,34 +123,33 @@ namespace Yatzy
         
         private void PlayerRollsDice(Player player)
         {
-            var response = "Y";
+            var playerWantsToRollDice = "Y";
             
             GameDice.RollDice();
             GameDice.DisplayDice();
             var rollCounter = 1;
             
-            while (rollCounter < 3 && response == "Y")
+            while (rollCounter < 3 && playerWantsToRollDice == "Y")
             {
                 if (rollCounter >= 1)
                 {
                     _console.WriteLine("Would you like to hold dice? Y - Yes, N - No");
-                    var holdResponse = _console.ReadLine();
-                    if (holdResponse == "Y")
+                    var playerWantsToHoldDice = _console.ReadLine();
+                    if (playerWantsToHoldDice == "Y")
                     { 
                         PlayerSelectsDiceToHold(player);
                     }
                 }
                 _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
-               
-                var playerInput = _console.ReadLine();
+                playerWantsToRollDice = _console.ReadLine();
                 
-                while(!PlayerInputValidator.ResponseIsYOrN(playerInput))
+                while(!PlayerInputValidator.ResponseIsYOrN(playerWantsToRollDice))
                 {
                     _console.WriteLine("Please enter Y - Yes, N - No");
-                    playerInput = _console.ReadLine();
+                    playerWantsToRollDice = _console.ReadLine();
                 }
                
-                if (playerInput == "Y")
+                if (playerWantsToRollDice == "Y")
                 {
                     GameDice.RollDice();
                     GameDice.DisplayDice();
