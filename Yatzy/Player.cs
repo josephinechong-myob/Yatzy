@@ -8,6 +8,7 @@ namespace Yatzy
 {
     public class Player
     {
+        
         private readonly List<Category> _categoriesWon; //reset
         private readonly List<CategoryType> _categoriesAll; //reset
         public List<CategoryType> CategoryTypeRemaining => //reset
@@ -24,6 +25,11 @@ namespace Yatzy
             _categoriesWon = new List<Category>();
             _console = console;
             _categoriesAll = GetAllCategories();
+        }
+        
+        public bool AllCategoriesHaveBeenPlayed(Player player)
+        {
+            return player.GetNumberOfCategoriesPlayed() == Constants.MaxCategories;
         }
 
         public int GetNumberOfCategoriesPlayed()

@@ -6,8 +6,7 @@ using Yatzy.Categories;
 namespace Yatzy
 {
     public class Game
-    { 
-        const int MaxCategories = 10;
+    {
         //players should be in a list or array and loop through 
         private readonly IConsole _console;
         public GameDice GameDice;
@@ -29,7 +28,7 @@ namespace Yatzy
             
             while (GameShouldContinue(player)) 
             {
-                if (AllCategoriesHaveBeenPlayed(player)) 
+                if (player.AllCategoriesHaveBeenPlayed(player)) 
                 {
                     UpdateScoreRecords(player);
                     player = player.Reset();
@@ -62,12 +61,7 @@ namespace Yatzy
                 _console.WriteLine($"{record.Key}'s final score is {record.Value.Sum()}. ");
             }
         }
-
-        private bool AllCategoriesHaveBeenPlayed(Player player)
-        {
-            return player.GetNumberOfCategoriesPlayed() == MaxCategories;
-        }
-
+        
         private bool PLayerWantsToResetGame() //don't use recussion here although it does work
         {
             _console.WriteLine("Would you like to play again? Y - Yes, N - No");
@@ -84,9 +78,9 @@ namespace Yatzy
             return false;
         }
 
-        private bool GameIsInProgress(Player player)
+        private bool GameIsInProgress(Player player) //?
         {
-            return (!PlayerHasNotPlayedBefore(player) && !AllCategoriesHaveBeenPlayed(player) &&
+            return (!PlayerHasNotPlayedBefore(player) && !player.AllCategoriesHaveBeenPlayed(player) &&
                     PlayerWantsToContinueGame(player));
         }
         
@@ -102,7 +96,7 @@ namespace Yatzy
                 return true;
             }
             
-            if (AllCategoriesHaveBeenPlayed(player) && PLayerWantsToResetGame())
+            if (player.AllCategoriesHaveBeenPlayed(player) && PLayerWantsToResetGame())
             {
                 return true;
             }
@@ -126,23 +120,7 @@ namespace Yatzy
             var response = _console.ReadLine();
             return (response == "Y");
         }
-        private string ResponseIsYOrN(string playerInput) 
-        {
-            var validPattern = new Regex("^[YN]$");
-            var stringIsEmpty = playerInput == string.Empty;
-            var patternIsMatch = validPattern.IsMatch(playerInput);
-            
-            while (stringIsEmpty || !patternIsMatch)
-            {
-                _console.WriteLine("Please enter Y - Yes, N - No");
-            
-                playerInput = _console.ReadLine();
-                patternIsMatch = validPattern.IsMatch(playerInput);
-                stringIsEmpty = playerInput == string.Empty;
-            }
-           
-            return playerInput ;
-        }
+        
         
         private void PlayerRollsDice(Player player)
         {
@@ -166,7 +144,7 @@ namespace Yatzy
                 
                 _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
                
-                response = ResponseIsYOrN(_console.ReadLine());
+                response = UserInputValidator.ResponseIsYOrN(_console.ReadLine());
                 if (response == "Y")
                 {
                     GameDice.RollDice();
