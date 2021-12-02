@@ -252,8 +252,8 @@ namespace YatzyTest
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns("Name")
-                .Returns("N")
-                .Returns("N")
+                .Returns("N") //hold
+                .Returns("N") //roll
                 .Returns("1")
                 .Returns("1")
                 .Returns("Y")

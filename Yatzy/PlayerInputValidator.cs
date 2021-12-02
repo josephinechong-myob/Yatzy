@@ -2,11 +2,11 @@ using System.Text.RegularExpressions;
 
 namespace Yatzy
 {
-    public class UserInputValidator
+    public class PlayerInputValidator
     {
         private readonly IConsole _console;
 
-        public UserInputValidator(IConsole console)
+        public PlayerInputValidator(IConsole console)
         {
             _console = console;
         }
@@ -14,9 +14,9 @@ namespace Yatzy
         public bool StringIsOnlyNumbers(string playerInput) //cat no
         {
             var validPattern = new Regex("^[1-9][0]?$");
-            var stringIsEmpty = playerInput != string.Empty;
+            var stringIsNotEmpty = playerInput != string.Empty;
             var patternIsMatch = validPattern.IsMatch(playerInput);
-            return stringIsEmpty && patternIsMatch;
+            return stringIsNotEmpty && patternIsMatch;
         }
         
         public bool StringIsOnlyNumbersOneToSix(string playerInput) //spec no select
@@ -26,23 +26,12 @@ namespace Yatzy
             var patternIsMatch = validPattern.IsMatch(playerInput);
             return stringIsNotEmpty && patternIsMatch;
         }
-        public string ResponseIsYOrN(string playerInput) 
+        public bool ResponseIsYOrN(string playerInput) 
         {
             var validPattern = new Regex("^[YN]$");
-            var stringIsEmpty = playerInput == string.Empty;
+            var stringIsNotEmpty = playerInput != string.Empty;
             var patternIsMatch = validPattern.IsMatch(playerInput);
-            
-            while (stringIsEmpty || !patternIsMatch)
-            {
-                _console.WriteLine("Please enter Y - Yes, N - No");
-            
-                playerInput = _console.ReadLine();
-                patternIsMatch = validPattern.IsMatch(playerInput);
-                stringIsEmpty = playerInput == string.Empty;
-            }
-           
-            return playerInput ;
+            return stringIsNotEmpty && patternIsMatch;
         }
-        
     }
 }

@@ -11,13 +11,13 @@ namespace Yatzy
         private readonly IConsole _console;
         public GameDice GameDice;
         public Dictionary<string, List<int>> ScoreRecords;
-        public UserInputValidator UserInputValidator;
+        public PlayerInputValidator PlayerInputValidator;
         public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
         {
             _console = console;
             GameDice = new GameDice(randomNumberGenerator, console);
             ScoreRecords = new Dictionary<string, List<int>>();
-            UserInputValidator = new UserInputValidator(console);
+            PlayerInputValidator = new PlayerInputValidator(console);
         }
         
         public void Run() 
@@ -140,11 +140,17 @@ namespace Yatzy
                         PlayerSelectsDiceToHold(player);
                     }
                 }
-                
                 _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
                
-                response = UserInputValidator.ResponseIsYOrN(_console.ReadLine());
-                if (response == "Y")
+                var playerInput = _console.ReadLine();
+                
+                while(!PlayerInputValidator.ResponseIsYOrN(playerInput))
+                {
+                    _console.WriteLine("Please enter Y - Yes, N - No");
+                    playerInput = _console.ReadLine();
+                }
+               
+                if (playerInput == "Y")
                 {
                     GameDice.RollDice();
                     GameDice.DisplayDice();
@@ -182,7 +188,7 @@ namespace Yatzy
             _console.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number");
 
             var playerInput = _console.ReadLine();
-            while (!UserInputValidator.StringIsOnlyNumbersOneToSix(playerInput))
+            while (!PlayerInputValidator.StringIsOnlyNumbersOneToSix(playerInput))
             {
                 _console.WriteLine("Please enter a number 1 to 6.");
                 playerInput = _console.ReadLine();
@@ -206,7 +212,7 @@ namespace Yatzy
 
            var chosenCategory = _console.ReadLine(); 
            
-           while (!UserInputValidator.StringIsOnlyNumbers(chosenCategory))
+           while (!PlayerInputValidator.StringIsOnlyNumbers(chosenCategory))
            {
                _console.WriteLine("Please enter the number of the category you would like to select");
             
