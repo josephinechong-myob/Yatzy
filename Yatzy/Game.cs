@@ -12,11 +12,13 @@ namespace Yatzy
         private readonly IConsole _console;
         public GameDice GameDice;
         public Dictionary<string, List<int>> ScoreRecords;
+        public UserInputValidator UserInputValidator;
         public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
         {
             _console = console;
             GameDice = new GameDice(randomNumberGenerator, console);
             ScoreRecords = new Dictionary<string, List<int>>();
+            UserInputValidator = new UserInputValidator(console);
         }
         
         public void Run() 
@@ -197,33 +199,12 @@ namespace Yatzy
             var diceToHold = GameDice.FindDice(valuesToHold); 
             GameDice.HoldDice(diceToHold); 
         }
-        
-        private bool StringIsOnlyNumbers(string playerInput) 
-        {
-            var validPattern = new Regex("^[1-9][0]?$");
-            var stringIsEmpty = playerInput != string.Empty;
-            var patternIsMatch = validPattern.IsMatch(playerInput);
-            return stringIsEmpty && patternIsMatch;
-        }
-        
-        private string StringIsOnlyNumbersOneToSix(string playerInput) 
-        {
-            var validPattern = new Regex("^[1-6]$");
-            var stringIsNotEmpty = playerInput != string.Empty;
-            var patternIsMatch = validPattern.IsMatch(playerInput);
-            while (!stringIsNotEmpty && !patternIsMatch)
-            {
-                _console.WriteLine("Please enter a number 1 to 6.");
-                playerInput = _console.ReadLine();
-            }
-            return playerInput;
-        }
-
+       
         private SpecificNumberType RequestSpecificNumberType()
         {
             _console.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number");
 
-            var specificNumberType = StringIsOnlyNumbersOneToSix(_console.ReadLine());
+            var specificNumberType = UserInputValidator.StringIsOnlyNumbersOneToSix(_console.ReadLine());
             var specificNumber = int.Parse(specificNumberType);
             var number = (SpecificNumberType) specificNumber;
             return number;
@@ -242,7 +223,7 @@ namespace Yatzy
 
            var chosenCategory = _console.ReadLine(); 
            
-           while (!StringIsOnlyNumbers(chosenCategory))
+           while (!UserInputValidator.StringIsOnlyNumbers(chosenCategory))
            {
                _console.WriteLine("Please enter the number of the category you would like to select");
             
