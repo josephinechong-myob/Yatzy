@@ -19,19 +19,19 @@ namespace Yatzy
             return stringIsNotEmpty && patternIsMatch; 
         }
         
-        public bool StringIsOnlyNumbersOneToTen(string playerInput) //function that returns a boolean that has all 4 lines
+        public bool IsOnlyNumbersOneToTen(string playerInput) //function that returns a boolean that has all 4 lines
         {
             var pattern = "^[1-9][0]?$";
             return IsValidInput(playerInput, pattern);
         }
         
-        public bool StringIsOnlyNumbersOneToSix(string playerInput)
+        public bool IsOnlyNumbersOneToSix(string playerInput)
         {
             var pattern = "^[1-6]$";
             return IsValidInput(playerInput, pattern);
         }
         
-        public bool ResponseIsYOrN(string playerInput)
+        public bool IsYOrN(string playerInput)
         {
             var pattern = "^[YN]$";
             return IsValidInput(playerInput, pattern);
