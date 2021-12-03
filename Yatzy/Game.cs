@@ -122,7 +122,7 @@ namespace Yatzy
             return (response == "Y");
         }
 
-        private string AskIfPlayerWantsToRollDice()
+        private bool AskIfPlayerWantsToRollDice()
         {
             _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
             var playerWantsToRollDice = _console.ReadLine();
@@ -132,11 +132,11 @@ namespace Yatzy
                 _console.WriteLine("Please enter Y - Yes, N - No");
                 playerWantsToRollDice = _console.ReadLine();
             }
-
-            return playerWantsToRollDice;
+            
+            return playerWantsToRollDice == "Y";
         }
 
-        private string AskIfPlayerWantsToHoldDice()
+        private bool AskIfPlayerWantsToHoldDice()
         {
             _console.WriteLine("Would you like to hold dice? Y - Yes, N - No");
             var playerWantsToHoldDice = _console.ReadLine();
@@ -147,7 +147,7 @@ namespace Yatzy
                 playerWantsToHoldDice = _console.ReadLine();
             }
 
-            return playerWantsToHoldDice;
+            return playerWantsToHoldDice == "Y";
         }
 
         private void RollDice()
@@ -155,30 +155,34 @@ namespace Yatzy
             GameDice.RollDice();
             GameDice.DisplayDice();
         }
+
+        private void HoldDice(Player player, int rollCounter)
+        {
+            if (rollCounter >= 1)
+            {
+                var playerWantsToHoldDice = AskIfPlayerWantsToHoldDice();
+                if (playerWantsToHoldDice)
+                { 
+                    PlayerSelectsDiceToHold(player);
+                }
+            }
+        }
         
         private void PlayerRollsDice(Player player)
         {
-            var playerWantsToRollDice = "Y";
-            
+            var playerWantsToRollDice = true;
             var rollCounter = 0;
             
-            while (rollCounter < 3 && playerWantsToRollDice == "Y")
+            while (rollCounter < 3 && playerWantsToRollDice)
             {
-                if (rollCounter >= 1)
-                {
-                    var playerWantsToHoldDice = AskIfPlayerWantsToHoldDice();
-                    if (playerWantsToHoldDice == "Y")
-                    { 
-                        PlayerSelectsDiceToHold(player);
-                    }
-                }
+                HoldDice(player, rollCounter);
 
                 if (rollCounter > 0)
                 {
                     playerWantsToRollDice = AskIfPlayerWantsToRollDice();
                 }
                 
-                if (playerWantsToRollDice == "Y")
+                if (playerWantsToRollDice)
                 {
                     RollDice();
                     rollCounter = rollCounter + 1;
