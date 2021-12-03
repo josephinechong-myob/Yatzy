@@ -135,6 +135,20 @@ namespace Yatzy
 
             return playerWantsToRollDice;
         }
+
+        private string AskIfPlayerWantsToHoldDice()
+        {
+            _console.WriteLine("Would you like to hold dice? Y - Yes, N - No");
+            var playerWantsToHoldDice = _console.ReadLine();
+            
+            while(!PlayerInputValidator.IsYOrN(playerWantsToHoldDice))
+            {
+                _console.WriteLine("Please enter Y - Yes, N - No");
+                playerWantsToHoldDice = _console.ReadLine();
+            }
+
+            return playerWantsToHoldDice;
+        }
         
         private void PlayerRollsDice(Player player)
         {
@@ -148,8 +162,7 @@ namespace Yatzy
             {
                 if (rollCounter >= 1)
                 {
-                    _console.WriteLine("Would you like to hold dice? Y - Yes, N - No");
-                    var playerWantsToHoldDice = _console.ReadLine();
+                    var playerWantsToHoldDice = AskIfPlayerWantsToHoldDice();
                     if (playerWantsToHoldDice == "Y")
                     { 
                         PlayerSelectsDiceToHold(player);
