@@ -211,7 +211,7 @@ namespace Yatzy
 
            var chosenCategory = _console.ReadLine(); 
            
-           while (!PlayerInputValidator.StringIsOnlyNumbers(chosenCategory))
+           while (!PlayerInputValidator.StringIsOnlyNumbersOneToTen(chosenCategory))
            {
                _console.WriteLine("Please enter the number of the category you would like to select");
             
