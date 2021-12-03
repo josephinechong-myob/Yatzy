@@ -149,13 +149,18 @@ namespace Yatzy
 
             return playerWantsToHoldDice;
         }
+
+        private void RollDice()
+        {
+            GameDice.RollDice();
+            GameDice.DisplayDice();
+        }
         
         private void PlayerRollsDice(Player player)
         {
             var playerWantsToRollDice = "Y";
             
-            GameDice.RollDice();
-            GameDice.DisplayDice();
+            RollDice();
             var rollCounter = 1;
             
             while (rollCounter < 3 && playerWantsToRollDice == "Y")
@@ -173,8 +178,7 @@ namespace Yatzy
                 
                 if (playerWantsToRollDice == "Y")
                 {
-                    GameDice.RollDice();
-                    GameDice.DisplayDice();
+                    RollDice();
                     rollCounter = rollCounter + 1;
                 }
             }
