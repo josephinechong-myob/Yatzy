@@ -160,8 +160,7 @@ namespace Yatzy
         {
             var playerWantsToRollDice = "Y";
             
-            RollDice();
-            var rollCounter = 1;
+            var rollCounter = 0;
             
             while (rollCounter < 3 && playerWantsToRollDice == "Y")
             {
@@ -174,13 +173,16 @@ namespace Yatzy
                     }
                 }
 
-                playerWantsToRollDice = AskIfPlayerWantsToRollDice();
+                if (rollCounter > 0)
+                {
+                    playerWantsToRollDice = AskIfPlayerWantsToRollDice();
+                }
                 
                 if (playerWantsToRollDice == "Y")
                 {
                     RollDice();
                     rollCounter = rollCounter + 1;
-                }
+                } 
             }
         }
 
