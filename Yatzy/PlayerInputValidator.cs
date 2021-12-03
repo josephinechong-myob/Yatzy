@@ -11,28 +11,30 @@ namespace Yatzy
             _console = console;
         }
 
-        private bool IsValidInput(string playerInput, Regex validPattern)
+        private bool IsValidInput(string playerInput, string pattern)
         {
+            var validPattern = new Regex(pattern);
             var stringIsNotEmpty = playerInput != string.Empty;
             var patternIsMatch = validPattern.IsMatch(playerInput);
             return stringIsNotEmpty && patternIsMatch; 
         }
+        
         public bool StringIsOnlyNumbersOneToTen(string playerInput) //function that returns a boolean that has all 4 lines
         {
-            var validPattern = new Regex("^[1-9][0]?$");
-            return IsValidInput(playerInput, validPattern);
+            var pattern = "^[1-9][0]?$";
+            return IsValidInput(playerInput, pattern);
         }
         
         public bool StringIsOnlyNumbersOneToSix(string playerInput)
         {
-            var validPattern = new Regex("^[1-6]$");
-            return IsValidInput(playerInput, validPattern);
+            var pattern = "^[1-6]$";
+            return IsValidInput(playerInput, pattern);
         }
         
-        public bool ResponseIsYOrN(string playerInput) 
+        public bool ResponseIsYOrN(string playerInput)
         {
-            var validPattern = new Regex("^[YN]$");
-            return IsValidInput(playerInput, validPattern);
+            var pattern = "^[YN]$";
+            return IsValidInput(playerInput, pattern);
         }
     }
 }

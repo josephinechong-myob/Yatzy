@@ -78,11 +78,12 @@ namespace Yatzy
             return false;
         }
 
-        private bool GameIsInProgress(Player player) //?
+        private bool PlayerIsPlayingCurrentGame(Player player) //?
         {
             return (!PlayerHasNotPlayedBefore(player) && !player.AllCategoriesHaveBeenPlayed(player) &&
                     PlayerWantsToContinueGame(player));
         }
+        
         
         private bool GameShouldContinue(Player player)
         {
@@ -91,7 +92,7 @@ namespace Yatzy
                 return true;
             }
             
-            if (GameIsInProgress(player))
+            if (PlayerIsPlayingCurrentGame(player))
             {
                 return true;
             }
