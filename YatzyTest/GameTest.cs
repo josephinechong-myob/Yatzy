@@ -18,51 +18,56 @@ namespace YatzyTest
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
-                .Returns(1)
-                .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(2)
-                .Returns(1)
+                .Returns(1)//3
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
-                .Returns(1)
-                .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(2)
-                .Returns(1)
+                .Returns(1)//4
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
-                .Returns(1)
-                .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(2)
-                .Returns(1)
+                .Returns(1)//6
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
-                .Returns(1)
-                .Returns(1)
-                .Returns(2)
-                .Returns(1)
-                .Returns(2)
-                .Returns(1)
+                .Returns(1)//3
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
+                .Returns(1)//0
                 .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)//0
                 .Returns(1)
                 .Returns(2)
                 .Returns(1)
                 .Returns(2)
+                .Returns(1)//7
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)//0
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)//0
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)
+                .Returns(2)
+                .Returns(1)//0s
+                .Returns(1)//yatzy
+                .Returns(1)
+                .Returns(1)
+                .Returns(1)
                 .Returns(1);
             mockConsole.SetupSequence(input => input.ReadLine())
                 .Returns(player.Name)
@@ -109,7 +114,7 @@ namespace YatzyTest
                 .Returns("Y")
                 .Returns("N")
                 .Returns("N")
-                .Returns("2")
+                .Returns("6")
                 .Returns("N");
             var gameDice = new GameDice(mockRandomNumberGenerator.Object, mockConsole.Object);
             var game = new Game(mockConsole.Object, mockRandomNumberGenerator.Object);
@@ -119,7 +124,7 @@ namespace YatzyTest
             
             //Assert
             mockConsole.Verify(c => c.WriteLine("Congratulations on finishing your Yatzy game. Here are the results: "), Times.Exactly(1));
-            mockConsole.Verify(c => c.WriteLine("Gandalf's final score is 30. "), Times.Exactly(1));
+            mockConsole.Verify(c => c.WriteLine("Gandalf's final score is 80. "), Times.Exactly(1));
             mockConsole.Verify(console => console.WriteLine("[10] - FullHouse"), Times.Exactly(2));
         }
         

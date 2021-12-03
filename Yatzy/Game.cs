@@ -121,6 +121,20 @@ namespace Yatzy
             var response = _console.ReadLine();
             return (response == "Y");
         }
+
+        private string AskIfPlayerWantsToRollDice()
+        {
+            _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
+            var playerWantsToRollDice = _console.ReadLine();
+                
+            while(!PlayerInputValidator.IsYOrN(playerWantsToRollDice))
+            {
+                _console.WriteLine("Please enter Y - Yes, N - No");
+                playerWantsToRollDice = _console.ReadLine();
+            }
+
+            return playerWantsToRollDice;
+        }
         
         private void PlayerRollsDice(Player player)
         {
@@ -141,15 +155,9 @@ namespace Yatzy
                         PlayerSelectsDiceToHold(player);
                     }
                 }
-                _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
-                playerWantsToRollDice = _console.ReadLine();
+
+                playerWantsToRollDice = AskIfPlayerWantsToRollDice();
                 
-                while(!PlayerInputValidator.IsYOrN(playerWantsToRollDice))
-                {
-                    _console.WriteLine("Please enter Y - Yes, N - No");
-                    playerWantsToRollDice = _console.ReadLine();
-                }
-               
                 if (playerWantsToRollDice == "Y")
                 {
                     GameDice.RollDice();
