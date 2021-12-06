@@ -27,9 +27,13 @@ namespace Yatzy
             _categoriesAll = GetAllCategories();
         }
         
-        public bool AllCategoriesHaveBeenPlayed(Player player)
+        public bool HasNotPlayedBefore() 
         {
-            return player.GetNumberOfCategoriesPlayed() == Constants.MaxCategories;
+            return GetNumberOfCategoriesPlayed() == 0;
+        }
+        public bool AllCategoriesHaveBeenPlayed()
+        {
+            return GetNumberOfCategoriesPlayed() == Constants.MaxCategories;
         }
 
         public int GetNumberOfCategoriesPlayed()
