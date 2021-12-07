@@ -33,10 +33,9 @@ namespace Yatzy
             var diceToHold = gameDice.FindDice(diceValuesToHold); 
             gameDice.HoldDice(diceToHold); 
         }
-        
-        public List<int> GetDiceValuesToHold() 
+
+        private string AskPlayerForDiceValuesToHold()
         {
-            var valuesToHold = new List<int>();
             var answer = string.Empty;
             while (!_playerInputValidator.IsOnlyNumbersAndCommas(answer)) 
             {
@@ -44,8 +43,17 @@ namespace Yatzy
             
                 answer = _console.ReadLine();
             }
+
+            return answer;
+        }
+        
+        public List<int> GetDiceValuesToHold() 
+        {
+            var valuesToHold = new List<int>();
             
-            var listOfStrings = answer.Split(",").ToList();
+            var diceValuesToHoldInput = AskPlayerForDiceValuesToHold();
+            
+            var listOfStrings = diceValuesToHoldInput.Split(",").ToList();
             foreach (var item in listOfStrings)
             {
                 var number = int.Parse(item);
