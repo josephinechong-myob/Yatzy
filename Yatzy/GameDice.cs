@@ -5,7 +5,6 @@ namespace Yatzy
     public class GameDice //roll or hold
     {
         public List<Die> Dice;
-        //private List<Die> _finalSelection;
         private readonly IConsole _console;
   
         public GameDice(IRandomNumberGenerator randomNumberGenerator, IConsole console)
@@ -42,20 +41,7 @@ namespace Yatzy
                 Dice[playersHeldDice[i]].Hold();
             }
         }
-
-        private Die? TryMatchDice(Die die, List<int> valuesToHold)
-        {
-            foreach (var value in valuesToHold)
-            {
-                if (die.Face == value)
-                {
-                    return die;
-                }
-            }
-
-            return null;
-        }
-
+        
         public List<int> FindDice(List<int> valuesToHold) //passes in dice face value to find dice index
         {
             List<int> diceToHold = new List<int>();
@@ -75,6 +61,19 @@ namespace Yatzy
                 throw new DiceNotFoundException($"The following dice values were not found: {string.Join(", ", valuesToHold)}" );
             }
             return diceToHold;
+        }
+        
+        private Die? TryMatchDice(Die die, List<int> valuesToHold)
+        {
+            foreach (var value in valuesToHold)
+            {
+                if (die.Face == value)
+                {
+                    return die;
+                }
+            }
+
+            return null;
         }
     }
 }

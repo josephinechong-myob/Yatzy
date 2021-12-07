@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,6 +22,12 @@ namespace Yatzy.Categories
             CategoryType = CategoryType.SpecificNumber;
             _specificNumberType = specificNumberType;
             DiceRolled = diceRolled;
+        }
+        
+        public static List<CategoryType>  GetAllCategories() //(***MOVE***)new class of categy provider which gives a list of categories to choose from 
+        {
+            return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
+         
         }
         
         public int CalculateScore()
