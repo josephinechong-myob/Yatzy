@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
+using Yatzy.Categories;
+
 namespace Yatzy
 {
     public class GameInput
@@ -11,6 +15,74 @@ namespace Yatzy
             _playerInputValidator = new PlayerInputValidator(console);
         }
         
+        public void PlayerChoosesCategory(Player player, GameDice _gameDice)
+        {
+            var chosenCategory = RequestPlayersCategory(player);
+            
+            if (chosenCategory == CategoryType.SpecificNumber)
+            { 
+                var specificNumber = RequestSpecificNumberType();
+                var specificNumberCategory = new Category(specificNumber, _gameDice.Dice);
+                player.ChooseCategory(specificNumberCategory);
+            }
+            else
+            {
+                var category = new Category(chosenCategory, _gameDice.Dice);
+                player.ChooseCategory(category);  
+            }
+        }
+        public SpecificNumberType RequestSpecificNumberType()
+        {
+            _console.WriteLine("Please enter a number from 1 to 6 which you want to use for your specific number");
+
+            var playerInput = _console.ReadLine();
+            while (!_playerInputValidator.IsOnlyNumbersOneToSix(playerInput))
+            {
+                _console.WriteLine("Please enter a number 1 to 6.");
+                playerInput = _console.ReadLine();
+            }
+            
+            var specificNumber = int.Parse(playerInput);
+            var number = (SpecificNumberType) specificNumber;
+            return number;
+        }
+        public CategoryType GetSelectedCategory(List<CategoryType> types)
+        {
+            var chosenCategory = _console.ReadLine(); 
+            while (!_playerInputValidator.IsOnlyNumbersOneToTen(chosenCategory))
+            {
+                _console.WriteLine("Please enter the number of the category you would like to select");
+            
+                chosenCategory = _console.ReadLine();
+            }
+           
+            var categoryIndex = int.Parse(chosenCategory);
+            var category = types.ElementAt(categoryIndex-1);
+            return category;
+        }
+        
+        public void PrintCategories(List<CategoryType> types)
+        {
+            
+            for (var i=0; i < types.Count(); i++)
+            {
+                var categoryNumber = i + 1;
+                _console.WriteLine($"[{categoryNumber}] - {types.ElementAt(i).ToString()}");
+            }
+        }
+        
+        public CategoryType RequestPlayersCategory(Player player) //testing in "synchronisatin'? // may need to 
+        {
+            _console.WriteLine($"Please select a category below:");
+            
+            var types = player.CategoryTypeRemaining;
+            PrintCategories(types);
+            
+            var category = GetSelectedCategory(types);
+            _console.WriteLine($"You have chosen {category} category");
+            
+            return category;
+        }
         
         public bool AskIfPlayerWantsToHoldDice()
         {
