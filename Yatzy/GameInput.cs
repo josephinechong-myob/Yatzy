@@ -105,12 +105,12 @@ namespace Yatzy
             { 
                 var specificNumber = RequestSpecificNumberType();
                 var specificNumberCategory = new Category(specificNumber, gameDice.Dice);
-                player.ChooseCategory(specificNumberCategory);
+                player.SetCategory(specificNumberCategory);
             }
             else
             {
                 var category = new Category(chosenCategory, gameDice.Dice);
-                player.ChooseCategory(category);  
+                player.SetCategory(category);  
             }
         }
     }

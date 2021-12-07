@@ -24,7 +24,7 @@ namespace Yatzy.Categories
             DiceRolled = diceRolled;
         }
         
-        public static List<CategoryType>  GetAllCategories() //(***MOVE***)new class of categy provider which gives a list of categories to choose from 
+        public static List<CategoryType>  GetAllCategories()
         {
             return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
          

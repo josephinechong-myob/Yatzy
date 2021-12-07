@@ -28,7 +28,7 @@ namespace YatzyTest
             var player = new Player(mockConsole.Object, "player");
             //act
             gameDice.RollDice();
-            var valuesToHold = player.ValuesToHold(gameDice.Dice);
+            var valuesToHold = player.GetDiceValuesToHold();
             
             
             //assert
@@ -56,7 +56,7 @@ namespace YatzyTest
            
             //act
             gameDice.RollDice();
-            var valuesToHold = player.ValuesToHold(gameDice.Dice);
+            var valuesToHold = player.GetDiceValuesToHold();
             
             //assert
             mockConsole.Verify(
@@ -85,7 +85,7 @@ namespace YatzyTest
 
             //act
             gameDice.RollDice();
-            player.ChooseCategory(chosenCategory);
+            player.SetCategory(chosenCategory);
             
 
             //assert
@@ -111,7 +111,7 @@ namespace YatzyTest
 
             //act
             gameDice.RollDice();
-            player.ChooseCategory(chosenCategory);
+            player.SetCategory(chosenCategory);
             
 
             //assert
@@ -137,7 +137,7 @@ namespace YatzyTest
 
             //act
             gameDice.RollDice();
-            player.ChooseCategory(chosenCategory);
+            player.SetCategory(chosenCategory);
             
             //assert
             Assert.Equal(expectedScore, player.Score);
@@ -162,7 +162,7 @@ namespace YatzyTest
             //act
             gameDice.RollDice();
             var chosenCategory = new Category(CategoryType.FullHouse, gameDice.Dice);
-            player.ChooseCategory(chosenCategory);
+            player.SetCategory(chosenCategory);
 
             var actualCategoryTypesRemaining = player.CategoryTypeRemaining.Count;
 

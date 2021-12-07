@@ -28,7 +28,7 @@ namespace Yatzy
             
             while (GameShouldContinue(player)) 
             {
-                if (player.AllCategoriesHaveBeenPlayed()) 
+                if (player.HasPlayedAllCategories()) 
                 {
                     UpdateScoreRecords(player);
                     player = player.Reset();
@@ -76,7 +76,7 @@ namespace Yatzy
                 var playerWantsToHoldDice = _gameInput.AskIfPlayerWantsToHoldDice();
                 if (playerWantsToHoldDice)
                 { 
-                    player.PlayerSelectsDiceToHold(_gameDice);
+                    player.SelectDiceToHold(_gameDice);
                 }
             }
         }
@@ -113,12 +113,12 @@ namespace Yatzy
                 return true;
             }
 
-            if (player.PlayerIsPlayingCurrentGame())
+            if (player.IsPlayingCurrentGame())
             {
                 return true;
             }
 
-            if (player.AllCategoriesHaveBeenPlayed() && player.PLayerWantsToResetGame())
+            if (player.HasPlayedAllCategories() && player.WantsToResetGame())
             {
                 return true;
             }

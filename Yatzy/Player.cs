@@ -27,14 +27,14 @@ namespace Yatzy
             _playerInputValidator = new PlayerInputValidator();
         }
         
-        public void PlayerSelectsDiceToHold(GameDice gameDice)
+        public void SelectDiceToHold(GameDice gameDice)
         {
-            var valuesToHold = ValuesToHold(gameDice.Dice); 
-            var diceToHold = gameDice.FindDice(valuesToHold); 
+            var diceValuesToHold = GetDiceValuesToHold(); 
+            var diceToHold = gameDice.FindDice(diceValuesToHold); 
             gameDice.HoldDice(diceToHold); 
         }
         
-        public List<int> ValuesToHold(List<Die> gameDice) 
+        public List<int> GetDiceValuesToHold() 
         {
             var valuesToHold = new List<int>();
             var answer = string.Empty;
@@ -55,14 +55,14 @@ namespace Yatzy
             return valuesToHold;
         }
         
-        public void ChooseCategory(Category chosenCategory)
+        public void SetCategory(Category chosenCategory)
         {
             if (HasChosenCategory(chosenCategory.CategoryType))
             {
                 var categoryScore = chosenCategory.CalculateScore();
                 _console.WriteLine($"You have scored {categoryScore} for {chosenCategory.CategoryType}");
                 _categoriesWon.Add(chosenCategory);
-                GetTotalScore(categoryScore);
+                AddScore(categoryScore);
             }
         }
         
@@ -71,7 +71,7 @@ namespace Yatzy
             return new Player(_console, Name);
         }
         
-        public bool PLayerWantsToResetGame()
+        public bool WantsToResetGame()
         {
             _console.WriteLine("Would you like to play again? Y - Yes, N - No");
             var reply = _console.ReadLine();
@@ -87,12 +87,12 @@ namespace Yatzy
             return false;
         }
         
-        public bool PlayerIsPlayingCurrentGame()
+        public bool IsPlayingCurrentGame()
         {
-            return (!HasNotPlayedBefore() && !AllCategoriesHaveBeenPlayed() && PlayerWantsToContinueGame());
+            return (!HasNotPlayedBefore() && !HasPlayedAllCategories() && WantsToContinueGame());
         }
 
-        private bool PlayerWantsToContinueGame()
+        private bool WantsToContinueGame()
         {
             _console.WriteLine($"Your total score is {Score}. Would you like to continue playing? Y - Yes, N - No");
             var response = _console.ReadLine();
@@ -104,7 +104,7 @@ namespace Yatzy
             return GetNumberOfCategoriesPlayed() == 0;
         }
         
-        public bool AllCategoriesHaveBeenPlayed()
+        public bool HasPlayedAllCategories()
         {
             return GetNumberOfCategoriesPlayed() == Constants.MaxCategories;
         }
@@ -113,8 +113,6 @@ namespace Yatzy
         {
             return _categoriesWon.Count;
         }
-
-        
         
         private bool HasChosenCategory(CategoryType chosenCategory) 
         {
@@ -128,7 +126,7 @@ namespace Yatzy
             return true;
         }
         
-        private void GetTotalScore(int categoryScore)
+        private void AddScore(int categoryScore)
         {
             Score += categoryScore;
         }
