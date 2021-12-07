@@ -191,18 +191,9 @@ namespace Yatzy
         #endregion
         
         #region Player state
-        private bool PlayerIsPlayingCurrentGame(Player player) // move to player class 
-        {
-            return (!player.HasNotPlayedBefore() && !player.AllCategoriesHaveBeenPlayed() &&
-                    PlayerWantsToContinueGame(player));
-        }
         
-        private bool PlayerWantsToContinueGame(Player player) //move to player class
-        {
-            _console.WriteLine($"Your total score is {player.Score}. Would you like to continue playing? Y - Yes, N - No");
-            var response = _console.ReadLine();
-            return (response == "Y");
-        }
+        
+        
         
         private bool PLayerWantsToResetGame() //move to player class
         {
@@ -251,7 +242,7 @@ namespace Yatzy
                 return true;
             }
 
-            if (PlayerIsPlayingCurrentGame(player))
+            if (player.PlayerIsPlayingCurrentGame())
             {
                 return true;
             }

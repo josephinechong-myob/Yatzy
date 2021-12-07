@@ -27,6 +27,18 @@ namespace Yatzy
             _categoriesAll = GetAllCategories();
         }
         
+        public bool PlayerIsPlayingCurrentGame()
+        {
+            return (!HasNotPlayedBefore() && !AllCategoriesHaveBeenPlayed() && PlayerWantsToContinueGame());
+        }
+        
+        public bool PlayerWantsToContinueGame()
+        {
+            _console.WriteLine($"Your total score is {Score}. Would you like to continue playing? Y - Yes, N - No");
+            var response = _console.ReadLine();
+            return (response == "Y");
+        }
+        
         public bool HasNotPlayedBefore() 
         {
             return GetNumberOfCategoriesPlayed() == 0;
