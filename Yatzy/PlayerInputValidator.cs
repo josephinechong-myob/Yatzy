@@ -4,21 +4,6 @@ namespace Yatzy
 {
     public class PlayerInputValidator
     {
-        private readonly IConsole _console;
-
-        public PlayerInputValidator(IConsole console)
-        {
-            _console = console;
-        }
-
-        private bool IsValidInput(string playerInput, string pattern)
-        {
-            var validPattern = new Regex(pattern);
-            var stringIsNotEmpty = playerInput != string.Empty;
-            var patternIsMatch = validPattern.IsMatch(playerInput);
-            return stringIsNotEmpty && patternIsMatch; 
-        }
-        
         public bool IsOnlyNumbersOneToTen(string playerInput) //function that returns a boolean that has all 4 lines
         {
             var pattern = "^[1-9][0]?$";
@@ -35,6 +20,14 @@ namespace Yatzy
         {
             var pattern = "^[YN]$";
             return IsValidInput(playerInput, pattern);
+        }
+        
+        private bool IsValidInput(string playerInput, string pattern)
+        {
+            var validPattern = new Regex(pattern);
+            var stringIsNotEmpty = playerInput != string.Empty;
+            var patternIsMatch = validPattern.IsMatch(playerInput);
+            return stringIsNotEmpty && patternIsMatch; 
         }
     }
 }

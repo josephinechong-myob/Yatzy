@@ -12,7 +12,7 @@ namespace Yatzy
         public GameInput(IConsole console)
         {
             _console = console;
-            _playerInputValidator = new PlayerInputValidator(console);
+            _playerInputValidator = new PlayerInputValidator();
         }
         
         public bool AskIfPlayerWantsToHoldDice()
