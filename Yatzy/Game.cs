@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Yatzy.Categories;
 
 namespace Yatzy
 {
@@ -10,7 +9,6 @@ namespace Yatzy
         private readonly IConsole _console;
         private readonly GameDice _gameDice;
         private readonly Dictionary<string, List<int>> _scoreRecords;
-        private readonly PlayerInputValidator _playerInputValidator;
         private readonly GameInput _gameInput;
         #endregion
         
@@ -19,7 +17,6 @@ namespace Yatzy
             _console = console;
             _gameDice = new GameDice(randomNumberGenerator, console);
             _scoreRecords = new Dictionary<string, List<int>>();
-            _playerInputValidator = new PlayerInputValidator(console);
             _gameInput = new GameInput(console);
         }
         
@@ -65,6 +62,7 @@ namespace Yatzy
                 } 
             }
         }
+        
         private void RollDice()
         {
             _gameDice.RollDice();
