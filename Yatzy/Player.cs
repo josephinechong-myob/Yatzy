@@ -33,19 +33,6 @@ namespace Yatzy
             var diceToHold = gameDice.FindDice(diceValuesToHold); 
             gameDice.HoldDice(diceToHold); 
         }
-
-        private string AskPlayerForDiceValuesToHold()
-        {
-            var answer = string.Empty;
-            while (!_playerInputValidator.IsOnlyNumbersAndCommas(answer)) 
-            {
-                _console.WriteLine("Please list all the numbers you would like to hold separated by comma ','. For example if you would to hold the same number twice please write it twice when listing. ");
-            
-                answer = _console.ReadLine();
-            }
-
-            return answer;
-        }
         
         public List<int> GetDiceValuesToHold() 
         {
@@ -97,14 +84,7 @@ namespace Yatzy
         
         public bool IsPlayingCurrentGame()
         {
-            return (!HasNotPlayedBefore() && !HasPlayedAllCategories() && WantsToContinueGame());
-        }
-
-        private bool WantsToContinueGame()
-        {
-            _console.WriteLine($"Your total score is {Score}. Would you like to continue playing? Y - Yes, N - No");
-            var response = _console.ReadLine();
-            return (response == "Y");
+            return !HasNotPlayedBefore() && !HasPlayedAllCategories() && WantsToContinueGame();
         }
         
         public bool HasNotPlayedBefore() 
@@ -137,6 +117,26 @@ namespace Yatzy
         private void AddScore(int categoryScore)
         {
             Score += categoryScore;
+        }
+        
+        private string AskPlayerForDiceValuesToHold()
+        {
+            var answer = string.Empty;
+            while (!_playerInputValidator.IsOnlyNumbersAndCommas(answer)) 
+            {
+                _console.WriteLine("Please list all the numbers you would like to hold separated by comma ','. For example if you would to hold the same number twice please write it twice when listing. ");
+            
+                answer = _console.ReadLine();
+            }
+
+            return answer;
+        }
+        
+        private bool WantsToContinueGame()
+        {
+            _console.WriteLine($"Your total score is {Score}. Would you like to continue playing? Y - Yes, N - No");
+            var response = _console.ReadLine();
+            return (response == "Y");
         }
     }
 }

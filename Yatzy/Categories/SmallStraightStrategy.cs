@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace Yatzy.Categories
 {
-    public class SmallStraightStrategy
+    public static class SmallStraightStrategy
     {
-        public CategoryType Name => CategoryType.SmallStraight;
+        public static CategoryType Name => CategoryType.SmallStraight;
         
         private static bool IsSmallStraight(List<int> diceValues)
         {
@@ -21,11 +21,7 @@ namespace Yatzy.Categories
         }
         public static int CalculateScore(List<int> diceValue)
         {
-            if (IsSmallStraight(diceValue))
-            {
-                return 15;
-            }
-            return 0;
+            return IsSmallStraight(diceValue) ? 15 : 0;
         }
     }
 }

@@ -1,12 +1,10 @@
-using System;
-
 namespace Yatzy
 {
     public class Die
     {
-        public int Face { get; private set; } //This records value of rolled number, ? after a type means it might be that type or null
+        public int Face { get; private set; }
         private readonly IRandomNumberGenerator _randomNumberGenerator;
-        private bool _held; //Attribute which determines if die is held or rolled
+        private bool _held; 
         
         public Die(IRandomNumberGenerator randomNumberGenerator)
         {

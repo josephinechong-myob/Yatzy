@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace Yatzy
 {
-    public class GameDice //roll or hold
+    public class GameDice
     {
-        public List<Die> Dice;
+        public readonly List<Die> Dice;
         private readonly IConsole _console;
   
         public GameDice(IRandomNumberGenerator randomNumberGenerator, IConsole console)
@@ -34,7 +34,7 @@ namespace Yatzy
             }
         }
 
-        public void HoldDice(List<int> playersHeldDice) //passing in the dice index that player wants to hold
+        public void HoldDice(List<int> playersHeldDice)
         {
             for (var i = 0; i < playersHeldDice.Count; i++)
             {
@@ -42,7 +42,7 @@ namespace Yatzy
             }
         }
         
-        public List<int> FindDice(List<int> valuesToHold) //passes in dice face value to find dice index
+        public List<int> FindDice(List<int> valuesToHold)
         {
             List<int> diceToHold = new List<int>();
             

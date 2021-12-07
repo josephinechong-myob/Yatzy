@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace Yatzy.Categories
 {
-    public class LargeStraightStrategy
+    public static class LargeStraightStrategy
     {
-        public CategoryType Name => CategoryType.LargeStraight;
+        public static CategoryType Name => CategoryType.LargeStraight;
         
         private static bool IsLargeStraight(List<int> diceValues)
         {

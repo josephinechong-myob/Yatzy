@@ -3,14 +3,14 @@ using System.Linq;
 
 namespace Yatzy.Categories
 {
-    public class PairStrategy
+    public static class PairStrategy
     {
-        public CategoryType Name => CategoryType.Pairs;
+        public static CategoryType Name => CategoryType.Pairs;
 
-        public static int CalculateScore(List<int> diceValues)// write theory test to test everything
+        public static int CalculateScore(List<int> diceValues)
         {
             var findPairs = diceValues.GroupBy(pair => pair)
-                .Where(dicevalue => dicevalue.Count() > 1)
+                .Where(value => value.Count() > 1)
                 .ToDictionary(pair => pair.Key, occurence => occurence.Count());
 
             var firstPair = findPairs.Keys.OrderByDescending(m => m).FirstOrDefault();

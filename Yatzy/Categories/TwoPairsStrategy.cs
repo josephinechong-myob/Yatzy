@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace Yatzy.Categories
 {
-    public class TwoPairsStrategy 
+    public static class TwoPairsStrategy 
     {
-        public CategoryType Name => CategoryType.TwoPairs;
+        public static CategoryType Name => CategoryType.TwoPairs;
         
         public static int CalculateScore(List<int> diceValues)
         {
