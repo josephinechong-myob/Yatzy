@@ -81,7 +81,8 @@ namespace Yatzy
             }
         }
         #endregion
-        
+
+        #region Score mechanics
         private void UpdateScoreRecords(Player player)
         {
             var playerName = player.Name;
@@ -103,6 +104,7 @@ namespace Yatzy
                 _console.WriteLine($"{record.Key}'s final score is {record.Value.Sum()}. ");
             }
         }
+        #endregion
         
         private bool GameShouldContinue(Player player)
         {
