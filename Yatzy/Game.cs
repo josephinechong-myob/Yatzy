@@ -195,21 +195,7 @@ namespace Yatzy
         
         
         
-        private bool PLayerWantsToResetGame() //move to player class
-        {
-            _console.WriteLine("Would you like to play again? Y - Yes, N - No");
-            var reply = _console.ReadLine();
-            while (reply != "Y" && reply != "N")
-            {
-                _console.WriteLine("Please enter Y - Yes to play again or N - No to stop the game");
-                reply = _console.ReadLine();
-            }
-            if (reply == "Y")
-            {
-                return true;
-            }
-            return false;
-        }
+       
         #endregion
         
 
@@ -247,7 +233,7 @@ namespace Yatzy
                 return true;
             }
 
-            if (player.AllCategoriesHaveBeenPlayed() && PLayerWantsToResetGame())
+            if (player.AllCategoriesHaveBeenPlayed() && player.PLayerWantsToResetGame())
             {
                 return true;
             }
