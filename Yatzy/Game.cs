@@ -11,6 +11,7 @@ namespace Yatzy
         private readonly GameDice _gameDice;
         private readonly Dictionary<string, List<int>> _scoreRecords;
         private readonly PlayerInputValidator _playerInputValidator;
+        private readonly GameInput _gameInput;
         #endregion
         
         public Game(IConsole console, IRandomNumberGenerator randomNumberGenerator)
@@ -19,6 +20,7 @@ namespace Yatzy
             _gameDice = new GameDice(randomNumberGenerator, console);
             _scoreRecords = new Dictionary<string, List<int>>();
             _playerInputValidator = new PlayerInputValidator(console);
+            _gameInput = new GameInput(console);
         }
         
         public void Run() 
@@ -42,40 +44,11 @@ namespace Yatzy
         }
         
         #region Ask player
-        private bool AskIfPlayerWantsToRollDice()
-        {
-            _console.WriteLine("Would you like to roll dice? Y - Yes, N - No");
-            var playerWantsToRollDice = _console.ReadLine();
-                
-            while(!_playerInputValidator.IsYOrN(playerWantsToRollDice))
-            {
-                _console.WriteLine("Please enter Y - Yes, N - No");
-                playerWantsToRollDice = _console.ReadLine();
-            }
-            
-            return playerWantsToRollDice == "Y";
-        }
+       
 
-        private bool AskIfPlayerWantsToHoldDice()
-        {
-            _console.WriteLine("Would you like to hold dice? Y - Yes, N - No");
-            var playerWantsToHoldDice = _console.ReadLine();
-            
-            while(!_playerInputValidator.IsYOrN(playerWantsToHoldDice))
-            {
-                _console.WriteLine("Please enter Y - Yes, N - No");
-                playerWantsToHoldDice = _console.ReadLine();
-            }
-
-            return playerWantsToHoldDice == "Y";
-        }
         
-        private void PlayerSelectsDiceToHold(Player player)
-        {
-            var valuesToHold = player.ValuesToHold(_gameDice.Dice); 
-            var diceToHold = _gameDice.FindDice(valuesToHold); 
-            _gameDice.HoldDice(diceToHold); 
-        }
+        
+        
         
         private void PlayerChoosesCategory(Player player)
         {
@@ -161,7 +134,7 @@ namespace Yatzy
 
                 if (rollCounter > 0) // Is not player's first roll function
                 {
-                    playerWantsToRollDice = AskIfPlayerWantsToRollDice();
+                    playerWantsToRollDice = _gameInput.AskIfPlayerWantsToRollDice();
                 }
                 
                 if (playerWantsToRollDice) //maybe put into roll dice ?
@@ -181,24 +154,15 @@ namespace Yatzy
         {
             if (rollCounter >= 1)
             {
-                var playerWantsToHoldDice = AskIfPlayerWantsToHoldDice();
+                var playerWantsToHoldDice = _gameInput.AskIfPlayerWantsToHoldDice();
                 if (playerWantsToHoldDice)
                 { 
-                    PlayerSelectsDiceToHold(player);
+                    player.PlayerSelectsDiceToHold(_gameDice);
                 }
             }
         }
         #endregion
         
-        #region Player state
-        
-        
-        
-        
-       
-        #endregion
-        
-
         private void UpdateScoreRecords(Player player)
         {
             var playerName = player.Name;

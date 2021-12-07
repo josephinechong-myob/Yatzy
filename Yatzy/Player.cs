@@ -27,6 +27,13 @@ namespace Yatzy
             _categoriesAll = GetAllCategories();
         }
         
+        public void PlayerSelectsDiceToHold(GameDice _gameDice)
+        {
+            var valuesToHold = ValuesToHold(_gameDice.Dice); 
+            var diceToHold = _gameDice.FindDice(valuesToHold); 
+            _gameDice.HoldDice(diceToHold); 
+        }
+        
         public bool PLayerWantsToResetGame()
         {
             _console.WriteLine("Would you like to play again? Y - Yes, N - No");
