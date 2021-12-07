@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Yatzy.Categories
@@ -51,9 +52,9 @@ namespace Yatzy.Categories
                 
                 case CategoryType.FullHouse:
                     return FullHouseStrategy.CalculateScore(diceValues);
+                
+                default: throw new ArgumentException();
             }
-            
-            return 0; // throw catergory not chosen 
         }
     }
 }
