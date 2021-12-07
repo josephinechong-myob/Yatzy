@@ -84,8 +84,9 @@ namespace YatzyTest
             var expectedScore = 50;
 
             //act
-            player.ChooseCategory(chosenCategory);
             gameDice.RollDice();
+            player.ChooseCategory(chosenCategory);
+            
 
             //assert
             Assert.Equal(expectedScore, player.Score);
@@ -109,8 +110,9 @@ namespace YatzyTest
             var expectedScore = 50;
 
             //act
-            player.ChooseCategory(chosenCategory);
             gameDice.RollDice();
+            player.ChooseCategory(chosenCategory);
+            
 
             //assert
             Assert.Equal(expectedScore, player.Score);
@@ -134,9 +136,9 @@ namespace YatzyTest
             var expectedScore = 7;
 
             //act
-            player.ChooseCategory(chosenCategory);
             gameDice.RollDice();
-
+            player.ChooseCategory(chosenCategory);
+            
             //assert
             Assert.Equal(expectedScore, player.Score);
         }
