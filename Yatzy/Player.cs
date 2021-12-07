@@ -8,30 +8,31 @@ namespace Yatzy
 {
     public class Player
     {
-        
-        private readonly List<Category> _categoriesWon; //reset
-        private readonly List<CategoryType> _categoriesAll; //reset
-        public List<CategoryType> CategoryTypeRemaining => //reset
+        #region Fields
+        public string Name { get; }
+        public int Score;
+        public List<CategoryType> CategoryTypeRemaining =>
             _categoriesAll.Where(c=>!_categoriesWon.Exists(won=>won.CategoryType==c)).ToList();
-        public string Name { get; } //reset
+        private readonly List<Category> _categoriesWon;
+        private readonly List<CategoryType> _categoriesAll;
         private readonly IConsole _console;
-        //public int Score => GetScore(); //Ask Jeremy cause there is an issue
-        //recent dice 
-        public int Score; //reset
-
+        private PlayerInputValidator _playerInputValidator;
+        #endregion
+        
         public Player(IConsole console, string name)
         {
             Name = name;
             _categoriesWon = new List<Category>();
             _console = console;
             _categoriesAll = GetAllCategories();
+            _playerInputValidator = new PlayerInputValidator();
         }
         
-        public void PlayerSelectsDiceToHold(GameDice _gameDice)
+        public void PlayerSelectsDiceToHold(GameDice gameDice)
         {
-            var valuesToHold = ValuesToHold(_gameDice.Dice); 
-            var diceToHold = _gameDice.FindDice(valuesToHold); 
-            _gameDice.HoldDice(diceToHold); 
+            var valuesToHold = ValuesToHold(gameDice.Dice); 
+            var diceToHold = gameDice.FindDice(valuesToHold); 
+            gameDice.HoldDice(diceToHold); 
         }
         
         public bool PLayerWantsToResetGame()
@@ -54,8 +55,8 @@ namespace Yatzy
         {
             return (!HasNotPlayedBefore() && !AllCategoriesHaveBeenPlayed() && PlayerWantsToContinueGame());
         }
-        
-        public bool PlayerWantsToContinueGame()
+
+        private bool PlayerWantsToContinueGame()
         {
             _console.WriteLine($"Your total score is {Score}. Would you like to continue playing? Y - Yes, N - No");
             var response = _console.ReadLine();
@@ -71,12 +72,12 @@ namespace Yatzy
             return GetNumberOfCategoriesPlayed() == Constants.MaxCategories;
         }
 
-        public int GetNumberOfCategoriesPlayed()
+        private int GetNumberOfCategoriesPlayed()
         {
             return _categoriesWon.Count;
         }
-        
-        public List<CategoryType>  GetAllCategories() //(***MOVE***)new class of categy provider which gives a list of categories to choose from 
+
+        private List<CategoryType>  GetAllCategories() //(***MOVE***)new class of categy provider which gives a list of categories to choose from 
         {
             return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
          
@@ -87,29 +88,15 @@ namespace Yatzy
         {
             return new Player(_console, Name);
         }
-        // private int GetScore() //not giving correct score
-        // {
-        //     var sum = 0;
-        //     foreach (var category in _categoriesWon)
-        //     {
-        //         sum += category.CalculateScore(); //issue is it is not recording the original dice roll to calculate the score and just using the current dice roll to do it
-        //         
-        //     }
-        //     return sum;
-        // }
         
-        private bool StringIsOnlyNumbersAndCommas(string playerInput) //player validator class or game validator class
-        {
-            var validPattern = new Regex("^[1-6],?[1-6]?,?[1-6]?,?[1-6]?,?[1-6]?$");
-            return playerInput != string.Empty && validPattern.IsMatch(playerInput);
-        }
+        
         
         //hold should be on the player (all interactions with the player) - player need to provide a list of dice values to hold
         public List<int> ValuesToHold(List<Die> gameDice) //mock the console and write a test
         {
             var valuesToHold = new List<int>();
             var answer = string.Empty;
-            while (!StringIsOnlyNumbersAndCommas(answer)) //pass through the answer of a function 
+            while (!_playerInputValidator.IsOnlyNumbersAndCommas(answer)) //pass through the answer of a function 
             {
                 _console.WriteLine("Please list all the numbers you would like to hold separated by comma ','. For example if you would to hold the same number twice please write it twice when listing. ");
             

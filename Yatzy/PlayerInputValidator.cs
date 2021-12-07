@@ -4,7 +4,12 @@ namespace Yatzy
 {
     public class PlayerInputValidator
     {
-        public bool IsOnlyNumbersOneToTen(string playerInput) //function that returns a boolean that has all 4 lines
+        public bool IsOnlyNumbersAndCommas(string playerInput)
+        {
+            var pattern = "^[1-6],?[1-6]?,?[1-6]?,?[1-6]?,?[1-6]?$";
+            return IsValidInput(playerInput, pattern);
+        }
+        public bool IsOnlyNumbersOneToTen(string playerInput)
         {
             var pattern = "^[1-9][0]?$";
             return IsValidInput(playerInput, pattern);

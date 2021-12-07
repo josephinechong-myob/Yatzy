@@ -5,7 +5,7 @@ namespace Yatzy
 {
     public class Game
     {
-        #region fields
+        #region Fields
         private readonly IConsole _console;
         private readonly GameDice _gameDice;
         private readonly Dictionary<string, List<int>> _scoreRecords;
