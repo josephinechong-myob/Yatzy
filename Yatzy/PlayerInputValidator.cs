@@ -27,7 +27,7 @@ namespace Yatzy
             return IsValidInput(playerInput, pattern);
         }
         
-        private bool IsValidInput(string playerInput, string pattern)
+        private static bool IsValidInput(string playerInput, string pattern)
         {
             var validPattern = new Regex(pattern);
             var stringIsNotEmpty = playerInput != string.Empty;

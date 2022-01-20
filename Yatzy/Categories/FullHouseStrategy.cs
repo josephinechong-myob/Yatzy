@@ -5,8 +5,6 @@ namespace Yatzy.Categories
 {
     public static class FullHouseStrategy
     {
-        public static CategoryType Name => CategoryType.FullHouse;
-
         public static int CalculateScore(List<int> diceValues)
         {
             var distinctDice = diceValues.Distinct().Count(); // O(N)

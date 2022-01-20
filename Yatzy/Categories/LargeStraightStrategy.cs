@@ -4,8 +4,6 @@ namespace Yatzy.Categories
 {
     public static class LargeStraightStrategy
     {
-        public static CategoryType Name => CategoryType.LargeStraight;
-        
         private static bool IsLargeStraight(List<int> diceValues)
         {
             var largeStraight = new List<int> {2, 3, 4, 5, 6};

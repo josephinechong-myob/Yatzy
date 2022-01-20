@@ -53,7 +53,7 @@ namespace Yatzy.Categories
                 case CategoryType.FullHouse:
                     return FullHouseStrategy.CalculateScore(diceValues);
                 
-                default: throw new ArgumentException();
+                default: throw new ArgumentException("A valid category type was not found");
             }
         }
     }

@@ -5,8 +5,6 @@ namespace Yatzy.Categories
 {
     public static class ThreeOfAKindStrategy
     {
-        public static CategoryType Name => CategoryType.ThreeOfAKind;
-        
         public static int CalculateScore(List<int> diceValues)
         {
             var findThrees = diceValues.GroupBy(three => three)

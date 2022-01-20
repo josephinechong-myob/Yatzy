@@ -8,7 +8,7 @@ namespace Yatzy
         #region Fields
         private readonly IConsole _console;
         private readonly GameDice _gameDice;
-        private readonly Dictionary<string, List<int>> _scoreRecords;
+        private readonly Dictionary<string, List<int>> _scoreRecords; 
         private readonly GameInput _gameInput;
         #endregion
         
@@ -20,21 +20,22 @@ namespace Yatzy
             _gameInput = new GameInput(console);
         }
         
-        public void Run() 
+        public void Run()
         {
             _console.WriteLine("Welcome to Yatzy. \nWhat is your name?");
             var playerName = _console.ReadLine(); 
             var player = new Player(_console, playerName);
             
-            while (GameShouldContinue(player)) 
+            while (GameShouldContinue(player))
             {
                 if (player.HasPlayedAllCategories()) 
                 {
                     UpdateScoreRecords(player);
                     player = player.Reset();
                 }
-                PlayerRollsDice(player);
+                PlayerRollsDice(player); 
                 _gameInput.PlayerChoosesCategory(player, _gameDice);
+                
             }
             UpdateScoreRecords(player);
             PrintPlayersScores();

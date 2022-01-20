@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 
 namespace Yatzy
@@ -49,7 +50,7 @@ namespace Yatzy
             for (var i = 0; i < Dice.Count; i++)
             {
                 var matchedDice = TryMatchDice(Dice[i], valuesToHold);
-                if (matchedDice !=null)
+                if (matchedDice != null)
                 {
                     diceToHold.Add(i);
                     valuesToHold.Remove(matchedDice.Face);
@@ -63,7 +64,7 @@ namespace Yatzy
             return diceToHold;
         }
         
-        private Die? TryMatchDice(Die die, List<int> valuesToHold)
+        private static Die? TryMatchDice(Die die, List<int> valuesToHold)
         {
             foreach (var value in valuesToHold)
             {

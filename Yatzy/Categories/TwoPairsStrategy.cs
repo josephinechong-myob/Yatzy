@@ -5,8 +5,6 @@ namespace Yatzy.Categories
 {
     public static class TwoPairsStrategy 
     {
-        public static CategoryType Name => CategoryType.TwoPairs;
-        
         public static int CalculateScore(List<int> diceValues)
         {
             var findPairs = diceValues.GroupBy(pair => pair)

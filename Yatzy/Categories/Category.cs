@@ -8,8 +8,7 @@ namespace Yatzy.Categories
     {
         public readonly CategoryType CategoryType;
         private readonly SpecificNumberType _specificNumberType;
-        public int Score => CalculateScore();
-        public List<Die> DiceRolled { get; private set; }
+        private List<Die> DiceRolled { get;}
 
         public Category(CategoryType categoryType, List<Die> diceRolled)
         {
@@ -27,7 +26,6 @@ namespace Yatzy.Categories
         public static List<CategoryType>  GetAllCategories()
         {
             return Enum.GetValues(typeof(CategoryType)).Cast<CategoryType>().ToList();
-         
         }
         
         public int CalculateScore()

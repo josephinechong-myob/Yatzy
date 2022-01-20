@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Yatzy.Categories;
@@ -41,6 +40,7 @@ namespace Yatzy
             var diceValuesToHoldInput = AskPlayerForDiceValuesToHold();
             
             var listOfStrings = diceValuesToHoldInput.Split(",").ToList();
+            
             foreach (var item in listOfStrings)
             {
                 var number = int.Parse(item);
@@ -75,11 +75,7 @@ namespace Yatzy
                 _console.WriteLine("Please enter Y - Yes to play again or N - No to stop the game");
                 reply = _console.ReadLine();
             }
-            if (reply == "Y")
-            {
-                return true;
-            }
-            return false;
+            return reply == "Y";
         }
         
         public bool IsPlayingCurrentGame()
